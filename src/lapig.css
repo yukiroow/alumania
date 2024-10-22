@@ -134,6 +134,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     background: #fff;
+    color: #333;
     width: 800px;
     height: 500px;
     z-index: 2;
@@ -168,24 +169,15 @@
 
 .grid-container-pop {
     display: grid;
-    grid-template-columns: 60px auto auto ;
+    grid-template-columns: auto auto 1fr;
     grid-gap: 10px;
-
+    align-items: center;
     padding: 10px;
 }
 
 .grid-container-pop>div {
-
     padding: 20px 0;
     font-size: 15px;
-}
-
-.item1 {
-    text-align: left;
-}
-
-.item2 {
-    text-align: left;
 }
 
 .item3 {
