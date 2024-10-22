@@ -40,6 +40,7 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     position: relative;
+    text-align: justify;
 }
 
 .listing-title h3 a {
@@ -116,7 +117,7 @@
     height: 20px;
 }
 
-.popup .overlay{
+.popup .overlay {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -127,22 +128,22 @@
     display: none;
 }
 
-.popup .content{
+.popup .content {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
     background: #fff;
-    width: 600px;
-    height: 520px;
+    width: 800px;
+    height: 500px;
     z-index: 2;
     text-align: center;
-    padding: 20px;
+    padding: 40px;
     box-sizing: border-box;
-    padding: 3%;
+    border-radius: 15px;
 }
 
-.popup .close-btn{
+.popup .close-btn {
     cursor: pointer;
     position: absolute;
     right: 20px;
@@ -156,11 +157,37 @@
     text-align: center;
 }
 
-.popup.active .overlay{
+.popup.active .overlay {
     display: block;
 }
 
-.popup.active .content{
+.popup.active .content {
     transition: all 300ms ease-in-out;
-    transform:translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.grid-container-pop {
+    display: grid;
+    grid-template-columns: 60px auto auto ;
+    grid-gap: 10px;
+
+    padding: 10px;
+}
+
+.grid-container-pop>div {
+
+    padding: 20px 0;
+    font-size: 15px;
+}
+
+.item1 {
+    text-align: left;
+}
+
+.item2 {
+    text-align: left;
+}
+
+.item3 {
+    text-align: right;
 }
