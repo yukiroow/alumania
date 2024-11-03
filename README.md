@@ -21,7 +21,6 @@
 
 Alumania is a Social Media platform for Saint Louis University Baguio's alumnis and graduating students. It allows its users to be up to date with events and other university updates. This repository contains the source code for the Alumni Application.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -32,7 +31,6 @@ Alumania is a Social Media platform for Saint Louis University Baguio's alumnis 
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![MySQL][MYSQL-logo]][MYSQL-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -62,8 +60,6 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
    npm install
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Express.js]: https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white
@@ -72,3 +68,5 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
 [React-url]: https://reactjs.org/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
+[MYSQL-logo]: https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white
+[MYSQL-url]: https://www.mysql.com/
