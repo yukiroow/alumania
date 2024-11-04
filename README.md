@@ -26,10 +26,7 @@ Alumania is a Social Media platform for Saint Louis University Baguio's alumnis 
 
 ### Built With
 
-* [![NextJS][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Tailwind][Tailwind.icon]][Tailwind-url]
-* [![DaisyUI][DaisyUI.icon]][DaisyUI-url]
+[![NextJS][Next.js]][Next-url] [![React][React.js]][React-url] [![Tailwind][Tailwind.icon]][Tailwind-url] [![DaisyUI][DaisyUI.icon]][DaisyUI-url]
 
 
 
