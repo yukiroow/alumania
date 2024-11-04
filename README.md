@@ -60,11 +60,6 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
    npm install
    ```
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c70bc900ac46474918f607fb69b747aa81a0aac7
-
 <!-- MARKDOWN LINKS & IMAGES -->
 [Next.js]: https://img.shields.io/badge/nextJS-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
