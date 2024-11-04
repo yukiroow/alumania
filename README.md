@@ -67,17 +67,10 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Next.js]: https://img.shields.io/badge/nextJS-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://expressjs.com/
+[Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-<<<<<<< HEAD
 [Tailwind.icon]: https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white
 [Tailwind-url]: https://getbootstrap.com
 [DaisyUI.icon]: https://img.shields.io/badge/DaisyUI-1AD1A5?style=for-the-badge&logo=daisyui&logoColor=white
 [DaisyUI-url]: https://daisyui.com/
-=======
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[MYSQL-logo]: https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white
-[MYSQL-url]: https://www.mysql.com/
->>>>>>> c70bc900ac46474918f607fb69b747aa81a0aac7
