@@ -21,17 +21,16 @@
 
 Alumania is a Social Media platform for Saint Louis University Baguio's alumnis and graduating students. It allows its users to be up to date with events and other university updates. This repository contains the source code for the Alumni Application.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 ### Built With
 
-* [![Express][Express.js]][Express-url]
+* [![NextJS][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![Tailwind][Tailwind.icon]][Tailwind-url]
+* [![DaisyUI][DaisyUI.icon]][DaisyUI-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -61,13 +60,14 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
    npm install
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[Express.js]: https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white
-[Express-url]: https://expressjs.com/
+[Next.js]: https://img.shields.io/badge/nextJS-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://expressjs.com/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
+[Tailwind.icon]: https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white
+[Tailwind-url]: https://getbootstrap.com
+[DaisyUI.icon]: https://img.shields.io/badge/DaisyUI-1AD1A5?style=for-the-badge&logo=daisyui&logoColor=white
+[DaisyUI-url]: https://daisyui.com/
