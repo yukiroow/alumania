@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const corsOptions = {
-    origin: ["http://localhost:6969"],
+    origin: '*',
 };
 app.use(cors(corsOptions));
 
@@ -13,3 +13,5 @@ app.get("/api", (req, res) => {
 app.listen(6969, () => {
     console.log("Server started on http://localhost:6969");
 });
+
+// TODO: https://daisyui.com/components/alert/
