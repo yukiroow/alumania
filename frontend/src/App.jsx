@@ -1,9 +1,15 @@
 import "./App.css";
 const App = () => {
     return (
-        <div className="App">
-            <button className="btn">Hello daisyUI</button>
-        </div>
+        <>
+            <div className="container ">
+
+            </div>
+            <h1>Login to Your Account</h1>
+            <input type="text" placeholder="Username" className="input input-bordered w-full max-w-xs" />
+            <input type="password" placeholder="Password" className="input input-bordered w-full max-w-xs" />
+            <button className="btn btn-wide">Login</button>
+        </>
     );
 };
 
