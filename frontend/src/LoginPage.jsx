@@ -38,7 +38,7 @@ const LoginPage = () => {
 const Banner = () => {
     return (
         <>
-            <div className="flex flex-row self-center my-32">
+            <div className="flex flex-row self-center mt-60 mb-28">
                 <img src={Logo} alt="Alumania Logo" className="w-36" />
                 <img src={BannerText} alt="Alumania Text name" className="w-80" />
             </div>
