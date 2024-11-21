@@ -6,12 +6,15 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.get("/api", (req, res) => {
-    res.json({ fruits: ["apple", "orange", "kiwi"] });
+app.get("/", (req, res) => {
+    res.json({
+        "name":"sean",
+        "type":"****kol",
+    });
 });
 
-app.listen(6969, () => {
-    console.log("Server started on http://localhost:6969");
+app.listen(2012, () => {
+    console.log("Server started on http://localhost:2012");
 });
 
 // TODO: https://daisyui.com/components/alert/
