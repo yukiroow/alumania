@@ -18,13 +18,12 @@ const Sidebar = () => {
 
 return (
     <>
-        <div className="flex flex-col h-screen w-20 bg-gray-100 items-center py-9">
+        <nav className="flex flex-col h-screen w-20 items-center py-9">
             {/* Top Logo */}
             <img
             src={Logo}
             alt="Logo"
-            className="w-10 h-10 cursor-pointer mb-12"
-            onClick={() => handleIconClick("logo")}
+            className="w-10 h-10 mb-12"
             />
             
             {/* Middle Icons */}
@@ -66,8 +65,9 @@ return (
             }`}
             onClick={() => handleIconClick("logout")}
             />
-        </div>
-        </>
+            <navbarOnTop/>
+        </nav>
+    </>
     );
 };
 
