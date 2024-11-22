@@ -2,6 +2,10 @@
 const express = require("express")
 const router = express.Router()
 
-router.get("/", function(req, res) => {
-    res.send("")
+router.get("/", (req, res) => {
+    res.send("All Users")
+})
+
+router.post("/", (req, res) => {
+    res.send("Create New Applicants")
 })
