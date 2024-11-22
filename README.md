@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="images/Alumania_logo.png" alt="Logo" width="106" height="98">
+    <img src="frontend/src/assets/logo.svg" alt="Logo" width="106" height="98">
   </a>
 
 <h3 align="center">Alumania</h3>
