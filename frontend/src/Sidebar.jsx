@@ -1,37 +1,33 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faHome,
-    faSearch,
-    faPlus,
-    faBell,
-    faSignOutAlt,
+  faHome,
+  faSearch,
+  faPlus,
+  faBell,
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import Navbar from "./Navbar"; // Import the Navbar component
 import Logo from "./assets/logo.svg";
 
 const Sidebar = () => {
-    const [activeIcon, setActiveIcon] = useState(null);
+  const [activeIcon, setActiveIcon] = useState(null);
 
-    const handleIconClick = (iconName) => {
-        setActiveIcon(iconName);
-};
+  const handleIconClick = (iconName) => {
+    setActiveIcon(iconName);
+  };
 
 return (
-    <>
+    <div className="flex">
         <nav className="flex flex-col h-screen w-20 items-center py-9">
             {/* Top Logo */}
-            <img
-            src={Logo}
-            alt="Logo"
-            className="w-10 h-10 mb-12"
-            />
-            
+            <img src={Logo} alt="Logo" className="w-10 h-10 mb-12" />
             {/* Middle Icons */}
             <div className="flex flex-col items-center space-y-9 flex-grow mt-60">
-            <FontAwesomeIcon
+                <FontAwesomeIcon
                 icon={faHome}
                 className={`text-2xl cursor-pointer ${
-                activeIcon === "home" ? "text-[#032543]" : "text-[#A29C9C]"
+                    activeIcon === "home" ? "text-[#032543]" : "text-[#A29C9C]"
                 }`}
                 onClick={() => handleIconClick("home")}
             />
@@ -65,9 +61,12 @@ return (
             }`}
             onClick={() => handleIconClick("logout")}
             />
-            <navbarOnTop/>
         </nav>
-    </>
+        
+        <div className="flex-1">
+            <Navbar />
+        </div>
+    </div>
     );
 };
 
