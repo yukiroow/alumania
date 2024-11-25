@@ -27,6 +27,7 @@ app.use("/api/albumexperience", experienceRouter)
 app.use("/comment", experienceRouter)
 app.use("/experienceimage", experienceRouter)
 app.use("/api/experiencelike", experienceRouter)
+app.use("/api/allexperiencelike", experienceRouter)
 app.use("/api/removexperience", experienceRouter)
 
 // userRouter

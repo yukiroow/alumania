@@ -3,6 +3,11 @@ const express = require("express")
 const router = express.Router()
 const db = require('../database').db;
 
+// Cazandra Jae Lapig
+router.get("/", (req, res) => {
+    res.send("All Experience")
+})
+
 // Cariel Joyce Maga
 router.get("/", (req, res) => {
     res.send("Comments in Experience")
@@ -14,17 +19,12 @@ router.post("/", (req, res) => {
 })
 
 // Cazandra Jae Lapig
-router.get("/", (req, res) => {
-    res.send("All Experience")
-})
-
-// Cazandra Jae Lapig
-router.get("/", (req, res) => {
+router.get("/allexperiencelike", (req, res) => {
     res.send("All Likes for an Experience")
 })
 
 //Cazandra Jae Lapig
-router.post("/", (req, res) => {
+router.post("/experience", (req, res) => {
     res.send("Create New Experience")
 })
 
@@ -40,17 +40,27 @@ router.post("/", (req, res) => {
 
 
 //Cazandra Jae Lapig
-router.post("/", (req, res) => {
+router.post("/album", (req, res) => {
     res.send("Create New Album")
 })
 
 //Cazandra Jae Lapig
-router.post("/", (req, res) => {
+router.post("/albumexperience", (req, res) => {
     res.send("Add a post to an Album")
 })
 
-router.delete('/', (req, res) => {
-    res.send("Delete Experience")
+//Cazandra Jae Lapig 
+// MALI I2
+router.delete('/removexperience', (req, res) => {
+    const userId = req.params.id;
+    db.query('DELETE FROM user WHERE id = ?', [userId], (err, result) => {
+      if (err) {
+        console.error('Error executing query: ' + err.stack);
+        res.status(400).send('Error deleting user');
+        return;
+      }
+      res.send('User deleted successfully');
+    });
 })
 
 // Cariel Joyce Maga
