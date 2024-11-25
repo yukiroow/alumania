@@ -17,7 +17,7 @@ const LoginPage = () => {
                     <input
                         type="password"
                         placeholder="Password"
-                        className="input input-bordered w-full max-w-xs block mt-2 mb-5"
+                        className="input input-bordered w-full max-w-xs block mt- mb-5"
                     />
                     <button className="btn btn-wide block btn-secondary">Login</button>
                 </div>

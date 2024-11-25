@@ -7,6 +7,6 @@ import Sidebar from './Sidebar.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Sidebar />
+    <SignupPage />
   </StrictMode>,
 )

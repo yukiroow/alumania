@@ -1,6 +1,13 @@
 import Logo from "./assets/logo.svg";
 import BannerText from "./assets/banner-text.svg";
 const SignupPage = () => {
+    const handleDropdownClick = () => {
+        const menu = document.activeElement;
+        if(menu) {
+            menu.blur();
+        }
+    }
+
     return (
         <>
             <div className="flex flex-row h-screen bg-primary">
@@ -39,7 +46,19 @@ const SignupPage = () => {
                                 className="input input-bordered w-full max-w-xs"
                             />
                         </label>
-                        <div className="dropdown w-full max-w-40">
+                        <label className="form-control w-full max-w-xs">
+                            <div className="label">
+                                <span className="label-text">Username</span>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Type here"
+                                className="input input-bordered w-full max-w-xs"
+                            />
+                        </label>
+                    </div>
+                    <div className="flex flex-row gap-5 justify-center w-10/12">
+                        <div className="dropdown w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">Employment</span>
                             </div>
@@ -48,24 +67,23 @@ const SignupPage = () => {
                                 role="button"
                                 className="btn w-full"
                             >
-                                Select
                             </div>
                             <ul
                                 tabIndex={0}
                                 className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
                             >
-                                <li>
+                                <li onClick={handleDropdownClick}>
                                     <a>Employed</a>
                                 </li>
-                                <li>
+                                <li onClick={handleDropdownClick}>
                                     <a>Underemployed</a>
                                 </li>
-                                <li>
+                                <li onClick={handleDropdownClick}>
                                     <a>Unemployed</a>
                                 </li>
                             </ul>
                         </div>
-                        <div className="dropdown w-full max-w-36">
+                        <div className="dropdown w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">Location</span>
                             </div>
@@ -89,35 +107,14 @@ const SignupPage = () => {
                             </ul>
                         </div>
                     </div>
+
                     <div className="flex flex-row gap-5 justify-center w-10/12">
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text">Email</span>
-                            </div>
-                            <input
-                                type="text"
-                                placeholder="Type here"
-                                className="input input-bordered w-full max-w-xs"
-                            />
-                        </label>
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">Password</span>
                             </div>
                             <input
                                 type="password"
-                                placeholder="Type here"
-                                className="input input-bordered w-full max-w-xs"
-                            />
-                        </label>
-                    </div>
-                    <div className="flex flex-row gap-5 justify-center w-10/12">
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text">Username</span>
-                            </div>
-                            <input
-                                type="text"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
                             />
@@ -138,7 +135,7 @@ const SignupPage = () => {
                     <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text">Company Name</span>
+                                <span className="label-text">Email</span>
                             </div>
                             <input
                                 type="text"
@@ -148,13 +145,25 @@ const SignupPage = () => {
                         </label>
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
+                                <span className="label-text">Company Name</span>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Type here"
+                                className="input input-bordered w-full max-w-xs"
+                            />
+                        </label>
+                    </div>
+                    <div className="flex flex-row gap-5 justify-center w-10/12">
+                        <label className="form-control w-full max-w-lg">
+                            <div className="label">
                                 <span className="label-text">
                                     Upload Diploma
                                 </span>
                             </div>
                             <input
                                 type="file"
-                                className="file-input file-input-bordered w-full max-w-xs"
+                                className="file-input file-input-bordered w-full"
                             />
                         </label>
                     </div>
