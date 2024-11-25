@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Navbar = () => {
+const NavBar = () => {
     const [activeNav, setActiveNav] = useState("");
 
     const handleNavClick = (navItem) => {
@@ -24,4 +24,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default NavBar;

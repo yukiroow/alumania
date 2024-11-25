@@ -19,6 +19,7 @@ const LoginPage = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // TODO: Binding to Server POST Request
+        
     };
 
     return (

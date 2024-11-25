@@ -8,9 +8,9 @@ import {
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "./Navbar"; // Import the Navbar component
-import Logo from "./assets/logo.svg";
+import Logo from "../assets/logo.svg";
 
-const Sidebar = () => {
+const SideBar = () => {
   const [activeIcon, setActiveIcon] = useState(null);
 
   const handleIconClick = (iconName) => {
@@ -70,4 +70,4 @@ return (
     );
 };
 
-export default Sidebar;
+export default SideBar;
