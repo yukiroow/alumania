@@ -4,6 +4,27 @@ const cors = require("cors");
 const corsOptions = {
     origin: '*',
 };
+const mysql = require('mysql');
+//const bodyParser = require('body-parser');
+
+//Cazandra Jae Lapig
+// MySQL Connection
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'alumaniadb'
+});
+// Connect to MySQL
+db.connect((err) => {
+    if (err) {
+        console.error('Error connecting to MySQL: ' + err.stack);
+        return;
+    }
+    console.log('Connected to MySQL as ID ' + db.threadId);
+});
+
+// Route Imports
 const eventRouter = require("./routes/events");
 const userRouter = require("./routes/users");
 const experienceRouter = require("./routes/experience");
@@ -15,28 +36,24 @@ app.use("/events", eventRouter)
 app.use("/interestedinevents", eventRouter)
 
 // experienceRouter
-app.use("/experience", experienceRouter)
-app.use("/album", experienceRouter)
-app.use("/albumexperience", experienceRouter)
+app.use("/api/experience", experienceRouter)
+app.use("/api/album", experienceRouter)
+app.use("/api/albumexperience", experienceRouter)
 app.use("/comment", experienceRouter)
 app.use("/experienceimage", experienceRouter)
-app.use("/experiencelike", experienceRouter)
-app.use("/removexperience", experienceRouter)
+app.use("/api/experiencelike", experienceRouter)
+app.use("/api/removexperience", experienceRouter)
 
 // userRouter
 app.use("/users", userRouter)
 app.use("/alumni", userRouter)
-app.use("/applicants", userRouter)
+app.use("/api/applicants", userRouter)
 
 // jobRouter
 app.use("/jobpost", jobRouter)
 app.use("/interestedinjobpost", jobRouter)
 
 app.use(cors(corsOptions));
-
-app.get("/api", (req, res) => {
-    res.json({ fruits: ["apple", "orange", "kiwi"] });
-});
 
 app.listen(2012, () => {
     console.log("Server started on http://localhost:2012");
