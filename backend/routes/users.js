@@ -11,3 +11,8 @@ router.get("/", (req, res) => {
 router.post("/applicants", (req, res) => {
     res.send("Create New Applicants")
 })
+
+// Cariel Joyce Maga
+router.put("/", (req, res) => {
+    res.send("Edit Alumni")
+})
