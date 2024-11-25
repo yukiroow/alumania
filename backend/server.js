@@ -5,7 +5,7 @@ const corsOptions = {
     origin: '*',
 };
 const mysql = require('mysql');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 //Cazandra Jae Lapig
 

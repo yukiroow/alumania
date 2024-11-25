@@ -5,12 +5,16 @@ const db = require('../database').db;
 
 // Cazandra Jae Lapig
 router.get("/", (req, res) => {
-    res.send("All Job Post")
-})
+ res.send("All Job Post")
+ })
 
 // Cariel Joyce Maga
 router.get("/", (req, res) => {
-    res.send("Interested in Job Post")
+    const query = 'SELECT * FROM interestedinjobpost';
+    db.query(query, (err, result) => {
+        if(err) return;
+        res.send(result);
+    })
 })
 
 

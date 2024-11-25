@@ -5,7 +5,16 @@ const db = require('../database').db;
 
 // Cariel Joyce Maga
 router.get("/", (req, res) => {
-    res.send("Comments in Experience")
+    const query = 'SELECT * FROM comment';
+    db.query(query, (err, result) => {
+        if(err) return;
+        res.send(result);
+    })
+})
+
+// Cariel Joyce Maga
+router.get("/", (req, res) => {
+    res.send("Experience in Album")
 })
 
 // Cariel Joyce Maga
