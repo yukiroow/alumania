@@ -9,7 +9,6 @@ const bodyParser = require('body-parser');
 // Middleware
 app.use(bodyParser.json());
 
-
 // Route Imports
 const eventRouter = require("./routes/events");
 const userRouter = require("./routes/users");
