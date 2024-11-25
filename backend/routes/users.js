@@ -16,3 +16,5 @@ router.post("/applicants", (req, res) => {
 router.put("/", (req, res) => {
     res.send("Edit Alumni")
 })
+
+module.exports = router;

@@ -56,3 +56,5 @@ router.delete('/', (req, res) => {
 router.delete("/", (req, res) => {
     res.send("Delete Album")
 })
+
+module.exports = router;

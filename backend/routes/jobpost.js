@@ -11,3 +11,6 @@ router.get("/", (req, res) => {
 router.get("/", (req, res) => {
     res.send("Interested in Job Post")
 })
+
+
+module.exports = router;

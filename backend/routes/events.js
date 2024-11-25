@@ -11,3 +11,5 @@ router.get("/", (req, res) => {
 router.get("/", (req, res) => {
     res.send("All  Event")
 })
+
+module.exports = router;
