@@ -4,10 +4,10 @@ const cors = require("cors");
 const corsOptions = {
     origin: '*',
 };
-const eventRouter = require("./routers/events");
-const userRouter = require("./routers/users");
-const experienceRouter = require("./routers/experience");
-const jobRouter = require("./routers/jobpost");
+const eventRouter = require("./routes/events");
+const userRouter = require("./routes/users");
+const experienceRouter = require("./routes/experience");
+const jobRouter = require("./routes/jobpost");
 
 // Cariel Joyce Maga
 // eventRouter
