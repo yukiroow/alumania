@@ -4,7 +4,10 @@ const router = express.Router()
 
 //Cazandra Jae Lapig
 router.get("/", (req, res) => {
-    res.send("All Users")
+    db.query('SELECT * FROM users', (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    })
 })
 
 //Cazandra Jae Lapig
