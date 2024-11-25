@@ -1,10 +1,15 @@
 //Cazandra Jae Lapig
 const express = require("express")
 const router = express.Router()
+const db = require('../database').db;
 
 //Cazandra Jae Lapig
 router.get("/", (req, res) => {
-    res.send("All Users")
+    const query = 'SELECT * FROM USER';
+    db.query(query, (err, result) => {
+        if(err) return;
+        res.send(result);
+    })
 })
 
 //Cazandra Jae Lapig
