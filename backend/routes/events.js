@@ -6,3 +6,8 @@ const router = express.Router()
 router.get("/", (req, res) => {
     res.send("Interested in Event")
 })
+
+// Cazandra Jae Lapig
+router.get("/", (req, res) => {
+    res.send("All  Event")
+})
