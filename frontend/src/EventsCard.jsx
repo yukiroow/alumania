@@ -1,7 +1,6 @@
 import React from "react";
 
-const AlbumCard = () => {
-
+const EventCard = () => {
     return (
         <div className="flex items-center card lg:card-side bg-base-100 shadow-xl m-40">
             <figure>
@@ -48,4 +47,4 @@ const AlbumCard = () => {
     );
 };
 
-export default AlbumCard;
+export default EventCard;
