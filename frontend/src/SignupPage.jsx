@@ -1,12 +1,25 @@
 import Logo from "./assets/logo.svg";
 import BannerText from "./assets/banner-text.svg";
+import { useState } from "react";
 const SignupPage = () => {
+    const [firstName, setFirstName] = useState("");
+    const [middleName, setMiddleName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+    const [employment, setEmployment] = useState("Select");
+    const [location, setLocation] = useState("Select");
+    const [email, setEmail] = useState("");
+    const [company, setCompany] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [diploma, setDiploma] = useState(null);
+
     const handleDropdownClick = () => {
         const menu = document.activeElement;
-        if(menu) {
+        if (menu) {
             menu.blur();
         }
-    }
+    };
 
     return (
         <>
@@ -22,6 +35,10 @@ const SignupPage = () => {
                                 type="text"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
+                                value={firstName}
+                                onChange={(e) => {
+                                    setFirstName(e.target.value);
+                                }}
                             />
                         </label>
                         <label className="form-control w-full max-w-xs">
@@ -32,6 +49,10 @@ const SignupPage = () => {
                                 type="text"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
+                                value={middleName}
+                                onChange={(e) => {
+                                    setMiddleName(e.target.value);
+                                }}
                             />
                         </label>
                     </div>
@@ -44,6 +65,10 @@ const SignupPage = () => {
                                 type="text"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
+                                value={lastName}
+                                onChange={(e) => {
+                                    setLastName(e.target.value);
+                                }}
                             />
                         </label>
                         <label className="form-control w-full max-w-xs">
@@ -54,6 +79,10 @@ const SignupPage = () => {
                                 type="text"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
+                                value={username}
+                                onChange={(e) => {
+                                    setUsername(e.target.value);
+                                }}
                             />
                         </label>
                     </div>
@@ -67,18 +96,34 @@ const SignupPage = () => {
                                 role="button"
                                 className="btn w-full"
                             >
+                                {employment}
                             </div>
                             <ul
                                 tabIndex={0}
                                 className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
                             >
-                                <li onClick={handleDropdownClick}>
+                                <li
+                                    onClick={() => {
+                                        handleDropdownClick();
+                                        setEmployment("Employed");
+                                    }}
+                                >
                                     <a>Employed</a>
                                 </li>
-                                <li onClick={handleDropdownClick}>
+                                <li
+                                    onClick={() => {
+                                        handleDropdownClick();
+                                        setEmployment("Underemployed");
+                                    }}
+                                >
                                     <a>Underemployed</a>
                                 </li>
-                                <li onClick={handleDropdownClick}>
+                                <li
+                                    onClick={() => {
+                                        handleDropdownClick();
+                                        setEmployment("Unemployed");
+                                    }}
+                                >
                                     <a>Unemployed</a>
                                 </li>
                             </ul>
@@ -92,22 +137,61 @@ const SignupPage = () => {
                                 role="button"
                                 className="btn w-full"
                             >
-                                Select
+                                {location}
                             </div>
                             <ul
                                 tabIndex={0}
                                 className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
                             >
-                                <li>
+                                <li
+                                    onClick={() => {
+                                        handleDropdownClick();
+                                        setLocation("Domestic");
+                                    }}
+                                >
                                     <a>Domestic</a>
                                 </li>
-                                <li>
+                                <li
+                                    onClick={() => {
+                                        handleDropdownClick();
+                                        setLocation("Foreign");
+                                    }}
+                                >
                                     <a>Foreign</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
-
+                    <div className="flex flex-row gap-5 justify-center w-10/12">
+                        <label className="form-control w-full max-w-xs">
+                            <div className="label">
+                                <span className="label-text">Email</span>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Type here"
+                                className="input input-bordered w-full max-w-xs"
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                }}
+                            />
+                        </label>
+                        <label className="form-control w-full max-w-xs">
+                            <div className="label">
+                                <span className="label-text">Company Name</span>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Type here"
+                                className="input input-bordered w-full max-w-xs"
+                                value={company}
+                                onChange={(e) => {
+                                    setCompany(e.target.value);
+                                }}
+                            />
+                        </label>
+                    </div>
                     <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
@@ -117,6 +201,10 @@ const SignupPage = () => {
                                 type="password"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
+                                value={password}
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                }}
                             />
                         </label>
                         <label className="form-control w-full max-w-xs">
@@ -129,28 +217,10 @@ const SignupPage = () => {
                                 type="password"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
-                            />
-                        </label>
-                    </div>
-                    <div className="flex flex-row gap-5 justify-center w-10/12">
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text">Email</span>
-                            </div>
-                            <input
-                                type="text"
-                                placeholder="Type here"
-                                className="input input-bordered w-full max-w-xs"
-                            />
-                        </label>
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text">Company Name</span>
-                            </div>
-                            <input
-                                type="text"
-                                placeholder="Type here"
-                                className="input input-bordered w-full max-w-xs"
+                                value={confirmPassword}
+                                onChange={(e) => {
+                                    setConfirmPassword(e.target.value);
+                                }}
                             />
                         </label>
                     </div>
@@ -164,13 +234,16 @@ const SignupPage = () => {
                             <input
                                 type="file"
                                 className="file-input file-input-bordered w-full"
+                                onChange={(e) => setDiploma(e.target.files[0])}
                             />
                         </label>
                     </div>
                     <div className="flex flex-row gap-5 justify-center w-10/12 mt-10">
-                        <button className="btn btn-wide block btn-secondary">
-                            Sign-up
-                        </button>
+                        <input
+                            type="submit"
+                            className="btn btn-wide block btn-secondary"
+                            value="Login"
+                        />
                     </div>
                 </div>
                 <div className="flex flex-col mx-auto items-center px-20">
