@@ -2,17 +2,25 @@ import Logo from "./assets/logo.svg";
 import BannerText from "./assets/banner-text.svg";
 import { useState } from "react";
 const SignupPage = () => {
-    const [firstName, setFirstName] = useState("");
-    const [middleName, setMiddleName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [username, setUsername] = useState("");
-    const [employment, setEmployment] = useState("Select");
-    const [location, setLocation] = useState("Select");
-    const [email, setEmail] = useState("");
-    const [company, setCompany] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [diploma, setDiploma] = useState(null);
+    const [userData, setUserData] = useState({
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        username: "",
+        employment: "",
+        location: "",
+        email: "",
+        company: "",
+        password: "",
+        confirmPassword: "",
+        diploma: null,
+    });
+
+    const handleFormInput = (event) => {
+        const value = event.target.value;
+        const key = event.target.name;
+        setUserData((values) => ({ ...values, [key]: value }));
+    };
 
     const handleDropdownClick = () => {
         const menu = document.activeElement;
@@ -21,10 +29,18 @@ const SignupPage = () => {
         }
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // TODO: Binding to Server POST Request
+    };
+
     return (
         <>
-            <div className="flex flex-row h-screen bg-primary">
-                <div className="flex flex-col flex-1 mx-auto px-6 items-center rounded-tr-box rounded-br-box bg-base-100">
+            <main className="flex flex-row h-screen bg-primary">
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col flex-1 mx-auto px-6 items-center rounded-tr-box rounded-br-box bg-base-100"
+                >
                     <Banner />
                     <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
@@ -34,11 +50,10 @@ const SignupPage = () => {
                             <input
                                 type="text"
                                 placeholder="Type here"
+                                name="firstName"
                                 className="input input-bordered w-full max-w-xs"
-                                value={firstName}
-                                onChange={(e) => {
-                                    setFirstName(e.target.value);
-                                }}
+                                value={userData["firstName"]}
+                                onChange={handleFormInput}
                             />
                         </label>
                         <label className="form-control w-full max-w-xs">
@@ -48,11 +63,10 @@ const SignupPage = () => {
                             <input
                                 type="text"
                                 placeholder="Type here"
+                                name="middleName"
                                 className="input input-bordered w-full max-w-xs"
-                                value={middleName}
-                                onChange={(e) => {
-                                    setMiddleName(e.target.value);
-                                }}
+                                value={userData["middleName"]}
+                                onChange={handleFormInput}
                             />
                         </label>
                     </div>
@@ -64,11 +78,10 @@ const SignupPage = () => {
                             <input
                                 type="text"
                                 placeholder="Type here"
+                                name="lastName"
                                 className="input input-bordered w-full max-w-xs"
-                                value={lastName}
-                                onChange={(e) => {
-                                    setLastName(e.target.value);
-                                }}
+                                value={userData["lastName"]}
+                                onChange={handleFormInput}
                             />
                         </label>
                         <label className="form-control w-full max-w-xs">
@@ -78,11 +91,10 @@ const SignupPage = () => {
                             <input
                                 type="text"
                                 placeholder="Type here"
+                                name="username"
                                 className="input input-bordered w-full max-w-xs"
-                                value={username}
-                                onChange={(e) => {
-                                    setUsername(e.target.value);
-                                }}
+                                value={userData["username"]}
+                                onChange={handleFormInput}
                             />
                         </label>
                     </div>
@@ -96,16 +108,20 @@ const SignupPage = () => {
                                 role="button"
                                 className="btn w-full"
                             >
-                                {employment}
+                                {userData["employment"]}
                             </div>
                             <ul
                                 tabIndex={0}
+                                name="employment"
                                 className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
                             >
                                 <li
                                     onClick={() => {
                                         handleDropdownClick();
-                                        setEmployment("Employed");
+                                        setUserData((values) => ({
+                                            ...values,
+                                            ["employment"]: "Employed",
+                                        }));
                                     }}
                                 >
                                     <a>Employed</a>
@@ -113,7 +129,10 @@ const SignupPage = () => {
                                 <li
                                     onClick={() => {
                                         handleDropdownClick();
-                                        setEmployment("Underemployed");
+                                        setUserData((values) => ({
+                                            ...values,
+                                            ["employment"]: "Underemployed",
+                                        }));
                                     }}
                                 >
                                     <a>Underemployed</a>
@@ -121,7 +140,10 @@ const SignupPage = () => {
                                 <li
                                     onClick={() => {
                                         handleDropdownClick();
-                                        setEmployment("Unemployed");
+                                        setUserData((values) => ({
+                                            ...values,
+                                            ["employment"]: "Unemployed",
+                                        }));
                                     }}
                                 >
                                     <a>Unemployed</a>
@@ -137,16 +159,20 @@ const SignupPage = () => {
                                 role="button"
                                 className="btn w-full"
                             >
-                                {location}
+                                {userData["location"]}
                             </div>
                             <ul
                                 tabIndex={0}
+                                name="location"
                                 className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
                             >
                                 <li
                                     onClick={() => {
                                         handleDropdownClick();
-                                        setLocation("Domestic");
+                                        setUserData((values) => ({
+                                            ...values,
+                                            ["location"]: "Domestic",
+                                        }));
                                     }}
                                 >
                                     <a>Domestic</a>
@@ -154,7 +180,10 @@ const SignupPage = () => {
                                 <li
                                     onClick={() => {
                                         handleDropdownClick();
-                                        setLocation("Foreign");
+                                        setUserData((values) => ({
+                                            ...values,
+                                            ["location"]: "Foreign",
+                                        }));
                                     }}
                                 >
                                     <a>Foreign</a>
@@ -169,12 +198,11 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="text"
+                                name="email"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
-                                value={email}
-                                onChange={(e) => {
-                                    setEmail(e.target.value);
-                                }}
+                                value={userData["email"]}
+                                onChange={handleFormInput}
                             />
                         </label>
                         <label className="form-control w-full max-w-xs">
@@ -183,12 +211,11 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="text"
+                                name="company"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
-                                value={company}
-                                onChange={(e) => {
-                                    setCompany(e.target.value);
-                                }}
+                                value={userData["company"]}
+                                onChange={handleFormInput}
                             />
                         </label>
                     </div>
@@ -199,12 +226,11 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="password"
+                                name="password"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
-                                value={password}
-                                onChange={(e) => {
-                                    setPassword(e.target.value);
-                                }}
+                                value={userData["password"]}
+                                onChange={handleFormInput}
                             />
                         </label>
                         <label className="form-control w-full max-w-xs">
@@ -215,12 +241,11 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="password"
+                                name="confirmPassword"
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
-                                value={confirmPassword}
-                                onChange={(e) => {
-                                    setConfirmPassword(e.target.value);
-                                }}
+                                value={userData["confirmPassword"]}
+                                onChange={handleFormInput}
                             />
                         </label>
                     </div>
@@ -233,8 +258,14 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="file"
+                                name="diploma"
                                 className="file-input file-input-bordered w-full"
-                                onChange={(e) => setDiploma(e.target.files[0])}
+                                onChange={(e) =>
+                                    setUserData((values) => ({
+                                        ...values,
+                                        ["diploma"]: e.target.files[0],
+                                    }))
+                                }
                             />
                         </label>
                     </div>
@@ -242,11 +273,11 @@ const SignupPage = () => {
                         <input
                             type="submit"
                             className="btn btn-wide block btn-secondary"
-                            value="Login"
+                            value="Signup"
                         />
                     </div>
-                </div>
-                <div className="flex flex-col mx-auto items-center px-20">
+                </form>
+                <aside className="flex basis-1/3 flex-col mx-auto items-center px-20">
                     <h1 className="text-3xl font-bold text-center mt-96 text-primary-content">
                         ALREADY HAVE AN ACCOUNT?
                     </h1>
@@ -254,8 +285,8 @@ const SignupPage = () => {
                         Login to your account
                     </p>
                     <button className="btn btn-wide mt-6">Login</button>
-                </div>
-            </div>
+                </aside>
+            </main>
         </>
     );
 };
