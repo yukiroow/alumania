@@ -1,7 +1,8 @@
-import React from "react";
-import gif from "./assets/cat404.gif";
+import gif from "../assets/cat404.gif";
+import { useNavigate } from "react-router-dom";
 
 const ErrorPage = () => {
+    const nav = useNavigate();
     return (
         <>
             <main>
@@ -10,7 +11,9 @@ const ErrorPage = () => {
                 </section>
                 <section>
                     <div className="block m-auto w-2/5">
-                        <h1 className="text-7xl mt-5 mb-5 text-secondary font-semibold">PAGE NOT FOUND</h1>
+                        <h1 className="text-7xl mt-5 mb-5 text-secondary font-semibold">
+                            PAGE NOT FOUND
+                        </h1>
                         <p className="text-primary font-thin mb-2">
                             We looked everywhere for this page.
                         </p>
@@ -20,8 +23,11 @@ const ErrorPage = () => {
                         <p className="text-primary font-thin mb-6">
                             Contact Alumania HQ, if you&apos;d like.
                         </p>
-                        <button className="btn btn-outline btn-primary">
-                            Back to Login
+                        <button
+                            onClick={() => nav("/")}
+                            className="btn btn-outline btn-primary"
+                        >
+                            Go Home
                         </button>
                     </div>
                 </section>

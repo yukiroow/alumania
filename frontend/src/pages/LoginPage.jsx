@@ -1,7 +1,10 @@
-import Logo from "./assets/logo.svg";
-import BannerText from "./assets/banner-text.svg";
+import Logo from "../assets/logo.svg";
+import BannerText from "../assets/banner-text.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
+    const nav = useNavigate();
+
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
@@ -58,7 +61,9 @@ const LoginPage = () => {
                     <p className="text-xl font-thin text-center text-primary-content">
                         Create your Account Now
                     </p>
-                    <button className="btn btn-wide mt-6">Sign-up</button>
+                    <button 
+                    onClick={() => nav('/signup')}
+                    className="btn btn-wide mt-6">Sign-up</button>
                 </aside>
             </main>
         </>

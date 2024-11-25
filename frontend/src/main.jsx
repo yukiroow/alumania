@@ -1,17 +1,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LoginPage from "./LoginPage";
-import SignupPage from "./SignupPage";
-import Navbar from "./Navbar";
-import ErrorPage from "./ErrorPage";
+import "./index.css";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <ErrorPage />,
-        errorElement: <></>
+        element: <LoginPage />,
+        errorElement: <ErrorPage />
     },
     {
         path: "/signup",

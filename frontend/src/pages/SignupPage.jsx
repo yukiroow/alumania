@@ -1,7 +1,9 @@
-import Logo from "./assets/logo.svg";
-import BannerText from "./assets/banner-text.svg";
+import Logo from "../assets/logo.svg";
+import BannerText from "../assets/banner-text.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const SignupPage = () => {
+    const nav= useNavigate();
     const [userData, setUserData] = useState({
         firstName: "",
         middleName: "",
@@ -108,7 +110,7 @@ const SignupPage = () => {
                                 role="button"
                                 className="btn w-full"
                             >
-                                {userData["employment"]}
+                                {userData["employment"] || "Select"}
                             </div>
                             <ul
                                 tabIndex={0}
@@ -159,7 +161,7 @@ const SignupPage = () => {
                                 role="button"
                                 className="btn w-full"
                             >
-                                {userData["location"]}
+                                {userData["location"] || "Select"}
                             </div>
                             <ul
                                 tabIndex={0}
@@ -284,7 +286,9 @@ const SignupPage = () => {
                     <p className="text-xl font-thin text-center text-primary-content">
                         Login to your account
                     </p>
-                    <button className="btn btn-wide mt-6">Login</button>
+                    <button 
+                    onClick={()=>nav('/')}
+                    className="btn btn-wide mt-6">Login</button>
                 </aside>
             </main>
         </>
