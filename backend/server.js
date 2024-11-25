@@ -21,6 +21,7 @@ app.use("/albumexperience", experienceRouter)
 app.use("/comment", experienceRouter)
 app.use("/experienceimage", experienceRouter)
 app.use("/experiencelike", experienceRouter)
+app.use("/removexperience", experienceRouter)
 
 // userRouter
 app.use("/users", userRouter)
@@ -40,6 +41,3 @@ app.get("/api", (req, res) => {
 app.listen(2012, () => {
     console.log("Server started on http://localhost:2012");
 });
-
-
-// TODO: https://daisyui.com/components/alert/

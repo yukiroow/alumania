@@ -8,6 +8,6 @@ router.get("/", (req, res) => {
 })
 
 //Cazandra Jae Lapig
-router.post("/", (req, res) => {
+router.post("/applicants", (req, res) => {
     res.send("Create New Applicants")
 })
