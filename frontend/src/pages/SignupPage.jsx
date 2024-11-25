@@ -3,7 +3,7 @@ import BannerText from "../assets/banner-text.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const SignupPage = () => {
-    const nav= useNavigate();
+    const nav = useNavigate();
     const [userData, setUserData] = useState({
         firstName: "",
         middleName: "",
@@ -51,7 +51,7 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Type here"
+                                placeholder="Enter your first name"
                                 name="firstName"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["firstName"]}
@@ -64,7 +64,7 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Type here"
+                                placeholder="Enter your middle name"
                                 name="middleName"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["middleName"]}
@@ -79,7 +79,7 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Type here"
+                                placeholder="Enter your last name"
                                 name="lastName"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["lastName"]}
@@ -92,7 +92,7 @@ const SignupPage = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Type here"
+                                placeholder="Enter your desired username"
                                 name="username"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["username"]}
@@ -201,7 +201,7 @@ const SignupPage = () => {
                             <input
                                 type="text"
                                 name="email"
-                                placeholder="Type here"
+                                placeholder="Enter your email address"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["email"]}
                                 onChange={handleFormInput}
@@ -214,7 +214,7 @@ const SignupPage = () => {
                             <input
                                 type="text"
                                 name="company"
-                                placeholder="Type here"
+                                placeholder="Enter your company name"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["company"]}
                                 onChange={handleFormInput}
@@ -229,7 +229,7 @@ const SignupPage = () => {
                             <input
                                 type="password"
                                 name="password"
-                                placeholder="Type here"
+                                placeholder="Enter your desired password"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["password"]}
                                 onChange={handleFormInput}
@@ -244,7 +244,7 @@ const SignupPage = () => {
                             <input
                                 type="password"
                                 name="confirmPassword"
-                                placeholder="Type here"
+                                placeholder="Re-enter your desired password"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["confirmPassword"]}
                                 onChange={handleFormInput}
@@ -286,9 +286,12 @@ const SignupPage = () => {
                     <p className="text-xl font-thin text-center text-primary-content">
                         Login to your account
                     </p>
-                    <button 
-                    onClick={()=>nav('/')}
-                    className="btn btn-wide mt-6">Login</button>
+                    <button
+                        onClick={() => nav("/")}
+                        className="btn btn-wide mt-6"
+                    >
+                        Login
+                    </button>
                 </aside>
             </main>
         </>

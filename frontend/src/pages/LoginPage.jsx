@@ -61,9 +61,12 @@ const LoginPage = () => {
                     <p className="text-xl font-thin text-center text-primary-content">
                         Create your Account Now
                     </p>
-                    <button 
-                    onClick={() => nav('/signup')}
-                    className="btn btn-wide mt-6">Sign-up</button>
+                    <button
+                        onClick={() => nav("/signup")}
+                        className="btn btn-wide mt-6"
+                    >
+                        Sign-up
+                    </button>
                 </aside>
             </main>
         </>
