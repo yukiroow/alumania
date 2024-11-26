@@ -1,4 +1,4 @@
-//Cazandra Jae Lapig
+//Lapig & Maga
 const express = require("express")
 const router = express.Router()
 const db = require("../database").db;
@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     });
 });
 
-//Cazandra Jae Lapig
+//Harry Dominguez
 router.post("/applicants", (req, res) => {
     res.send("Create New Applicants")
 })

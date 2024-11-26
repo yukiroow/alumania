@@ -1,11 +1,14 @@
-//Cazandra Jae Lapig
+//Lapig & Maga
 const express = require("express")
 const router = express.Router()
 const db = require('../database').db;
 
 // Cazandra Jae Lapig
 router.get("/", (req, res) => {
-    res.send("All Experience")
+    db.query("SELECT * FROM experience", (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
 })
 
 // Cariel Joyce Maga
@@ -19,8 +22,14 @@ router.post("/", (req, res) => {
 })
 
 // Cazandra Jae Lapig
+// Check query
 router.get("/allexperiencelike", (req, res) => {
-    res.send("All Likes for an Experience")
+    db.query("SELECT * FROM experience", (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+
+        //userid
+    });
 })
 
 //Cazandra Jae Lapig
