@@ -99,6 +99,7 @@ router.delete('/removexperience', (req, res) => {
         }
         res.send('Experience deleted successfully');
     });
+});
 
 // Cariel Joyce Maga
 router.delete("/", (req, res) => {
