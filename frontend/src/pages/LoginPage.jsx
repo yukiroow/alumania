@@ -1,6 +1,6 @@
 import Logo from "../assets/logo.svg";
 import BannerText from "../assets/banner-text.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
     const nav = useNavigate();
@@ -10,20 +10,43 @@ const LoginPage = () => {
         password: "",
     });
 
+    const [hasError, setHasError] = useState(false);
+
+    useEffect(() => {
+        if (hasError) {
+            const timer = setTimeout(() => {
+                setHasError(false);
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [hasError]); 
+
     const handleFormInput = (event) => {
         const key = event.target.name;
         const value = event.target.value;
         setCredentials((values) => ({ ...values, [key]: value }));
     };
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // TODO: Binding to Server POST Request
-        
+        setCredentials((values) => ({ ...values, ["username"]: credentials["username"].replace(/\s/g, ''), ["password"]: credentials["password"].replace(/\s/g, '') }));
+
+        if (credentials["username"].length < 6 || credentials["username"].length > 24) {
+            setHasError(true);
+            return;
+        }
+
+        if (credentials["password"].length < 8) {
+            setHasError(true);
+            return;
+        }
     };
 
     return (
         <>
+            {hasError && <ErrorAlert />}
             <main className="flex flex-row h-screen bg-primary">
                 <form
                     onSubmit={handleSubmit}
@@ -88,5 +111,26 @@ const Banner = () => {
         </>
     );
 };
+
+const ErrorAlert = () => {
+    return (
+        <>
+            <div role="alert" className="alert alert-error absolute w-72 top-2 left-2 fade-in-out">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Invalid Credentials!</span>
+            </div>
+        </>
+    );
+}
 
 export default LoginPage;
