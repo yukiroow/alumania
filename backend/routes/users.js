@@ -3,7 +3,7 @@ const express = require("express")
 const router = express.Router()
 const db = require("../database").db;
 
-//Cazandra Jae Lapig
+// Get all User
 router.get("/", (req, res) => {
     db.query("SELECT * FROM user", (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
