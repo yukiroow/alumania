@@ -2,8 +2,11 @@ import Logo from "../assets/logo.svg";
 import BannerText from "../assets/banner-text.svg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSignIn } from 'react-auth-kit';
+import axios from 'axios';
 const LoginPage = () => {
     const nav = useNavigate();
+    const authenticate = useSignIn();
 
     const [credentials, setCredentials] = useState({
         username: "",
@@ -19,7 +22,7 @@ const LoginPage = () => {
             }, 2000);
             return () => clearTimeout(timer);
         }
-    }, [hasError]); 
+    }, [hasError]);
 
     const handleFormInput = (event) => {
         const key = event.target.name;
@@ -38,10 +41,31 @@ const LoginPage = () => {
             return;
         }
 
+        // TODO: In-depth username validation
+
         if (credentials["password"].length < 8) {
             setHasError(true);
             return;
         }
+
+        // TODO: In-depth password validation
+
+        axios.post('/api/login', credentials)
+            .then((res) => {
+                if (res.status === 200) {
+                    if (authenticate({
+                        auth: {
+                            token: res.data.token,
+                            type: 'Bearer'
+                        },
+                        refresh: res.data.refreshToken
+                    })) {
+                        nav('/home');
+                    } else {
+                        setHasError(true);
+                    }
+                }
+            });
     };
 
     return (
