@@ -18,7 +18,7 @@ const handleFilterClick = (filter) => {
 return (
     <div className="relative flex justify-center items-center 
                     h-[34px] mt-7 text-[14px] text-white/60 gap-0.5">
-        <div className="flex items-center bg-[#FFFFFF] border border-white/10 rounded-lg drop-shadow-md">
+        <div className="flex items-center bg-[#FFFFFF] rounded-l-lg drop-shadow-md w-3/6 pl-2">
             {/* SVG Icon */}
             <svg
                 viewBox="0 0 24 24"
@@ -40,7 +40,7 @@ return (
             </svg>
             {/* Input */}
             <input
-                className="input w-3/6 py-2 pl-2 bg-transparent text-[#8192a1] focus:outline-none"
+                className="input bg-transparent w-full text-[#8192a1] focus:outline-none"
                 name="text"
                 type="text"
                 placeholder="Search"
