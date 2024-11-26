@@ -11,18 +11,20 @@ router.get("/", (req, res) => {
     });
 })
 
-// Cariel Joyce Maga
-router.get("/", (req, res) => {
-    const query = 'SELECT * FROM comment';
-    db.query(query, (err, result) => {
-        if(err) return;
-        res.send(result);
-    })
+// Get All Comment
+router.get("/comment", (req, res) => {
+    db.query("SELECT * FROM comment", (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
 })
 
-// Cariel Joyce Maga
-router.get("/", (req, res) => {
-    res.send("Experience in Album")
+// Get All Experience in Album
+router.get("/albumexperience", (req, res) => {
+    db.query("SELECT * FROM albumexperience", (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
 })
 
 // Cariel Joyce Maga
@@ -57,14 +59,32 @@ router.post("/createnewexperience", (req, res) => {
     });
 })
 
-// Cariel Joyce Maga
-router.post("/", (req, res) => {
-    res.send("Add like to a post")
+// Add like to a post
+// To be fixed 
+router.post("/experiencelike", (req, res) => {
+    const { xpid, userid } = req.body;
+    const liketimestamp = new Date().getTime; 
+    db.query('INSERT INTO experiencelike (xpid, userid, liketimestamp) VALUES (?, ?, ?)', [xpid, userid, liketimestamp], (err, result) => {
+        if (err) {
+            console.error('Error executing query: ' + err.stack);
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(201).json({ xpid, userid, liketimestamp });
+    });
 })
 
-// Cariel Joyce Maga
-router.post("/", (req, res) => {
-    res.send("Add comment to a post")
+// CJM
+// Add comment to post 
+router.post("/comment", (req, res) => {
+    const { commid, content, xpid, userid } = req.body;
+    const publishtimestamp = new Date().getTime; 
+    db.query('INSERT INTO comment (commid, content, xpid, userid) VALUES (?, ?, ?, ?)', [commid, content, xpid, userid], (err, result) => {
+        if (err) {
+            console.error('Error executing query: ' + err.stack);
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(201).json({ id: result.insertId, content, publishtimestamp, xpid, userid });
+    });
 })
 
 
@@ -102,8 +122,19 @@ router.delete('/removexperience', (req, res) => {
 });
 
 // Cariel Joyce Maga
-router.delete("/", (req, res) => {
-    res.send("Delete Album")
-})
+// Delete Album 
+router.delete("/removealbum", (req, res) => {
+    const xpid = req.params.id; 
+    db.query('DELETE FROM album WHERE albumid = ?', [albumid], (err, result) => {
+        if (err) {
+            console.error('Error executing query: ' + err.stack);
+            return res.status(400).send('Error deleting album');
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Album not found');
+        }
+        res.send('Album deleted successfully');
+    });
+});
 
 module.exports = router;
