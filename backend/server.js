@@ -1,3 +1,4 @@
+//Lapig & Maga
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -15,25 +16,25 @@ const userRouter = require("./routes/users");
 const experienceRouter = require("./routes/experience");
 const jobRouter = require("./routes/jobpost");
 
-// Cariel Joyce Maga
 // eventRouter
 app.use("/events", eventRouter)
 app.use("/interestedinevents", eventRouter)
 
 // experienceRouter
-app.use("/api/experience", experienceRouter)
-app.use("/api/album", experienceRouter)
-app.use("/api/albumexperience", experienceRouter)
+app.use("/experience", experienceRouter)
+app.use("/createnewexperience", experienceRouter)
+app.use("/album", experienceRouter)
+app.use("/albumexperience", experienceRouter)
 app.use("/comment", experienceRouter)
 app.use("/experienceimage", experienceRouter)
-app.use("/api/experiencelike", experienceRouter)
-app.use("/api/allexperiencelike", experienceRouter)
-app.use("/api/removexperience", experienceRouter)
+app.use("/experiencelike", experienceRouter)
+app.use("/allexperiencelike", experienceRouter)
+app.use("/removexperience", experienceRouter)
 
 // userRouter
 app.use("/users", userRouter)
 app.use("/alumni", userRouter)
-app.use("/api/applicants", userRouter)
+app.use("/applicants", userRouter)
 
 // jobRouter
 app.use("/jobpost", jobRouter)
