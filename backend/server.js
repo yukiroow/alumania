@@ -30,6 +30,7 @@ app.use("/experienceimage", experienceRouter)
 app.use("/experiencelike", experienceRouter)
 app.use("/allexperiencelike", experienceRouter)
 app.use("/removexperience", experienceRouter)
+app.use("/removealbum", experienceRouter)
 
 // userRouter
 app.use("/users", userRouter)
