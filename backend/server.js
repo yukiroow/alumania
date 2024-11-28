@@ -35,6 +35,7 @@ app.use("/removealbum", experienceRouter)
 // userRouter
 app.use("/users", userRouter)
 app.use("/alumni", userRouter)
+app.use("/editalumni", userRouter)
 app.use("/applicants", userRouter)
 
 // jobRouter

@@ -124,7 +124,7 @@ router.delete('/removexperience', (req, res) => {
 // Cariel Joyce Maga
 // Delete Album 
 router.delete("/removealbum", (req, res) => {
-    const xpid = req.params.id; 
+    const albumid = req.params.id; 
     db.query('DELETE FROM album WHERE albumid = ?', [albumid], (err, result) => {
         if (err) {
             console.error('Error executing query: ' + err.stack);
