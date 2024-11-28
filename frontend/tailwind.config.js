@@ -14,6 +14,7 @@ export default {
           success: "#00ff00",
           warning: "#ea580c",
           error: "#ff0000",
+          text: "#343434",
         },
       },
     ],
