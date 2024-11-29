@@ -22,7 +22,7 @@ const NewPost = () => {
         </div>
 
         <textarea
-  className="w-full p-1 pt-1 pl-10 border border-transparent rounded-lg focus:outline-none focus:ring-0 resize-none ml-auto"
+  className="w-full p-1 pt-1 pl-10 ml-4 border border-transparent rounded-lg focus:outline-none focus:ring-0 resize-none ml-auto"
   rows="6"
   placeholder="What's new?"
 ></textarea>
