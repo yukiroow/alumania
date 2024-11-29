@@ -62,10 +62,6 @@ return (
             onClick={() => handleIconClick("logout")}
             />
         </nav>
-        
-        <div className="flex-1">
-            <Navbar />
-        </div>
     </div>
     );
 };

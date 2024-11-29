@@ -3,11 +3,15 @@ import BannerText from "../assets/banner-text.svg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import axios from 'axios';
+import axios from "axios";
 
 const LoginPage = () => {
     const nav = useNavigate();
     const { login } = useAuth();
+    const { user } = useAuth();
+    if (user) {
+        nav("/home");
+    }
 
     const [credentials, setCredentials] = useState({
         username: "",
@@ -31,13 +35,19 @@ const LoginPage = () => {
         setCredentials((values) => ({ ...values, [key]: value }));
     };
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-        setCredentials((values) => ({ ...values, ["username"]: credentials["username"].replace(/\s/g, ''), ["password"]: credentials["password"].replace(/\s/g, '') }));
 
-        if (credentials["username"].length < 6 || credentials["username"].length > 24) {
+        setCredentials((values) => ({
+            ...values,
+            ["username"]: credentials["username"].replace(/\s/g, ""),
+            ["password"]: credentials["password"].replace(/\s/g, ""),
+        }));
+
+        if (
+            credentials["username"].length < 6 ||
+            credentials["username"].length > 24
+        ) {
             setHasError(true);
             return;
         }
@@ -51,9 +61,10 @@ const LoginPage = () => {
 
         // TODO: In-depth password validation
 
-        axios.post('http://localhost:2012/api/login', credentials)
+        axios
+            .post("http://localhost:2012/api/login", credentials)
             .then((res) => {
-                if(res.data == "success") {
+                if (res.data == "success") {
                     const username = credentials["username"];
                     login({ username });
                 } else {
@@ -133,22 +144,27 @@ const Banner = () => {
 const ErrorAlert = () => {
     return (
         <>
-            <div role="alert" className="alert alert-error absolute w-72 top-2 left-2 fade-in-out">
+            <div
+                role="alert"
+                className="alert alert-error absolute w-72 top-2 left-2 fade-in-out"
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6 shrink-0 stroke-current"
                     fill="none"
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                >
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                 </svg>
                 <span>Invalid Credentials!</span>
             </div>
         </>
     );
-}
+};
 
 export default LoginPage;
