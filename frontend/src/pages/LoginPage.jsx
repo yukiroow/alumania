@@ -7,8 +7,7 @@ import axios from "axios";
 
 const LoginPage = () => {
     const nav = useNavigate();
-    const { login } = useAuth();
-    const { user } = useAuth();
+    const { login, user } = useAuth();
     if (user) {
         nav("/home");
     }

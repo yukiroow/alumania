@@ -9,6 +9,10 @@ import RootLayout from "./layouts/RootLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AuthProvider } from "./hooks/useAuth";
+import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/SearchPage";
+import AddPostPage from "./pages/AddPostPage";
+import NotificationsPage from "./pages/NotificationsPage";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
@@ -24,7 +28,10 @@ createRoot(document.getElementById("root")).render(
                             <RootLayout />
                         </ProtectedRoute>
                     }>
-                        {/* TODO: Site Pages */} 
+                        <Route index element={<HomePage />} />
+                        <Route path="search" element={<SearchPage />} />
+                        <Route path="post" element={<AddPostPage />} />
+                        <Route path="notifications" element={<NotificationsPage />} />
                     </Route>
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
