@@ -2,10 +2,10 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const corsOptions = {
-    origin: '*',
-};
 const bodyParser = require('body-parser');
+
+// CORS policy
+app.use(cors());
 
 // Middleware
 app.use(bodyParser.json());
@@ -15,6 +15,11 @@ const eventRouter = require("./routes/events");
 const userRouter = require("./routes/users");
 const experienceRouter = require("./routes/experience");
 const jobRouter = require("./routes/jobpost");
+const authRouter = require("./routes/auth");
+
+// authRouter
+app.use("/auth", authRouter);
+app.use("/login", authRouter);
 
 // eventRouter
 app.use("/events", eventRouter)
@@ -41,8 +46,6 @@ app.use("/applicants", userRouter)
 // jobRouter
 app.use("/jobpost", jobRouter)
 app.use("/interestedinjobpost", jobRouter)
-
-app.use(cors(corsOptions));
 
 app.listen(2012, () => {
     console.log("Server started on http://localhost:2012");
