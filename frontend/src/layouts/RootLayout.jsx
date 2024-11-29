@@ -6,7 +6,7 @@ const RootLayout = () => {
   return (
     <>
       <SideBar />
-      <main>
+      <main className="ml-20">
         <Outlet />
       </main>
     </>

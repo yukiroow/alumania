@@ -5,7 +5,6 @@ const HomeLayout = () => {
     return (
         <>
             <Navbar />
-            <h1>Hello, World!</h1>
             <main>
                 <Outlet />
             </main>
