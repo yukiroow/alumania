@@ -4,6 +4,7 @@ const NotificationsPage = () => {
   return (
     <>
       {/* TODO: Notifications Component */}
+      <h1>Notificaitons</h1>
     </>
   )
 }
