@@ -2,9 +2,12 @@ import Logo from "../assets/logo.svg";
 import BannerText from "../assets/banner-text.svg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import axios from 'axios';
+
 const LoginPage = () => {
     const nav = useNavigate();
+    const { login } = useAuth();
 
     const [credentials, setCredentials] = useState({
         username: "",
@@ -31,7 +34,7 @@ const LoginPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // TODO: Binding to Server POST Request
+        
         setCredentials((values) => ({ ...values, ["username"]: credentials["username"].replace(/\s/g, ''), ["password"]: credentials["password"].replace(/\s/g, '') }));
 
         if (credentials["username"].length < 6 || credentials["username"].length > 24) {
@@ -51,6 +54,8 @@ const LoginPage = () => {
         axios.post('/api/login', credentials)
             .then((res) => {
                 // TODO: Server Login POST Request
+                const username = credentials["username"];
+                login({ username });
             });
     };
 

@@ -7,6 +7,7 @@ import SignupPage from "./pages/SignupPage";
 import ErrorPage from "./pages/ErrorPage";
 import RootLayout from "./layouts/RootLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 // const router = createBrowserRouter([
 //     {
@@ -29,10 +30,11 @@ createRoot(document.getElementById("root")).render(
                     <Route index element={<LoginPage />} />
                     <Route path="signup" element={<SignupPage />} />
                 </Route>
-                <Route path="/home" element={<RootLayout />}>
-                {/* TODO: Homepage Routing */}
-                </Route>
-
+                <Route path="/home" element={
+                    <ProtectedRoute>
+                        <RootLayout />
+                    </ProtectedRoute>
+                } />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </BrowserRouter>
