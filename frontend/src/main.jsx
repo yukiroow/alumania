@@ -23,7 +23,9 @@ createRoot(document.getElementById("root")).render(
                         <ProtectedRoute>
                             <RootLayout />
                         </ProtectedRoute>
-                    } />
+                    }>
+                        {/* TODO: Site Pages */} 
+                    </Route>
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </AuthProvider>
