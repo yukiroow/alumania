@@ -51,11 +51,14 @@ const LoginPage = () => {
 
         // TODO: In-depth password validation
 
-        axios.post('/api/login', credentials)
+        axios.post('http://localhost:2012/api/login', credentials)
             .then((res) => {
-                // TODO: Server Login POST Request
-                const username = credentials["username"];
-                login({ username });
+                if(res.data == "success") {
+                    const username = credentials["username"];
+                    login({ username });
+                } else {
+                    setHasError(true);
+                }
             });
     };
 
