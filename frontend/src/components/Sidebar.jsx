@@ -21,7 +21,7 @@ return (
     <div className="flex">
         <nav className="flex flex-col h-screen w-20 items-center py-9">
             {/* Top Logo */}
-            <img src={Logo} alt="Logo" className="w-10 h-10 mb-12" />
+            <img src={Logo} alt="Logo" className="w-10 h-10" />
             {/* Middle Icons */}
             <div className="flex flex-col items-center space-y-9 flex-grow mt-60">
                 <FontAwesomeIcon
