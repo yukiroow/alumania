@@ -1,16 +1,26 @@
-import React from 'react';
-import SideBar from '../components/Sidebar';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import SideBar from "../components/Sidebar";
+import { Outlet } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const RootLayout = () => {
-  return (
-    <>
-      <SideBar />
-      <main className="ml-20">
-        <Outlet />
-      </main>
-    </>
-  )
-}
+    const location = useLocation();
+    const nav = useNavigate();
+    useEffect(() => {
+        if (location.pathname == "/app") {
+            nav("/app/home/experiences");
+        }
+    }, []);
+    return (
+        <>
+            <SideBar />
+            <main className="ml-20">
+                <Outlet />
+            </main>
+        </>
+    );
+};
 
-export default RootLayout
+export default RootLayout;
