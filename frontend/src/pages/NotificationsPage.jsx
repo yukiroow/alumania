@@ -1,8 +1,10 @@
-import React from 'react'
+import axios from "axios"
 
 const NotificationsPage = () => {
   return (
-    <div>Notifications</div>
+    <>
+      {/* TODO: Notifications Component */}
+    </>
   )
 }
 

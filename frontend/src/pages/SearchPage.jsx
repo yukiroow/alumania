@@ -1,8 +1,10 @@
-import React from 'react'
+import axios from "axios"
 
 const SearchPage = () => {
   return (
-    <div>SearchPage</div>
+    <>
+      {/* TODO: Search Page Component */}
+    </>
   )
 }
 

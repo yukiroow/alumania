@@ -1,8 +1,10 @@
-import React from 'react'
+import axios from 'axios';
 
 const AddPostPage = () => {
   return (
-    <div>AddPost</div>
+    <>
+      {/* TODO: Add Post Component */}
+    </>
   )
 }
 
