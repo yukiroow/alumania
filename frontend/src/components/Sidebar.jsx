@@ -32,7 +32,7 @@ const SideBar = () => {
                     <img src={Logo} alt="Logo" className="w-10 h-10" />
                     {/* Middle Icons */}
                     <div className="flex flex-col items-center space-y-9 flex-grow mt-60">
-                        <NavLink to="/home">
+                        <NavLink to="/app/home">
                             <FontAwesomeIcon
                                 icon={faHome}
                                 className={`text-2xl cursor-pointer ${
@@ -43,7 +43,7 @@ const SideBar = () => {
                                 onClick={() => handleIconClick("home")}
                             />
                         </NavLink>
-                        <NavLink to="/home/search">
+                        <NavLink to="/app/search">
                             <FontAwesomeIcon
                                 icon={faSearch}
                                 className={`text-2xl cursor-pointer ${
@@ -54,7 +54,7 @@ const SideBar = () => {
                                 onClick={() => handleIconClick("search")}
                             />
                         </NavLink>
-                        <NavLink to="/home/post">
+                        <NavLink to="/app/post">
                             <FontAwesomeIcon
                                 icon={faPlus}
                                 className={`text-2xl cursor-pointer ${
@@ -65,7 +65,7 @@ const SideBar = () => {
                                 onClick={() => handleIconClick("plus")}
                             />
                         </NavLink>
-                        <NavLink to="/home/notifications">
+                        <NavLink to="/app/notifications">
                             <FontAwesomeIcon
                                 icon={faBell}
                                 className={`text-2xl cursor-pointer ${
