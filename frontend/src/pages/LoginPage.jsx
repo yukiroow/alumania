@@ -44,7 +44,7 @@ const LoginPage = () => {
         }));
 
         if (
-            credentials["username"].length < 6 ||
+            credentials["username"].length < 4 ||
             credentials["username"].length > 24
         ) {
             setHasError(true);
@@ -53,7 +53,7 @@ const LoginPage = () => {
 
         // TODO: In-depth username validation
 
-        if (credentials["password"].length < 8) {
+        if (credentials["password"].length < 4) {
             setHasError(true);
             return;
         }
@@ -61,12 +61,14 @@ const LoginPage = () => {
         // TODO: In-depth password validation
 
         axios
-            .post("http://localhost:2012/api/login", credentials)
+            .post("http://localhost:2012/auth/login", credentials)
             .then((res) => {
-                if (res.data == "success") {
+                if (res.status == 200) {
                     const username = credentials["username"];
                     login({ username });
-                } else {
+                }
+            }).catch((error) => {
+                if(error.response) {
                     setHasError(true);
                 }
             });
