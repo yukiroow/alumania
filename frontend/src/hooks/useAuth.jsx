@@ -7,13 +7,11 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useLocalStorage("user", null);
     const navigate = useNavigate();
 
-    // call this function when you want to authenticate the user
     const login = async (data) => {
         setUser(data);
         navigate("/home");
     };
 
-    // call this function to sign out logged in user
     const logout = () => {
         navigate("/", { replace: true });
     };
