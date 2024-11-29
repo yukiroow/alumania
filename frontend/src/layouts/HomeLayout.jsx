@@ -5,10 +5,9 @@ const HomeLayout = () => {
     return (
         <>
             <Navbar />
-            <main>
+            <main className="mt-24">
                 <Outlet />
             </main>
-            {/* TODO: Home Page Component */}
         </>
     );
 };

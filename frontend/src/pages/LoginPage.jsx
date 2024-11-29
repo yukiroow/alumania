@@ -8,9 +8,6 @@ import axios from "axios";
 const LoginPage = () => {
     const nav = useNavigate();
     const { login, user } = useAuth();
-    if (user) {
-        nav("/home");
-    }
 
     const [credentials, setCredentials] = useState({
         username: "",
@@ -18,6 +15,12 @@ const LoginPage = () => {
     });
 
     const [hasError, setHasError] = useState(false);
+
+    useEffect(() => {
+        if (user) {
+            nav("/app/home/experiences");
+        }
+    });
 
     useEffect(() => {
         if (hasError) {
@@ -67,8 +70,9 @@ const LoginPage = () => {
                     const username = credentials["username"];
                     login({ username });
                 }
-            }).catch((error) => {
-                if(error.response) {
+            })
+            .catch((error) => {
+                if (error.response) {
                     setHasError(true);
                 }
             });
