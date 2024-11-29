@@ -17,7 +17,6 @@ import ExperiencesPage from "./pages/ExperiencesPage";
 import AlbumsPage from "./pages/AlbumsPage";
 import EventsPage from "./pages/EventsPage";
 import JobsPage from "./pages/JobsPage";
-import Notifications from "./components/Notifications";
 import SearchBar from "./components/SearchBar";
 
 createRoot(document.getElementById("root")).render(
@@ -26,7 +25,7 @@ createRoot(document.getElementById("root")).render(
             <AuthProvider>
                 <Routes>
                     <Route path="/" element={<AuthLayout />}>
-                        <Route index element={<SearchBar />} />
+                        <Route index element={<LoginPage />} />
                         <Route path="signup" element={<SignupPage />} />
                     </Route>
                     <Route
