@@ -2,17 +2,22 @@ import React, { useState } from "react";
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   const handleDrop = (event) => {
     event.preventDefault();
     const files = event.dataTransfer.files;
     if (files.length) {
-      setFile(files[0]);
+      const uploadedFile = files[0];
+      setFile(uploadedFile);
+      setPreviewUrl(URL.createObjectURL(uploadedFile));
     }
   };
 
   const handleFileInput = (event) => {
-    setFile(event.target.files[0]);
+    const uploadedFile = event.target.files[0];
+    setFile(uploadedFile);
+    setPreviewUrl(URL.createObjectURL(uploadedFile));
   };
 
   const handleDragOver = (event) => {
@@ -25,12 +30,16 @@ const FileUpload = () => {
         <button className="text-gray-500 mb-4">Cancel</button>
 
         <div
-          className="relative flex flex-col items-center justify-center w-full h-[300px] border-2 border-dashed border-gray-400 rounded-lg bg-gray-50 hover:bg-gray-100"
+          className="relative flex flex-col items-center justify-center w-full h-[300px] border-2 border-dashed border-gray-400 rounded-lg bg-gray-50 hover:bg-gray-100 overflow-hidden"
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
-          {file ? (
-            <p className="text-gray-500">File Uploaded: {file.name}</p>
+          {previewUrl ? (
+            <img
+              src={previewUrl}
+              alt="Uploaded Preview"
+              className="absolute inset-0 object-cover w-full h-full"
+            />
           ) : (
             <>
               <svg
