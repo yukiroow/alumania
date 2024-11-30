@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
+import EventCard from "../components/EventsCard";
 
 const EventsPage = () => {
     const [events, setEvents] = useState([]);
@@ -43,7 +44,11 @@ const EventsPage = () => {
 
     return (
         <>
-            <main className=""></main>
+            <main className="">
+                {events.map(event => (
+                    <EventCard key={event.eventid} event={event}/>
+                ))}
+            </main>
         </>
     );
 };

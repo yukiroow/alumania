@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const NavBar = () => {
     return (
         <>
-            <div className="flex items-center px-8 py-8 justify-center space-x-20 w-full fixed top-0">
+            <div className="flex items-center px-8 py-8 justify-center space-x-20 w-full fixed top-0 z-50 bg-base-100">
                 {["Experiences", "Albums", "Events", "Opportunities"].map(
                     (item) => (
                         <NavLink

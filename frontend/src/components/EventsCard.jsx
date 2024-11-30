@@ -3,18 +3,24 @@ import {
     faMapLocation,
     faCalendar,
     faClock,
+    faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 const EventCard = (props) => {
     const event = props.event;
+    if(event.eventphoto.data.length < 0)
+    console.log(event.eventphoto.data);
+    const image = event.eventphoto.data.length < 0 ? `data:image/jpeg;base64,${btoa(
+        new Uint8Array(event.eventphoto.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+        )
+    )}` : 'https://placehold.co/600x400?text=No+Banner'
     return (
-        <div className="flex items-center card lg:card-side bg-base-100 shadow-xl m-40">
-            <figure>
+        <div className="flex items-center h-fit card lg:card-side bg-base-100 shadow-md my-8 mx-[20%]">
+            <figure className="min-w-[33%] max-w-[33%]">
                 {/* TODO: Image Processing */}
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-                    alt="Event"
-                />
+                <img src={image} alt="Event" className="size-full object-cover"/>
             </figure>
             <div className="card-body">
                 <h2 className="card-title uppercase text-3xl font-bold">

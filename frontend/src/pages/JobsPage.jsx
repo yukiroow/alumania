@@ -10,7 +10,7 @@ const JobsPage = () => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const res = await axios.get("http://localhost:2012/jobpost");
+                const res = await axios.get("http://localhost:2012/jobposts");
                 setJobs(res.data);
             } catch (error) {
                 console.log(error);
