@@ -37,18 +37,16 @@ const EventsPage = () => {
     if (error) {
         return (
             <>
-                <ErrorHero/>
+                <ErrorHero />
             </>
         );
     }
 
     return (
         <>
-            <main className="">
-                {events.map(event => (
-                    <EventCard key={event.eventid} event={event}/>
-                ))}
-            </main>
+            {events.map((event) => (
+                <EventCard key={event.eventid} event={event} />
+            ))}
         </>
     );
 };
