@@ -3,12 +3,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 // CORS policy
 app.use(cors());
 
 // Middleware
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 // Route Imports
 const eventRouter = require("./routes/events");

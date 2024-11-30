@@ -21,7 +21,6 @@ router.put("/editalumni", (req, res) => {
     const userid = req.params.id;
     const { email, firstname, middlename, lastname, course, empstatus, location, company, displaypic, diploma, banned } = req.body;
 
-  
     db.query(
         'UPDATE alumni SET email = ?, firstname = ?, middlename = ?, lastname = ?, course = ?, empstatus = ?, location = ?, company = ?, displaypic = ?, diploma = ?, banned = ? WHERE userId = ?',
         [email, firstname, middlename, lastname, course, empstatus, location, company, displaypic, diploma, banned, userid],

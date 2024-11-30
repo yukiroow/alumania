@@ -49,6 +49,8 @@ router.get("/albumexperience/:id", (req, res) => {
     );
 });
 
+
+
 // Get all Experience Like
 router.get("/allexperiencelike/:id", (req, res) => {
     const { id } = req.params;
@@ -180,7 +182,7 @@ router.delete("/removexperience/:id", (req, res) => {
     });
 });
 
-// Cariel Joyce Maga
+
 // Delete Album
 router.delete("/removealbum/:id", (req, res) => {
     const { id } = req.params;
