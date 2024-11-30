@@ -3,7 +3,6 @@ import {
     faMapLocation,
     faCalendar,
     faClock,
-    faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 const EventCard = (props) => {
