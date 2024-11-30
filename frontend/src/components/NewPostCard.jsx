@@ -1,19 +1,19 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import { UisArrowUpRight } from '@iconscout/react-unicons-solid';
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { UisArrowUpRight } from "@iconscout/react-unicons-solid";
+
 const NewPost = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-[700px] p-4 bg-white rounded-lg shadow-md">
         <div className="flex items-center justify-between">
-          <button className="text-gray-500">Cancel</button>
-          <h2 className="text-lg font-medium flex-grow text-center -ml-12">New post</h2>
+          <h2 className="text-lg font-medium text-center flex-grow">
+            New post
+          </h2>
+          <button className="text-gray-500 cursor-pointer">Cancel</button>
         </div>
 
-        
         <hr className="w-[calc(100%+32px)] h-[5px] border-t border-gray-400 my-3 -ml-4 -mr-4" />
 
         <div className="mt-4 flex items-center space-x-3">
@@ -37,7 +37,7 @@ const NewPost = () => {
         <div className="flex items-center justify-between mt-4">
           <div className="flex justify-end space-x-2">
             <button className="btn btn-circle btn-outline">
-            <FontAwesomeIcon icon={faPlus} className="h-5 w-5" />
+              <FontAwesomeIcon icon={faPlus} className="h-5 w-5" />
             </button>
 
             <button className="btn btn-circle btn-outline hover:bg-black hover:text-white">
@@ -59,7 +59,7 @@ const NewPost = () => {
           </div>
 
           <button
-              class="flex overflow-hidden  
+            className="flex overflow-hidden  
               w-[4rem] hover:w-[5.7rem] 
               items-center gap-1
               cursor-pointer 
@@ -67,10 +67,10 @@ const NewPost = () => {
               text-white px-4 py-2 rounded-md 
               transition-all ease-in-out hover:scale 
               hover:scale-105 font-[revert] active:scale-100 shadow-lg"
-              >
-              Post
-              <UisArrowUpRight className="h-5 w-5" />
-              </button>
+          >
+            Post
+            <UisArrowUpRight className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </div>
