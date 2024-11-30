@@ -6,6 +6,7 @@ import {
     faPlus,
     faBell,
     faSignOutAlt,
+    faUser
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/logo.svg";
@@ -31,7 +32,7 @@ const SideBar = () => {
                 <img src={Logo} alt="Logo" className="w-10 h-10" />
                 {/* Middle Icons */}
                 <div className="flex flex-col items-center space-y-9 flex-grow mt-60">
-                    <NavLink to="/app/home/experiences">
+                    <NavLink to="/app/home">
                         {({ isActive }) =>
                             isActive ? (
                                 <FontAwesomeIcon
@@ -86,6 +87,21 @@ const SideBar = () => {
                             ) : (
                                 <FontAwesomeIcon
                                     icon={faBell}
+                                    className="text-2xl cursor-pointer text-[#A29C9C]"
+                                />
+                            )
+                        }
+                    </NavLink>
+                    <NavLink to="/app/profile">
+                        {({ isActive }) =>
+                            isActive ? (
+                                <FontAwesomeIcon
+                                    icon={faUser}
+                                    className="text-2xl cursor-pointer text-[#032543]"
+                                />
+                            ) : (
+                                <FontAwesomeIcon
+                                    icon={faUser}
                                     className="text-2xl cursor-pointer text-[#A29C9C]"
                                 />
                             )

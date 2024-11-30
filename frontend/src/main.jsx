@@ -17,7 +17,7 @@ import ExperiencesPage from "./pages/ExperiencesPage";
 import AlbumsPage from "./pages/AlbumsPage";
 import EventsPage from "./pages/EventsPage";
 import JobsPage from "./pages/JobsPage";
-import SearchBar from "./components/SearchBar";
+import ProfilePage from "./pages/ProfilePage";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
@@ -53,6 +53,10 @@ createRoot(document.getElementById("root")).render(
                         <Route
                             path="notifications"
                             element={<NotificationsPage />}
+                        />
+                        <Route
+                            path="profile"
+                            element={<ProfilePage />}
                         />
                     </Route>
                     <Route path="*" element={<ErrorPage />} />
