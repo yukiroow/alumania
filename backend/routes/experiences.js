@@ -36,10 +36,36 @@ router.get("/albumexperience", (req, res) => {
     });
 });
 
-// Cariel Joyce Maga
-router.post("/", (req, res) => {
-    res.send("Add experience image");
+// Add Experience Image
+router.post("/experienceimage", (req, res) => {
+    if (req.files && Object.keys(req.files).length !== 0) {
+        const uploadedFile = req.files.uploadFile;
+  
+   const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+   if (!allowedTypes.includes(uploadedFile.mimetype)) {
+     return res.status(400).send({ error: 'Invalid file type' });
+   }
+
+   const fileData = uploadedFile.data;
+
+   db.query(
+    "INSERT INTO experienceimage (xpid, xpimage) VALUES (?, ?)", 
+    [req.body.xpid, fileData], 
+    (err, res) => {
+      if (err) {
+        console.error("Error uploading file:", err.stack);
+        return res.status(500).json({ error: err.message });
+      }
+
+      res.status(201).json({
+        message: 'Image uploaded successfully!',
+        xpid: req.body.xpid,
+      });
+    }
+    )};
 });
+
+
 
 // Get all Experience Like
 router.get("/allexperiencelike", (req, res) => {
@@ -160,7 +186,7 @@ router.delete("/removexperience", (req, res) => {
     });
 });
 
-// Cariel Joyce Maga
+
 // Delete Album
 router.delete("/removealbum", (req, res) => {
     const albumid = req.params.id;
