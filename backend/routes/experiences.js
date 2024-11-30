@@ -7,7 +7,11 @@ const db = require("../database").db;
 router.get("/", (req, res) => {
     db.query("SELECT * FROM experience", (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
-        res.json(results);
+        if (results.length > 1) {
+            res.status(200).json(results);
+        } else {
+            res.status(404).send("nothing");
+        }
     });
 });
 
@@ -29,28 +33,42 @@ router.get("/comment/:id", (req, res) => {
 });
 
 // Get All Experience in Album
-router.get("/albumexperience", (req, res) => {
-    db.query("SELECT * FROM albumexperience", (err, results) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(results);
-    });
-});
-
-// Cariel Joyce Maga
-router.post("/", (req, res) => {
-    res.send("Add experience image");
+router.get("/albumexperience/:id", (req, res) => {
+    const { id } = req.params;
+    db.query(
+        "SELECT xpid, title, body, publishtimestamp, username, xpimage FROM experience INNER JOIN albumexperience USING(xpid) INNER JOIN experienceimage USING(xpid) INNER JOIN user USING(userid) WHERE albumid = ?",
+        [id],
+        (err, results) => {
+            if (err) return res.status(500).json({ error: err.message });
+            if (results.length > 1) {
+                res.status(200).json(results);
+            } else {
+                res.status(404).send("nothing");
+            }
+        }
+    );
 });
 
 // Get all Experience Like
-router.get("/allexperiencelike", (req, res) => {
-    db.query("SELECT * FROM experiencelike", (err, results) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(results);
-    });
+router.get("/allexperiencelike/:id", (req, res) => {
+    const { id } = req.params;
+    db.query(
+        "SELECT COUNT(userid) FROM experiencelike WHERE xpid = ?",
+        [id],
+        (err, results) => {
+            if (err) return res.status(500).json({ error: err.message });
+            if (results.length > 1) {
+                res.status(200).json(results);
+            } else {
+                res.status(404).send("nothing");
+            }
+        }
+    );
 });
 
 // Create a new Experience
-router.post("/createnewexperience", (req, res) => {
+router.post("/new", (req, res) => {
+    // TODO: Image Upload
     const { title, body, userid, xpimage, xpid } = req.body;
     db.query(
         "INSERT INTO experience (title, body, userid) VALUES (?, ?, ?)",
@@ -78,9 +96,9 @@ router.post("/createnewexperience", (req, res) => {
 
 // Add like to a post
 // To be fixed
-router.post("/experiencelike", (req, res) => {
+router.post("/likepost", (req, res) => {
     const { xpid, userid } = req.body;
-    const liketimestamp = new Date().getTime;
+    const liketimestamp = new Date().getTime();
     db.query(
         "INSERT INTO experiencelike (xpid, userid, liketimestamp) VALUES (?, ?, ?)",
         [xpid, userid, liketimestamp],
@@ -121,6 +139,7 @@ router.post("/comment", (req, res) => {
 //Cazandra Jae Lapig
 // Create a New Album
 router.post("/album", (req, res) => {
+    // TODO: Album image
     const { title, coverphoto, ownerid, albumid } = req.body;
     db.query(
         "INSERT INTO album (title, coverphoto, ownerid, albumid) VALUES (?, ?, ?, ?)",
@@ -142,42 +161,39 @@ router.post("/album", (req, res) => {
 
 //Cazandra Jae Lapig
 router.post("/albumexperience", (req, res) => {
+    // TODO: Add a post to an Album
     res.send("Add a post to an Album");
 });
 
 // Delete an Experience
-router.delete("/removexperience", (req, res) => {
-    const xpid = req.params.id;
-    db.query("DELETE FROM experience WHERE xpid = ?", [xpid], (err, result) => {
+router.delete("/removexperience/:id", (req, res) => {
+    const { id } = req.params;
+    db.query("DELETE FROM experience WHERE xpid = ?", [id], (err, result) => {
         if (err) {
             console.error("Error executing query: " + err.stack);
-            return res.status(400).send("Error deleting experience");
+            return res.status(400).send("error");
         }
         if (result.affectedRows === 0) {
-            return res.status(404).send("Experience not found");
+            return res.status(404).send("not found");
         }
-        res.send("Experience deleted successfully");
+        res.status(200).send("success");
     });
 });
 
 // Cariel Joyce Maga
 // Delete Album
-router.delete("/removealbum", (req, res) => {
-    const albumid = req.params.id;
-    db.query(
-        "DELETE FROM album WHERE albumid = ?",
-        [albumid],
-        (err, result) => {
-            if (err) {
-                console.error("Error executing query: " + err.stack);
-                return res.status(400).send("Error deleting album");
-            }
-            if (result.affectedRows === 0) {
-                return res.status(404).send("Album not found");
-            }
-            res.send("Album deleted successfully");
+router.delete("/removealbum/:id", (req, res) => {
+    const { id } = req.params;
+    db.query("DELETE FROM album WHERE albumid = ?", [id], (err, result) => {
+        if (err) {
+            console.error("Error executing query: " + err.stack);
+            return res.status(400).send("Error deleting album");
         }
-    );
+        if (result.affectedRows === 0) {
+            return res.status(404).send("Album not found");
+        }
+        res.status(200).send("success");
+    });
 });
 
 module.exports = router;
