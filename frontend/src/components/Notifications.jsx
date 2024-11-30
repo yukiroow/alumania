@@ -1,49 +1,103 @@
-import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faHeart,
+  faComment
+} from "@fortawesome/free-solid-svg-icons";
 
 const Notifications = () => {
-    const [selectedOption, setSelectedOption] = useState("All"); 
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
-    const options = ["All", "Likes", "Comments"];
-    const handleOptionClick = (option) => {
-        setSelectedOption(option);
-        setIsDropdownOpen(false);
-    };
-    
-    return (
-        <div className="dropdown flex items-center px-8 py-8 justify-center relative">
-            {/* Dropdown Trigger */}
-            <div
-                tabIndex={0}
-                role="button"
-                className={`flex items-center space-x-2 text-gray-800 font-bold ${
-                    isDropdownOpen ? "text-[#022543]" : ""
-                } cursor-pointer`}
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-                <span>{selectedOption}</span>
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-4 h-4 transition-transform duration-200 ${ isDropdownOpen ? "rotate-180" : "" }`}> <path d="M7 10L12 15L17 10" stroke="#022543" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" ></path> </svg>
+  return (
+    <>
+    <div className="flex justify-center items-start min-h-screen bg-gray-100 p-6">
+      {/* Likes (Nag aauto adjust yung bg depende sa number of content)*/}
+      <div className="w-2/4 bg-white rounded-2xl shadow-md p-4 flex flex-col space-y-4">
+        {/* 1st Like */}
+        <div className="flex mt-4 ml-4 items-center space-x-5">
+          <div className="avatar">
+            <div className="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="Profile"
+              />
             </div>
-            {/* Dropdown Content */}
-            {isDropdownOpen && (
-                <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-48 p-2 shadow border border-gray-300 mt-40">
-                    {options.map((option) => (
-                        <li key={option}>
-                            <a
-                                href="#sendmcdonuggies"
-                                className={`block px-2 py-1 text-center ${
-                                    selectedOption === option
-                                        ? "text-[#022543]"
-                                        : "text-[#8192a1]"
-                                } hover:text-[#022543] hover:font-bold`}
-                                onClick={() => handleOptionClick(option)}
-                            >
-                                {option}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            )}
+          </div>
+          <p className="font-medium">j.aromen</p>
+          <p className="font-light text-gray-500">16h</p>
         </div>
-    );
+        <div className="flex ml-20 space-x-2 items-center">
+          <FontAwesomeIcon icon={faHeart} className="h-4 w-4 text-red-600" />
+          <p className="text-sm">Liked your post</p>
+        </div>
+        <p className="ml-20 mt-6">YUNG POST</p>
+        
+        <hr className="border-t border-gray-400 my-3" />
+        
+        {/* 2nd Like */}
+        <div className="flex mt-4 ml-4 items-center space-x-5">
+          <div className="avatar">
+            <div className="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="Profile"
+              />
+            </div>
+          </div>
+          <p className="font-medium">j.aromen</p>
+          <p className="font-light text-gray-500">16h</p>
+        </div>
+        <div className="flex ml-20 space-x-2 items-center">
+          <FontAwesomeIcon icon={faHeart} className="h-4 w-4 text-red-600" />
+          <p className="text-sm">Liked your post</p>
+        </div>
+        <p className="ml-20 mt-6">YUNG POST</p>
+      </div>
+    </div>
+
+    <div className="flex justify-center items-start min-h-screen bg-gray-100 p-6">
+      {/* Comment (Nag aauto adjust yung bg depende sa number of content)*/}
+      <div className="w-2/4 bg-white rounded-2xl shadow-md p-4 flex flex-col space-y-4">
+        {/* 1st Comment */}
+        <div className="flex mt-4 ml-4 items-center space-x-5">
+          <div className="avatar">
+            <div className="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="Profile"
+              />
+            </div>
+          </div>
+          <p className="font-medium">j.aromen</p>
+          <p className="font-light text-gray-500">16h</p>
+        </div>
+        <div className="flex ml-20 space-x-2 items-center">
+          <FontAwesomeIcon icon={faComment} className="h-4 w-4 text-primary" />
+          <p className="text-sm">Commented on your post</p>
+        </div>
+        <p className="ml-20 mt-6">YUNG COMMENT</p>
+        
+        <hr className="border-t border-gray-400 my-3" />
+        
+        {/* 2nd Comment */}
+        <div className="flex mt-4 ml-4 items-center space-x-5">
+          <div className="avatar">
+            <div className="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="Profile"
+              />
+            </div>
+          </div>
+          <p className="font-medium">j.aromen</p>
+          <p className="font-light text-gray-500">16h</p>
+        </div>
+        <div className="flex ml-20 space-x-2 items-center">
+          <FontAwesomeIcon icon={faComment} className="h-4 w-4 text-primary" />
+          <p className="text-sm">Commented on your post</p>
+        </div>
+        <p className="ml-20 mt-6">YUNG COMMENT</p>
+      </div>
+    </div>
+    </>
+  );
 };
+
 export default Notifications;
