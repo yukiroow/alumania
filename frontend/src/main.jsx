@@ -26,7 +26,7 @@ createRoot(document.getElementById("root")).render(
             <AuthProvider>
                 <Routes>
                     <Route path="/" element={<AuthLayout />}>
-                        <Route index element={<OpportunitiesCard />} />
+                        <Route index element={<LoginPage />} />
                         <Route path="signup" element={<SignupPage />} />
                     </Route>
                     <Route
