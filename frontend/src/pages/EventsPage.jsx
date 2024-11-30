@@ -10,7 +10,7 @@ const EventsPage = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const res = await axios.get("http://localhost:2012/event");
+                const res = await axios.get("http://localhost:2012/events");
                 setEvents(res.data);
             } catch (error) {
                 console.log(error);
