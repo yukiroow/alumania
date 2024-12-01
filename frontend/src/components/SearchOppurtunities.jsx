@@ -20,15 +20,15 @@ const SearchOppurtunies = () => {
                     <div className="justify-end">
                     <button
                         className="flex overflow-hidden  
-                    w-[7rem] hover:w-[8.3rem] 
+                    w-[4rem] hover:w-[5.5rem] 
                     items-center gap-1
                     cursor-pointer 
                     bg-[#0059CD] 
-                    text-white px-5 py-2 rounded-md 
+                    text-white px-4 py-2 rounded-md 
                     transition-all ease-in-out hover:scale 
                     hover:scale-105 font-[revert] active:scale-100 shadow-lg"
                     >
-                        Interested
+                        View
                         <svg
                             viewBox="0 0 24 24"
                             fill="none"
