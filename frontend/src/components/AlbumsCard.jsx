@@ -74,7 +74,7 @@ const AlbumGrid = () => {
           <div
             key={album.id}
             className="w-15 h-15 bg-white shadow-lg rounded-lg overflow-hidden w-full"
-            style={{ height: "280px", width: "380px" }}
+            style={{ height: "280px", width: "310px" }}
           >
             {/* Top Section */}
             <div className="relative bg-white px-7 pt-4"> 
@@ -94,7 +94,7 @@ const AlbumGrid = () => {
 
             {/* Image Section */}
             <div className="relative bg-gray-200 flex justify-center items-center h-44">
-              <span className="text-gray-500 text-lg">300 x 200</span>
+              <span className="text-gray-500 text-lg">T^T</span>
             </div>
 
             {/* Title Section */}
