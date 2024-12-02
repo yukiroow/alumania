@@ -5,6 +5,8 @@ import {
     faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
+{/* @author Freskkie Encarnacion*/}
+
 const EventCard = (props) => {
     const event = props.event;
     if(event.eventphoto.data.length < 0)

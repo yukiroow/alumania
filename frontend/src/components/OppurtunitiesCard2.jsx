@@ -4,6 +4,9 @@ import {
     faBuilding,
     faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
+
+{/* @author Freskkie Encarnacion*/}
+
 const OpportunitiesCard2 = () => {
     return(
         <>

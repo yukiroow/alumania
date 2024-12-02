@@ -12,6 +12,8 @@ import { NavLink } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { useAuth } from "../hooks/useAuth";
 
+{/* @author Freskkie Encarnacion*/}
+
 const SideBar = () => {
     const [activeIcon, setActiveIcon] = useState("home");
     const { logout } = useAuth();

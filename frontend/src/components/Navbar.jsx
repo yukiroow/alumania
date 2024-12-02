@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 
+{/* @author Freskkie Encarnacion*/}
+
 const NavBar = () => {
     return (
         <>

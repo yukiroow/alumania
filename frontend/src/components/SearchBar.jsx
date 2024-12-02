@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+{/* @author Freskkie Encarnacion*/}
+
 const SearchBar = () => {
     const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
     const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);

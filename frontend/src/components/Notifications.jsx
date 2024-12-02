@@ -4,6 +4,8 @@ import {
   faComment
 } from "@fortawesome/free-solid-svg-icons";
 
+{/* @author Freskkie Encarnacion*/}
+
 const Notifications = () => {
   return (
     <>

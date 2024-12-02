@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+{/* @author Freskkie Encarnacion*/}
+
 const NotificationsFilter = () => {
     const [selectedOption, setSelectedOption] = useState("All"); 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
