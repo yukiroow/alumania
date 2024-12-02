@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+{/* @author Jude Angelo Ilumin*/}
+
 const ImageUpload = () => {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);

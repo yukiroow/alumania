@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { UisArrowUpRight } from "@iconscout/react-unicons-solid";
 
-const NewPost = () => {
+{/* @author Jude Angelo Ilumin*/}
+
+const NewPostCard = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-[700px] p-4 bg-white rounded-lg shadow-md">
@@ -77,4 +79,4 @@ const NewPost = () => {
   );
 };
 
-export default NewPost;
+export default NewPostCard;

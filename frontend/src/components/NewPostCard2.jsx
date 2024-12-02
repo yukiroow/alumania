@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+{/* @author Jude Angelo Ilumin*/}
+
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -57,7 +59,7 @@ const FileUpload = () => {
                 />
               </svg>
               <p className="mt-2 text-gray-500">Drag and Drop or Click here</p>
-              <p className="text-gray-500 text-sm">to upload a photo</p>
+              <p className="text-gray-500 text-sm">to upload a file</p>
             </>
           )}
 

@@ -1,6 +1,8 @@
 import React from "react";
 import { UisArrowUpRight } from "@iconscout/react-unicons-solid";
 
+{/* @author Jude Angelo Ilumin*/}
+
 const NewAlbum = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -52,7 +54,8 @@ const NewAlbum = () => {
 
           <button
             className="flex overflow-hidden  
-              w-[10em] hover:w-[10rem] 
+              w-[8rem] hover:w-[9.6rem] 
+              whitespace-nowrap
               items-center gap-1
               cursor-pointer 
               bg-[#0059CD] 
@@ -60,7 +63,7 @@ const NewAlbum = () => {
               transition-all ease-in-out hover:scale 
               hover:scale-105 font-[revert] active:scale-100 shadow-lg"
           >
-            Add to Album
+            Add To Album
             <UisArrowUpRight className="h-5 w-5" />
           </button>
         </div>
