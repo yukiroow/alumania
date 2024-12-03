@@ -44,9 +44,11 @@ const EventsPage = () => {
 
     return (
         <>
-            {events.map((event) => (
-                <EventCard key={event.eventid} event={event} />
-            ))}
+            <section className="join join-vertical px-[25%] my-10 rounded-box">
+                {events.map((event) => (
+                    <EventCard key={event.eventid} event={event} />
+                ))}
+            </section>
         </>
     );
 };
