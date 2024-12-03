@@ -2,6 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../database").db;
+const multer = require("multer");
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 router.get("/", (req, res) => {
     res.send("Auth API endpoint.");
@@ -9,8 +13,7 @@ router.get("/", (req, res) => {
 
 // Login
 router.post("/login", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username, password } = req.body;
     db.query(
         "SELECT username FROM alumni LEFT JOIN user USING (userid) WHERE username= ? AND password= ?",
         [username, password],
@@ -19,8 +22,72 @@ router.post("/login", (req, res) => {
             if (results.length > 0) {
                 res.status(200).send("success");
             } else {
-                res.status(403).send("Bad Credentials")
+                res.status(403).send("Bad Credentials");
             }
+        }
+    );
+});
+
+// Signup
+router.post("/signup", upload.single("diploma"), (req, res) => {
+    const {
+        firstName,
+        middleName,
+        lastName,
+        username,
+        employment,
+        location,
+        email,
+        company,
+        course,
+        password,
+    } = req.body;
+
+    const diploma = req.file ? req.file.buffer : null;
+
+    db.query(
+        "SELECT username FROM user WHERE username = ?",
+        [username],
+        (err, result) => {
+            if (err) {
+                console.error("Error reading database:", err);
+                return res.status(500).send({ error: "Database error" });
+            }
+
+            if (result.length > 0) {
+                return res.status(400).send({
+                    message: "Username already taken",
+                });
+            }
+
+            db.query(
+                `INSERT INTO APPLICANT (firstname, middlename, lastname, username, empstatus, location, email, company, course, password, diploma)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                [
+                    firstName,
+                    middleName || null,
+                    lastName,
+                    username,
+                    employment,
+                    location,
+                    email,
+                    company || null,
+                    course,
+                    password,
+                    diploma,
+                ],
+                (err, result) => {
+                    if (err) {
+                        console.error("Error inserting into database:", err);
+                        return res
+                            .status(500)
+                            .send({ error: "Database insertion error" });
+                    }
+                    res.status(201).send({
+                        message: "Applicant information saved successfully",
+                    });
+                }
+            );
         }
     );
 });
