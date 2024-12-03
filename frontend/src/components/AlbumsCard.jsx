@@ -94,7 +94,7 @@ const AlbumGrid = () => {
 
             {/* Image Section */}
             <div
-              className="relative bg-gray-200 flex justify-center items-center h-44"
+              className="relative bg-gray-200 flex justify-center items-center h-44 cursor-pointer"
               style={{
                 backgroundImage: "url('https://www.libarts.colostate.edu/wp-content/uploads/2019/08/CSU-Liberal-Arts-students-walking-on-campus.jpg')",
                 backgroundSize: "cover",
