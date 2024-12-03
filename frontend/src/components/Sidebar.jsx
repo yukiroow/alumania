@@ -18,10 +18,6 @@ const SideBar = () => {
     const [activeIcon, setActiveIcon] = useState("home");
     const { logout } = useAuth();
 
-    const handleIconClick = (iconName) => {
-        setActiveIcon(iconName);
-    };
-
     const handleLogout = () => {
         document.getElementById("logout_modal").showModal();
     };
