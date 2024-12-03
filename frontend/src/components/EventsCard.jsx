@@ -4,7 +4,7 @@ import {
     faCalendar,
     faClock,
 } from "@fortawesome/free-solid-svg-icons";
-
+import axios from "axios";
 import { useState } from "react";
 
 {
@@ -14,14 +14,48 @@ import { useState } from "react";
 const EventCard = (props) => {
     const event = props.event;
     const [isExpanded, setIsExpanded] = useState("line-clamp-3");
+    const [interested, setInterested] = useState(props.interested);
+
+    const userId = localStorage.getItem("userid");
+    const eventId = event.eventid;
 
     const toggleDescription = () => {
         if (isExpanded === "line-clamp-3") setIsExpanded("line-clamp-none");
         else setIsExpanded("line-clamp-3");
     };
 
-    const toggleBanner = () => {
-        document.getElementById(event.eventid).showModal();
+    const toggleBanner = (id) => {
+        document.getElementById(id).showModal();
+    };
+
+    const handleInterested = () => {
+        axios
+            .post(`http://localhost:2012/events/interested/${eventId}`, {
+                userId: `${userId}`,
+            })
+            .then((res) => {
+                if (res.status == 201) {
+                    setInterested(true);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const handleDisregard = () => {
+        axios
+            .post(`http://localhost:2012/events/disregard/${eventId}`, {
+                userId: `${userId}`,
+            })
+            .then((res) => {
+                if (res.status == 201) {
+                    setInterested(false);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     const image =
@@ -43,11 +77,22 @@ const EventCard = (props) => {
                         src={image}
                         alt="Event"
                         className="size-full object-cover cursor-pointer"
-                        onClick={toggleBanner}
+                        onClick={() => toggleBanner(eventId)}
                     />
                 </figure>
 
-                <BannerModal id={event.eventid} title={event.title} image={image} />
+                <BannerModal
+                    id={eventId}
+                    title={event.title}
+                    image={image}
+                />
+                <InterestedModal
+                    id={eventId}
+                    title={event.title}
+                    handleInterested={handleInterested}
+                    handleDisregard={handleDisregard}
+                    interested={interested}
+                />
                 <div className="card-body">
                     <h2 className="card-title uppercase text-3xl font-bold">
                         {event.title}
@@ -83,16 +128,17 @@ const EventCard = (props) => {
                     </div>
                     <div className="card-actions justify-end">
                         <button
-                            className="flex overflow-hidden  
+                            className={`flex overflow-hidden  
                     w-[7rem] hover:w-[8.3rem] 
                     items-center gap-1
                     cursor-pointer 
-                    bg-[#0059CD] 
+                    ${!interested ? "bg-[#0059CD]" : "bg-red-700"}
                     text-white px-5 py-2 rounded-md 
                     transition-all ease-in-out hover:scale 
-                    hover:scale-105 font-[revert] active:scale-100 shadow-lg"
+                    hover:scale-105 font-[revert] active:scale-100 shadow-lg`}
+                            onClick={() => toggleBanner(`${event.eventid}-int`)}
                         >
-                            Interested
+                            {!interested ? "Interested" : "Disregard"}
                             <svg
                                 viewBox="0 0 24 24"
                                 fill="none"
@@ -105,14 +151,23 @@ const EventCard = (props) => {
                                     strokeLinejoin="round"
                                 ></g>
                                 <g id="SVGRepo_iconCarrier">
-                                    {" "}
-                                    <path
-                                        d="M6 12H18M12 6V18"
-                                        stroke="#ffffff"
-                                        strokeWidth="2.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    ></path>{" "}
+                                    {!interested ? (
+                                        <path
+                                            d="M6 12H18"
+                                            stroke="#ffffff"
+                                            strokeWidth="2.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        ></path>
+                                    ) : (
+                                        <path
+                                            d="M12 6V18M6 12H18"
+                                            stroke="#ffffff"
+                                            strokeWidth="2.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        ></path>
+                                    )}
                                 </g>
                             </svg>
                         </button>
@@ -128,9 +183,7 @@ const BannerModal = ({ id, title, image }) => {
         <>
             <dialog id={id} className="modal">
                 <div className="modal-box max-w-[60vh]">
-                    <h3 className="font-bold text-lg uppercase">
-                        {title}
-                    </h3>
+                    <h3 className="font-bold text-lg uppercase">{title}</h3>
                     <img
                         src={image}
                         alt="Event"
@@ -141,6 +194,67 @@ const BannerModal = ({ id, title, image }) => {
                     <button>close</button>
                 </form>
             </dialog>
+        </>
+    );
+};
+
+const InterestedModal = ({
+    id,
+    title,
+    handleInterested,
+    handleDisregard,
+    interested,
+}) => {
+    return (
+        <>
+            {!interested ? (
+                <dialog id={`${id}-int`} className="modal">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg text-primary">
+                            {title}
+                        </h3>
+                        <p className="py-4">
+                            Are you sure you want to mark this event as
+                            something you&apos;re interested in? We will be
+                            informing the poster.
+                        </p>
+                        <div className="modal-action">
+                            <form method="dialog">
+                                <button
+                                    className="btn btn-primary text-white"
+                                    onClick={handleInterested}
+                                >
+                                    Confirm
+                                </button>
+                                <button className="btn ml-2">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
+            ) : (
+                <dialog id={`${id}-int`} className="modal">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg text-primary">
+                            {title}
+                        </h3>
+                        <p className="py-4">
+                            Are you sure you want to unmark this event? We will
+                            be notifying the poster.
+                        </p>
+                        <div className="modal-action">
+                            <form method="dialog">
+                                <button
+                                    className="btn btn-warning text-white"
+                                    onClick={handleDisregard}
+                                >
+                                    Disregard
+                                </button>
+                                <button className="btn ml-2">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
+            )}
         </>
     );
 };
