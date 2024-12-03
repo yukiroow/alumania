@@ -109,11 +109,6 @@ const SideBar = () => {
                 {/* Bottom Logout Icon */}
                 <FontAwesomeIcon
                     icon={faSignOutAlt}
-                    className={`text-2xl cursor-pointer ${
-                        activeIcon === "logout"
-                            ? "text-[#032543]"
-                            : "text-[#A29C9C]"
-                    }`}
                     onClick={() => handleLogout()}
                 />
             </nav>
