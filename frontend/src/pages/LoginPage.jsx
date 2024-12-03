@@ -60,15 +60,15 @@ const LoginPage = () => {
             setHasError(true);
             return;
         }
-
         // TODO: In-depth password validation
 
         axios
             .post("http://localhost:2012/auth/login", credentials)
             .then((res) => {
                 if (res.status == 200) {
-                    const username = credentials["username"];
-                    login({ username });
+                    const user = credentials["username"];
+                    const id = res.data.userid;
+                    login({ user, id });
                 }
             })
             .catch((error) => {

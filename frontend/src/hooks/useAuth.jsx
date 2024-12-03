@@ -5,10 +5,12 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useLocalStorage("user", null);
+    const [id, setId] = useLocalStorage("userid", null);
     const navigate = useNavigate();
 
-    const login = async (data) => {
-        setUser(data);
+    const login = async ({user, id}) => {
+        setUser(user);
+        setId(id);
         navigate("/home");
     };
 
@@ -20,10 +22,11 @@ export const AuthProvider = ({ children }) => {
     const value = useMemo(
         () => ({
             user,
+            id,
             login,
             logout,
         }),
-        [user]
+        [user, id]
     );
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
