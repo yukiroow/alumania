@@ -12,7 +12,7 @@ const OpportunityCard = ({ job, handleCardClick, isSelected }) => {
             className={`card-body cursor-pointer join-item border-b max-h-52 hover:bg-slate-100 ${
                 isSelected ? "bg-slate-100" : "bg-white"
             }`}
-            onClick={handleCardClick}
+            onClick={() => handleCardClick(job)}
         >
             <div className="flex items-center justify-between">
                 <h2 className="card-title text-secondary font-bold">
