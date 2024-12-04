@@ -18,7 +18,6 @@ import AlbumsPage from "./pages/AlbumsPage";
 import EventsPage from "./pages/EventsPage";
 import JobsPage from "./pages/JobsPage";
 import ProfilePage from "./pages/ProfilePage";
-import OpportunitiesCard from "./components/OppurtunitiesCard";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
