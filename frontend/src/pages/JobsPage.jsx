@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
+import OpportunityCard from "../components/OpportunityCard";
+import OpportunityPane from "../components/OpportunityPane";
 
 const JobsPage = () => {
     const [jobs, setJobs] = useState([]);
+    const [selectedJob, setSelectedJob] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -23,6 +26,10 @@ const JobsPage = () => {
         fetchJobs();
     }, []);
 
+    const handleCardClick = (job) => {
+        setSelectedJob(job);
+    }
+
     if (loading) {
         return (
             <>
@@ -36,14 +43,26 @@ const JobsPage = () => {
     if (error) {
         return (
             <>
-                <ErrorHero/>
+                <ErrorHero />
             </>
         );
     }
 
     return (
         <>
-            <main className=""></main>
+            <main className="flex h-[calc(100vh-7rem)]">
+                <section className="join join-vertical w-[40%] rounded-box overflow-y-auto ml-16 border">
+                    {jobs.map((job) => (
+                        <OpportunityCard
+                            key={job.jobpid}
+                            job={job}
+                            handleCardClick={() => handleCardClick(job)}
+                            isSelected={selectedJob?.jobpid === job.jobpid}
+                        />
+                    ))}
+                </section>
+                <OpportunityPane job={selectedJob} />
+            </main>
         </>
     );
 };
