@@ -53,7 +53,7 @@ app.use("/events/:query", searchRouter);
 app.use("/experiences/:query", searchRouter);
 app.use("/albums/:query", searchRouter);
 app.use("/users/:query", searchRouter);
-app.use("/jobs/:query", searchRouter);
+app.use("/opportunities/:query", searchRouter);
 
 app.listen(2012, () => {
     console.log("Server started on http://localhost:2012");

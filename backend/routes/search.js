@@ -45,7 +45,7 @@ router.get("/experiences/:query", (req, res) => {
     );
 });
 
-router.get("/jobs/:query", (req, res) => {
+router.get("/opportunities/:query", (req, res) => {
     const { query } = req.params;
     db.query(
         "SELECT * FROM jobpost WHERE CONCAT(jobpid, title, type, location, description, companyname, contactname, contactemail) LIKE ?",
