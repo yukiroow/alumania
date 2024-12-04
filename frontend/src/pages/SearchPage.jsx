@@ -61,7 +61,37 @@ const SearchPage = () => {
                 <NoResultsHero />
             ) : (
                 <section className="join join-vertical px-[25%] my-10 rounded-box">
-                    {/* TODO: Card Rendering */}
+                    {filter === "users" ? (
+                        results.map((user, index) => (
+                            <h1 key={index}>
+                                {index}: user
+                            </h1>
+                        ))
+                    ) : filter === "experiences" ? (
+                        results.map((experience, index) => (
+                            <h1 key={index}>
+                                {index}: experience
+                            </h1>
+                        ))
+                    ) : filter === "events" ? (
+                        results.map((event, index) => (
+                            <h1 key={index}>
+                                {index}: event
+                            </h1>
+                        ))
+                    ) : filter === "opportunities" ? (
+                        results.map((opportunity, index) => (
+                            <h1 key={index}>
+                                {index}: opportunity
+                            </h1>
+                        ))
+                    ) : (
+                        results.map((album, index) => (
+                            <h1 key={index}>
+                                {index}: album
+                            </h1>
+                        ))
+                    )}
                 </section>
             )}
         </>
