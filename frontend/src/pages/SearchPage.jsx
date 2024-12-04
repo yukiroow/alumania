@@ -1,5 +1,5 @@
 import axios from "axios";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/search/SearchBar";
 import ErrorHero from "../components/ErrorHero";
 import { useState, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

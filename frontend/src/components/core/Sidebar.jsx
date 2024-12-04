@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHome,
@@ -9,13 +8,12 @@ import {
     faUser
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
-import Logo from "../assets/logo.svg";
-import { useAuth } from "../hooks/useAuth";
+import Logo from "../../assets/logo.svg";
+import { useAuth } from "../../hooks/useAuth";
 
 {/* @author Freskkie Encarnacion*/}
 
 const SideBar = () => {
-    const [activeIcon, setActiveIcon] = useState("home");
     const { logout } = useAuth();
 
     const handleLogout = () => {

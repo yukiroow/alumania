@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
-import EventCard from "../components/EventCard";
+import EventCard from "../components/event/EventCard";
 
 const EventsPage = () => {
     const [events, setEvents] = useState([]);

@@ -43,7 +43,8 @@ const ExperiencesPage = () => {
 
     return (
         <>
-            <main className=""></main>
+            <main className="">
+            </main>
         </>
     );
 };

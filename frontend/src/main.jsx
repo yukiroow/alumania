@@ -5,11 +5,6 @@ import "./index.css";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import ErrorPage from "./pages/ErrorPage";
-import RootLayout from "./layouts/RootLayout";
-import AuthLayout from "./layouts/AuthLayout";
-import { ProtectedRoute } from "./components/ProtectedRoute";
-import { AuthProvider } from "./hooks/useAuth";
-import HomeLayout from "./layouts/HomeLayout";
 import SearchPage from "./pages/SearchPage";
 import AddPostPage from "./pages/AddPostPage";
 import NotificationsPage from "./pages/NotificationsPage";
@@ -18,6 +13,11 @@ import AlbumsPage from "./pages/AlbumsPage";
 import EventsPage from "./pages/EventsPage";
 import JobsPage from "./pages/JobsPage";
 import ProfilePage from "./pages/ProfilePage";
+import RootLayout from "./layouts/RootLayout";
+import AuthLayout from "./layouts/AuthLayout";
+import HomeLayout from "./layouts/HomeLayout";
+import { ProtectedRoute } from "./components/core/ProtectedRoute";
+import { AuthProvider } from "./hooks/useAuth";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>

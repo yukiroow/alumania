@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
-import OpportunityCard from "../components/OpportunityCard";
-import OpportunityPane from "../components/OpportunityPane";
+import OpportunityCard from "../components/opportunity/OpportunityCard";
+import OpportunityPane from "../components/opportunity/OpportunityPane";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPersonThroughWindow } from "@fortawesome/free-solid-svg-icons";
 
