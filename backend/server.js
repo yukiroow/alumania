@@ -16,6 +16,7 @@ const userRouter = require("./routes/users");
 const experienceRouter = require("./routes/experiences");
 const jobRouter = require("./routes/jobposts");
 const authRouter = require("./routes/auth");
+const searchRouter = require("./routes/search");
 
 // authRouter
 app.use("/auth", authRouter);
@@ -45,6 +46,14 @@ app.use("/applicants", userRouter)
 // jobRouter
 app.use("/jobposts", jobRouter)
 app.use("/interested/:id", jobRouter)
+
+// Search
+app.use("/search", searchRouter);
+app.use("/events/:query", searchRouter);
+app.use("/experiences/:query", searchRouter);
+app.use("/albums/:query", searchRouter);
+app.use("/users/:query", searchRouter);
+app.use("/jobs/:query", searchRouter);
 
 app.listen(2012, () => {
     console.log("Server started on http://localhost:2012");
