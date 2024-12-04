@@ -6,7 +6,7 @@ const SearchBar = () => {
     const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
     const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
     const [selectedFilter, setSelectedFilter] = useState("All");
-    const filters = ["All", "Experiences", "Albums", "Events", "Opportunities"];
+    const filters = ["All", "Users", "Experiences", "Albums", "Events", "Opportunities"];
     const sortOptions = ["Ascending", "Descending"];
 
     const toggleFilterDropdown = () => {
@@ -72,7 +72,7 @@ const SearchBar = () => {
                         {sortOptions.map((option) => (
                             <button
                                 key={option}
-                                className="block w-full text-center  py-1 hover:bg-gray-200 hover:text-[#022543] hover:font-bold rounded-lg"
+                                className="block w-full text-center py-1 hover:bg-gray-200 hover:text-[#022543] hover:font-bold rounded-lg"
                                 onClick={() => {
                                     setIsSortDropdownOpen(false); 
                                 }}
