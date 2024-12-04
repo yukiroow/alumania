@@ -3,25 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBuilding,
     faMapLocation,
-    faEllipsis
+    faMultiply
 } from "@fortawesome/free-solid-svg-icons";
 
 {/* @author Freskkie Encarnacion*/}
 
 const SearchOppurtunies = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen((prevState) => !prevState);
-    };
-
-    const handleOptionClick = (option) => {
-        console.log(`Selected option: ${option}`);
-        setIsDropdownOpen(false);
-    };
-
-    const dropdownOptions = ['Remove'];
-
     return (
     <>
         <div className="flex justify-center items-start min-h-screen bg-gray-100 p-6">
@@ -34,26 +21,14 @@ const SearchOppurtunies = () => {
                         <div className="relative flex justify-center items-center w-20 h-5 bg-accent rounded-full">
                             <p className="absolute text-text text-xs font-semibold">Hybrid</p>
                         </div>
-                        <div className="ml-auto relative ">
-                            <FontAwesomeIcon icon={faEllipsis} className="h-5 w-5 text-primary" onClick={toggleDropdown} />
-                            {isDropdownOpen && (
-                                    <ul
-                                    tabIndex={0}
-                                    className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow z-50 border p-2"
-                                >
-                                    {dropdownOptions.map((option) => (
-                                        <li key={option}>
-                                            <a
-                                                className="rounded-lg block px-2 py-1 text-[#7C7575] 
-                                                hover:bg-gray-100 hover:text-primary hover:font-bold"
-                                                onClick={() => handleOptionClick(option)} // Handle click
-                                            >
-                                                {option}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
+                        <div className="ml-auto relative group">
+                            <FontAwesomeIcon
+                                icon={faMultiply}
+                                className="h-5 w-5 text-primary"
+                            />
+                            <span className="absolute hidden group-hover:block -top-6 left-0 bg-gray-600 text-white text-xs rounded-md py-1 px-2">
+                                Remove
+                            </span>
                         </div>
                     </div>
                     <div className="flex items-center space-x-2 font-semibold text-gray-700 mt-2">
@@ -76,26 +51,14 @@ const SearchOppurtunies = () => {
                         <div className="relative flex justify-center items-center w-20 h-5 bg-accent rounded-full">
                             <p className="absolute text-text text-xs font-semibold">Hybrid</p>
                         </div>
-                        <div className="ml-auto relative ">
-                                <FontAwesomeIcon icon={faEllipsis} className="h-5 w-5 text-primary" onClick={toggleDropdown} />
-                                {isDropdownOpen && (
-                                        <ul
-                                        tabIndex={0}
-                                        className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow z-50 border p-2"
-                                    >
-                                        {dropdownOptions.map((option) => (
-                                            <li key={option}>
-                                                <a
-                                                    className="rounded-lg block px-2 py-1 text-[#7C7575] 
-                                                    hover:bg-gray-100 hover:text-primary hover:font-bold"
-                                                    onClick={() => handleOptionClick(option)} // Handle click
-                                                >
-                                                    {option}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
+                        <div className="ml-auto relative group">
+                            <FontAwesomeIcon
+                                icon={faMultiply}
+                                className="h-5 w-5 text-primary"
+                            />
+                            <span className="absolute hidden group-hover:block -top-6 left-0 bg-gray-600 text-white text-xs rounded-md py-1 px-2">
+                                Remove
+                            </span>
                         </div>
                     </div>
                     <div className="flex items-center space-x-2 font-semibold text-gray-700 mt-2">
