@@ -26,7 +26,7 @@ const AlbumsPage = () => {
     if (loading) {
         return (
             <>
-                <div className="flex justify-center items-center h-2/3">
+                <div className="flex justify-center items-center h-96">
                     <span className="loading loading-dots loading-lg"></span>
                 </div>
             </>
