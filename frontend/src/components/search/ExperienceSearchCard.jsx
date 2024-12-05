@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faHeart,
-  faComment
+  faComment,
+  faMultiply
 } from "@fortawesome/free-solid-svg-icons";
 
 {/* @author Freskkie Encarnacion*/}
@@ -25,6 +26,12 @@ const ExperienceSearchCard = ({experience}) => {
     };
   }, []);
   
+  const [liked, setLiked] = useState(false);
+
+  const handleLikeClick = () => {
+    setLiked(!liked); 
+  };
+
   return (
     <>
     <div className="justify-self-center mt-10 w-2/4 bg-white rounded-xl shadow-md p-4 space-y-2 overflow-hidden">
@@ -100,7 +107,11 @@ const ExperienceSearchCard = ({experience}) => {
       {/* ICONS */}
       <div className="flex justify-start items-center space-x-4 mt-4 mx-20">
         <div className="flex items-center space-x-2 mt-1">
-          <FontAwesomeIcon icon={faHeart} className="cursor-pointer h-4 w-4 text-red-600" />
+          <FontAwesomeIcon 
+            icon={faHeart} 
+            className={`cursor-pointer h-4 w-4 ${liked ? 'text-red-600' : 'text-primary'}`} 
+            onClick={handleLikeClick} 
+          />
           <p className="text-sm text-primary">Likes</p>
         </div>
         <div className="flex items-center space-x-2 mt-1">
@@ -133,7 +144,11 @@ const ExperienceSearchCard = ({experience}) => {
       {/* ICONS */}
       <div className="flex justify-start items-center space-x-4 mt-4 mx-20">
         <div className="flex items-center space-x-2 mt-1">
-          <FontAwesomeIcon icon={faHeart} className="cursor-pointer h-4 w-4 text-red-600" />
+        <FontAwesomeIcon 
+            icon={faHeart} 
+            className={`cursor-pointer h-4 w-4 ${liked ? 'text-red-600' : 'text-primary'}`} 
+            onClick={handleLikeClick} 
+          />
           <p className="text-sm text-primary">Likes</p>
         </div>
         <div className="flex items-center space-x-2 mt-1">
@@ -144,7 +159,7 @@ const ExperienceSearchCard = ({experience}) => {
       <hr className="border-t border-gray-400" />
     </div>
     </>
-  )
-}
+  );
+};
 
 export default ExperienceSearchCard;
