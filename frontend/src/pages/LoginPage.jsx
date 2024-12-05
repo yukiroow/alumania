@@ -68,7 +68,8 @@ const LoginPage = () => {
                 if (res.status == 200) {
                     const user = credentials["username"];
                     const id = res.data.userid;
-                    login({ user, id });
+                    const dp = res.data.displaypic;
+                    login({ user, id, dp });
                 }
             })
             .catch((error) => {
