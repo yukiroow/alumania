@@ -35,8 +35,8 @@ const JobSearchCard = () => {
           <FontAwesomeIcon icon={faMapLocation} className="h-5 w-5" />
             <p>Company Address</p>
         </div>
-            <p className="mt-4 ml-7 text-primary">Company description</p>
-        </div>
+          <p className="mt-4 ml-7 text-primary">Company description</p>
+      </div>
     </>
     );
 };
