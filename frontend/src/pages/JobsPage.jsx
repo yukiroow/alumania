@@ -21,7 +21,6 @@ const JobsPage = () => {
                 const resInterested = await axios.get(
                     `http://localhost:2012/jobposts/interestedjobs/${userId}`
                 );
-                console.log(resInterested);
                 setJobs(res.data);
                 setInterested(resInterested.data);
             } catch (error) {
