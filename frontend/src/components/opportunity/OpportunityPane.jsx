@@ -54,7 +54,7 @@ const OpportunityPane = ({ job }) => {
             <div className="relative h-full overflow-hidden">
                 <div className="card bg-white border w-[50%] h-[calc(100vh-7rem)] fixed top-24 right-10 overflow-y-auto p-4">
                     <div className="card-body">
-                        <h1 className="card-title text-primary font-bold text-3xl">
+                        <h1 className="card-title leading-5 text text-primary font-bold text-3xl">
                             {job.title}
                         </h1>
                         <div className="flex items-center space-x-2 font-semibold text-gray-700 mt-2">
@@ -67,13 +67,13 @@ const OpportunityPane = ({ job }) => {
                         <div className="flex items-center space-x-2 text-gray-700">
                             <FontAwesomeIcon
                                 icon={faLocationDot}
-                                className="h-5 w-5 text-red-600"
+                                className="h-5 w-5 text-primary"
                             />
                             <p>{job.location}</p>
                         </div>
                         <div className="flex gap-2">
-                            <div className="relative flex justify-center items-center w-20 h-6 bg-accent rounded-r-full rounded-l-full">
-                                <p className="absolute text-text text-xs font-semibold">
+                            <div className="relative flex justify-center items-center w-20 h-6 bg-secondary rounded-r-full rounded-l-full">
+                                <p className="absolute text-secondary-content text-xs font-semibold">
                                     {job.type}
                                 </p>
                             </div>
