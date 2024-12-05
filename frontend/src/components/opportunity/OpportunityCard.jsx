@@ -5,7 +5,12 @@ import { faBuilding, faLocationDot } from "@fortawesome/free-solid-svg-icons";
     /* @author Freskkie Encarnacion*/
 }
 
-const OpportunityCard = ({ job, handleCardClick, isSelected }) => {
+const OpportunityCard = ({
+    job,
+    handleCardClick,
+    isSelected,
+    calculateTimeAgo,
+}) => {
     return (
         <div
             id={job.jobpid}
@@ -24,6 +29,9 @@ const OpportunityCard = ({ job, handleCardClick, isSelected }) => {
                     </p>
                 </div>
             </div>
+            <p className="text-sm text-gray-500">
+                {calculateTimeAgo(job.publishtimestamp)}
+            </p>
             <div className="flex items-center space-x-1 font-semibold text-gray-500 mt-2">
                 <div className="flex-1">
                     <FontAwesomeIcon

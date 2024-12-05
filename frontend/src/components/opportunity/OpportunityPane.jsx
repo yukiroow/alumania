@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
     /* @author Freskkie Encarnacion*/
 }
 
-const OpportunityPane = ({ job }) => {
+const OpportunityPane = ({ job, calculateTimeAgo }) => {
     const userId = localStorage.getItem("userid");
     const jobpId = job.jobpid;
     const [interested, setInterested] = useState(job.isInterested);
@@ -57,6 +57,9 @@ const OpportunityPane = ({ job }) => {
                         <h1 className="card-title leading-5 text text-primary font-bold text-3xl">
                             {job.title}
                         </h1>
+                        <div className="flex items-center text-sm text-gray-500">
+                            {calculateTimeAgo(job.publishtimestamp)}
+                        </div>
                         <div className="flex items-center space-x-2 font-semibold text-gray-700 mt-2">
                             <FontAwesomeIcon
                                 icon={faBuilding}

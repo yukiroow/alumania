@@ -42,6 +42,31 @@ const JobsPage = () => {
         setSelectedJob({ ...job, isInterested });
     };
 
+    const calculateTimeAgo = (timestamp) => {
+        const now = new Date();
+        const publishedDate = new Date(timestamp);
+        const diffInSeconds = Math.floor((now - publishedDate) / 1000);
+    
+        const secondsInMinute = 60;
+        const secondsInHour = 3600;
+        const secondsInDay = 86400;
+        const secondsInWeek = 604800;
+    
+        if (diffInSeconds < secondsInHour) {
+            const minutes = Math.floor(diffInSeconds / secondsInMinute);
+            return `Posted ${minutes <= 1 ? "1 minute" : `${minutes} minutes`} ago`;
+        } else if (diffInSeconds < secondsInDay) {
+            const hours = Math.floor(diffInSeconds / secondsInHour);
+            return `Posted ${hours <= 1 ? "1 hour" : `${hours} hours`} ago`;
+        } else if (diffInSeconds < secondsInWeek) {
+            const days = Math.floor(diffInSeconds / secondsInDay);
+            return `Posted ${days <= 1 ? "1 day" : `${days} days`} ago`;
+        } else {
+            const weeks = Math.floor(diffInSeconds / secondsInWeek);
+            return `Posted ${weeks <= 1 ? "1 week" : `${weeks} weeks`} ago`;
+        }
+    };
+
     if (loading) {
         return (
             <>
@@ -70,6 +95,7 @@ const JobsPage = () => {
                             job={job}
                             handleCardClick={handleCardClick}
                             isSelected={selectedJob?.jobpid === job.jobpid}
+                            calculateTimeAgo={calculateTimeAgo}
                         />
                     ))}
                 </section>
@@ -93,6 +119,7 @@ const JobsPage = () => {
                     <OpportunityPane
                         job={selectedJob}
                         isInterested={selectedJob.isInterested}
+                        calculateTimeAgo={calculateTimeAgo}
                     />
                 )}
             </main>

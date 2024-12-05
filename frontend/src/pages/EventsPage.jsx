@@ -8,36 +8,55 @@ const EventsPage = () => {
     const [interested, setInterested] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
     const userId = localStorage.getItem("userid").replace(/['"]+/g, "");
 
+    const fetchEvents = async (page) => {
+        try {
+            const res = await axios.get(`http://localhost:2012/events?page=${page}&limit=5`);
+
+            const interestedRes = await axios.get(
+                `http://localhost:2012/events/interestedinevents/${userId}`
+            );
+            setEvents((prevEvents) => [...prevEvents, ...res.data]);
+            setInterested(interestedRes.data);
+
+            setHasMore(res.data.length === 5);
+        } catch (_) {
+            setError(true);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleScroll = () => {
+        const bottom =
+            window.innerHeight + document.documentElement.scrollTop ===
+            document.documentElement.offsetHeight;
+        if (bottom && hasMore && !loading) {
+            setPage((prevPage) => prevPage + 1);
+        }
+    };
+
     useEffect(() => {
-        const fetchEvents = async () => {
-            try {
-                const res = await axios.get("http://localhost:2012/events");
+        fetchEvents(page);
+    }, [page]);
 
-                const interestedRes = await axios.get(
-                    `http://localhost:2012/events/interestedinevents/${userId}`
-                );
-                setEvents(res.data);
-                setInterested(interestedRes.data);
-            } catch (error) {
-                console.log(error);
-                setError(true);
-            } finally {
-                setLoading(false);
-            }
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        // Cleanup the event listener on unmount
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
         };
+    }, [loading, hasMore]);
 
-        fetchEvents();
-    }, []);
-
-    if (loading) {
+    if (loading && page === 1) {
         return (
-            <>
-                <div className="flex justify-center items-center h-96">
-                    <span className="loading loading-dots loading-lg"></span>
-                </div>
-            </>
+            <div className="flex justify-center items-center h-96">
+                <span className="loading loading-dots loading-lg"></span>
+            </div>
         );
     }
 
