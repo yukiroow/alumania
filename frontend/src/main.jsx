@@ -6,8 +6,6 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import ErrorPage from "./pages/ErrorPage";
 import SearchPage from "./pages/SearchPage";
-import AddPostPage from "./pages/AddPostPage";
-import NotificationsPage from "./pages/NotificationsPage";
 import ExperiencesPage from "./pages/ExperiencesPage";
 import AlbumsPage from "./pages/AlbumsPage";
 import EventsPage from "./pages/EventsPage";
@@ -49,11 +47,6 @@ createRoot(document.getElementById("root")).render(
                             />
                         </Route>
                         <Route path="search" element={<SearchPage />} />
-                        <Route path="post" element={<AddPostPage />} />
-                        <Route
-                            path="notifications"
-                            element={<NotificationsPage />}
-                        />
                         <Route
                             path="profile"
                             element={<ProfilePage />}

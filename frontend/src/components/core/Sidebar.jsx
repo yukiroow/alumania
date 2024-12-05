@@ -9,6 +9,8 @@ import {
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
 import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
+import NewPostModal from "../post/NewPostModal";
 
 {
     /* @author Freskkie Encarnacion*/
@@ -16,14 +18,21 @@ import { useAuth } from "../../hooks/useAuth";
 
 const SideBar = () => {
     const { logout } = useAuth();
+    const [addPost, setAddPost] = useState(false);
 
     const handleLogout = () => {
         document.getElementById("logout_modal").showModal();
     };
 
+    const handleAddPost = () => {
+        setAddPost((prev) => !prev);
+        document.getElementById("addpost_modal").showModal();
+    };
+
     return (
         <>
             <LogoutModal auth={logout} />
+            <NewPostModal handleAddPost={handleAddPost} />
             <nav className="flex flex-col h-screen w-20 items-center py-9 fixed top-0 left-0">
                 {/* Top Logo */}
                 <img src={Logo} alt="Logo" className="w-10 h-10" />
@@ -49,53 +58,48 @@ const SideBar = () => {
                             isActive ? (
                                 <FontAwesomeIcon
                                     icon={faSearch}
-                                    className="text-2xl cursor-pointer text-[#032543] transition-all translate-x-2"
+                                    className="text-2xl cursor-pointer text-primary transition-all translate-x-2"
                                 />
                             ) : (
                                 <FontAwesomeIcon
                                     icon={faSearch}
-                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-[#032543]"
+                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-primary"
                                 />
                             )
                         }
                     </NavLink>
-                    <NavLink to="/app/post">
-                        {({ isActive }) =>
-                            isActive ? (
-                                <FontAwesomeIcon
-                                    icon={faPlusCircle}
-                                    className="text-2xl cursor-pointer text-[#032543] transition-all translate-x-2"
-                                />
-                            ) : (
-                                <FontAwesomeIcon
-                                    icon={faPlusCircle}
-                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-[#032543]"
-                                />
-                            )
-                        }
-                    </NavLink>
+                    <FontAwesomeIcon
+                        icon={faPlusCircle}
+                        className={`text-2xl cursor-pointer 
+                            ${
+                                addPost
+                                    ? "text-secondary transition-all translate-x-2 scale-110"
+                                    : "text-[#A29C9C] hover:text-primary"
+                            }`}
+                        onClick={handleAddPost}
+                    />
                     <NavLink to="/app/profile">
                         {({ isActive }) =>
                             isActive ? (
                                 <FontAwesomeIcon
                                     icon={faUser}
-                                    className="text-2xl cursor-pointer text-[#032543] transition-all translate-x-2"
+                                    className="text-2xl cursor-pointer text-primary transition-all translate-x-2"
                                 />
                             ) : (
                                 <FontAwesomeIcon
                                     icon={faUser}
-                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-[#032543]"
+                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-primary"
                                 />
                             )
                         }
                     </NavLink>
+                    {/* Bottom Logout Icon */}
+                    <FontAwesomeIcon
+                        icon={faSignOutAlt}
+                        onClick={handleLogout}
+                        className="text-2xl text-[#A29C9C] hover:text-[#032543]"
+                    />
                 </div>
-                {/* Bottom Logout Icon */}
-                <FontAwesomeIcon
-                    icon={faSignOutAlt}
-                    onClick={() => handleLogout()}
-                    className="text-2xl text-[#A29C9C] hover:text-[#032543]"
-                />
             </nav>
         </>
     );
