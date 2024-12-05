@@ -11,7 +11,7 @@ import {
 const JobSearchCard = () => {
     return (
     <>
-      <div className="mt-4 mx-10 bg-white p-10 rounded-xl hover:shadow-md cursor-pointer">
+      <div className="justify-self-center mt-10 w-2/4 bg-white p-10 rounded-xl hover:shadow-md cursor-pointer">
         <div className="flex items-center gap-5">
           <h2 className="card-title text-secondary font-bold">Job Title</h2>
             <div className="relative flex justify-center items-center w-20 h-5 bg-accent rounded-full">
