@@ -58,6 +58,29 @@ const EventCard = (props) => {
             });
     };
 
+    const calculateTimeAgo = (timestamp) => {
+        const now = new Date();
+        const publishedDate = new Date(timestamp);
+        const diffInSeconds = Math.floor((now - publishedDate) / 1000);
+
+        const secondsInHour = 3600;
+        const secondsInDay = 86400;
+        const secondsInWeek = 604800;
+
+        if (diffInSeconds < secondsInHour) {
+            const hours = Math.floor(diffInSeconds / 60);
+            return `Posted ${hours <= 1 ? "1 hour" : `${hours} hours`} ago`;
+        } else if (diffInSeconds < secondsInDay) {
+            const days = Math.floor(diffInSeconds / secondsInHour);
+            return `Posted ${days <= 1 ? "1 day" : `${days} days`} ago`;
+        } else if (diffInSeconds < secondsInWeek) {
+            const weeks = Math.floor(diffInSeconds / secondsInDay);
+            return `Posted ${weeks <= 1 ? "1 week" : `${weeks} weeks`} ago`;
+        } else {
+            return "Posted more than a week ago";
+        }
+    };
+
     const image =
         event.eventphoto.data.length > 0
             ? `data:${event.eventphoto.mimetype};base64,${btoa(
@@ -81,11 +104,7 @@ const EventCard = (props) => {
                     />
                 </figure>
 
-                <BannerModal
-                    id={eventId}
-                    title={event.title}
-                    image={image}
-                />
+                <BannerModal id={eventId} title={event.title} image={image} />
                 <InterestedModal
                     id={eventId}
                     title={event.title}
@@ -94,26 +113,50 @@ const EventCard = (props) => {
                     interested={interested}
                 />
                 <div className="card-body">
-                    <h2 className="card-title uppercase text-3xl font-bold">
-                        {event.title}
+                    <h2 className="card-title text-3xl font-bold text-primary flex items-center gap-2">
+                        <span className="uppercase">{event.title}</span>
+                        <span className="inline-flex items-center px-3 py-1 border border-primary rounded-full text-xs text-primary">
+                            {event.category}
+                        </span>
                     </h2>
+                    <p className="text-sm text-gray-500">
+                        {calculateTimeAgo(event.publishtimestamp)}
+                    </p>
                     <p
                         className={`px-0 py-2 ${isExpanded} cursor-pointer`}
                         onClick={toggleDescription}
                     >
                         {event.description}
                     </p>
-                    <div className="flex flex-col items-start space-y-4">
-                        <div className="flex item-center space-x-2">
-                            <FontAwesomeIcon icon={faMapLocation} />
+                    <div className="flex flex-col items-start space-y-1.5 text-gray-600">
+                        <div className="flex space-x-2">
+                            <FontAwesomeIcon
+                                icon={faMapLocation}
+                                className="w-5 h-5 text-primary mr-1"
+                            />
                             <p>{event.eventloc}</p>
                         </div>
-                        <div className="flex item-center space-x-2">
-                            <FontAwesomeIcon icon={faCalendar} />
-                            <p>{new Date(event.eventdate).toDateString()}</p>
+                        <div className="flex space-x-2">
+                            <FontAwesomeIcon
+                                icon={faCalendar}
+                                className="w-5 h-5 text-primary mr-1"
+                            />
+                            <p>
+                                {new Date(event.eventdate).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    }
+                                )}
+                            </p>
                         </div>
-                        <div className="flex item-center space-x-2">
-                            <FontAwesomeIcon icon={faClock} />
+                        <div className="flex space-x-2">
+                            <FontAwesomeIcon
+                                icon={faClock}
+                                className="w-5 h-5 text-primary mr-1"
+                            />
                             <p>
                                 {new Date(
                                     "1970-01-01T" + event.eventtime + "Z"
@@ -127,15 +170,19 @@ const EventCard = (props) => {
                         </div>
                     </div>
                     <div className="card-actions justify-end">
+                        <button className="btn btn-sm btn-outline btn-secondary w-[6rem] rounded-full">
+                            Sponsor
+                        </button>
                         <button
-                            className={`flex overflow-hidden  
+                            className={`flex overflow-hidden h-[2rem]
                     w-[7rem] hover:w-[8.3rem] 
+                    font-[0.875rem]
                     items-center gap-1
                     cursor-pointer 
-                    ${!interested ? "bg-[#0059CD]" : "bg-red-700"}
-                    text-white px-5 py-2 rounded-md 
+                    ${!interested ? "bg-secondary" : "bg-error"}
+                    text-white px-5 rounded-full 
                     transition-all ease-in-out hover:scale 
-                    hover:scale-105 font-[revert] active:scale-100 shadow-lg`}
+                    active:scale-100 shadow-lg`}
                             onClick={() => toggleBanner(`${event.eventid}-int`)}
                         >
                             {!interested ? "Interested" : "Disregard"}
@@ -151,7 +198,7 @@ const EventCard = (props) => {
                                     strokeLinejoin="round"
                                 ></g>
                                 <g id="SVGRepo_iconCarrier">
-                                    {!interested ? (
+                                    {interested ? (
                                         <path
                                             d="M6 12H18"
                                             stroke="#ffffff"
