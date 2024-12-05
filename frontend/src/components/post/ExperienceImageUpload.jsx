@@ -2,7 +2,7 @@ import { useState } from "react";
 
 {/* @author Jude Angelo Ilumin*/}
 
-const FileUpload = () => {
+const ExperienceImageUpload = () => {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -74,4 +74,4 @@ const FileUpload = () => {
   );
 };
 
-export default FileUpload;
+export default ExperienceImageUpload;
