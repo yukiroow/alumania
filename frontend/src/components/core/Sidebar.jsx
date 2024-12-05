@@ -2,16 +2,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHome,
     faSearch,
-    faPlus,
-    faBell,
+    faPlusCircle,
     faSignOutAlt,
-    faUser
+    faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
 import { useAuth } from "../../hooks/useAuth";
 
-{/* @author Freskkie Encarnacion*/}
+{
+    /* @author Freskkie Encarnacion*/
+}
 
 const SideBar = () => {
     const { logout } = useAuth();
@@ -33,12 +34,12 @@ const SideBar = () => {
                             isActive ? (
                                 <FontAwesomeIcon
                                     icon={faHome}
-                                    className="text-2xl cursor-pointer text-[#032543]"
+                                    className="text-2xl cursor-pointer text-[#032543] transition-all translate-x-2"
                                 />
                             ) : (
                                 <FontAwesomeIcon
                                     icon={faHome}
-                                    className="text-2xl cursor-pointer text-[#A29C9C]"
+                                    className="text-2xl cursor-pointer text-[#A29C9C] transition-all hover:text-[#032543]"
                                 />
                             )
                         }
@@ -48,12 +49,12 @@ const SideBar = () => {
                             isActive ? (
                                 <FontAwesomeIcon
                                     icon={faSearch}
-                                    className="text-2xl cursor-pointer text-[#032543]"
+                                    className="text-2xl cursor-pointer text-[#032543] transition-all translate-x-2"
                                 />
                             ) : (
                                 <FontAwesomeIcon
                                     icon={faSearch}
-                                    className="text-2xl cursor-pointer text-[#A29C9C]"
+                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-[#032543]"
                                 />
                             )
                         }
@@ -62,28 +63,13 @@ const SideBar = () => {
                         {({ isActive }) =>
                             isActive ? (
                                 <FontAwesomeIcon
-                                    icon={faPlus}
-                                    className="text-2xl cursor-pointer text-[#032543]"
+                                    icon={faPlusCircle}
+                                    className="text-2xl cursor-pointer text-[#032543] transition-all translate-x-2"
                                 />
                             ) : (
                                 <FontAwesomeIcon
-                                    icon={faPlus}
-                                    className="text-2xl cursor-pointer text-[#A29C9C]"
-                                />
-                            )
-                        }
-                    </NavLink>
-                    <NavLink to="/app/notifications">
-                        {({ isActive }) =>
-                            isActive ? (
-                                <FontAwesomeIcon
-                                    icon={faBell}
-                                    className="text-2xl cursor-pointer text-[#032543]"
-                                />
-                            ) : (
-                                <FontAwesomeIcon
-                                    icon={faBell}
-                                    className="text-2xl cursor-pointer text-[#A29C9C]"
+                                    icon={faPlusCircle}
+                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-[#032543]"
                                 />
                             )
                         }
@@ -93,12 +79,12 @@ const SideBar = () => {
                             isActive ? (
                                 <FontAwesomeIcon
                                     icon={faUser}
-                                    className="text-2xl cursor-pointer text-[#032543]"
+                                    className="text-2xl cursor-pointer text-[#032543] transition-all translate-x-2"
                                 />
                             ) : (
                                 <FontAwesomeIcon
                                     icon={faUser}
-                                    className="text-2xl cursor-pointer text-[#A29C9C]"
+                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-[#032543]"
                                 />
                             )
                         }
@@ -108,6 +94,7 @@ const SideBar = () => {
                 <FontAwesomeIcon
                     icon={faSignOutAlt}
                     onClick={() => handleLogout()}
+                    className="text-2xl text-[#A29C9C] hover:text-[#032543]"
                 />
             </nav>
         </>
