@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 router.post("/login", (req, res) => {
     const { username, password } = req.body;
     db.query(
-        "SELECT userid FROM alumni LEFT JOIN user USING (userid) WHERE username= ? AND password= ?",
+        "SELECT userid, displaypic FROM alumni LEFT JOIN user USING (userid) WHERE username= ? AND password= ?",
         [username, password],
         (err, results) => {
             if (err) return res.status(500).json({ error: err.message });
@@ -43,6 +43,8 @@ router.post("/signup", upload.single("diploma"), (req, res) => {
         password,
     } = req.body;
 
+    console.log(employment)
+
     const diploma = req.file ? req.file.buffer : null;
 
     db.query(
@@ -61,7 +63,7 @@ router.post("/signup", upload.single("diploma"), (req, res) => {
             }
 
             db.query(
-                `INSERT INTO APPLICANT (firstname, middlename, lastname, username, empstatus, location, email, company, course, password, diploma)
+                `INSERT INTO applicant (firstname, middlename, lastname, username, empstatus, location, email, company, course, password, diploma)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     firstName,

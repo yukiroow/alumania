@@ -22,12 +22,12 @@ router.get("/events/:query", (req, res) => {
 router.get("/experiences/:query", (req, res) => {
     const { query } = req.params;
     db.query(
-        `SELECT e.xpid, e.title, e.body, 
+        `SELECT e.xpid, e.body, 
                GROUP_CONCAT(i.xpimage) AS images
         FROM experience e
         LEFT JOIN experienceimage i ON e.xpid = i.xpid
-        WHERE CONCAT(e.xpid, e.title, e.body) LIKE ?
-        GROUP BY e.xpid, e.title, e.body;`,
+        WHERE CONCAT(e.xpid, e.body) LIKE ?
+        GROUP BY e.xpid, e.body;`,
         [`%${query}%`],
         (err, results) => {
             if (err) {

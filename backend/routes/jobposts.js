@@ -5,7 +5,7 @@ const db = require("../database").db;
 
 // Get all Jobpost
 router.get("/", (req, res) => {
-    db.query("SELECT * FROM jobpost", (err, results) => {
+    db.query("SELECT * FROM jobpost ORDER BY publishtimestamp DESC", (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         res.status(200).json(results);
     });

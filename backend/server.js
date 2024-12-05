@@ -28,6 +28,8 @@ app.use("/interestedinevents", eventRouter)
 
 // experienceRouter
 app.use("/experiences", experienceRouter)
+app.use("/albums/:id", experienceRouter)
+app.use("/all/:id", experienceRouter)
 app.use("/albumexperience/:id", experienceRouter)
 app.use("/comment/:id", experienceRouter)
 app.use("/removexperience/:id", experienceRouter)
