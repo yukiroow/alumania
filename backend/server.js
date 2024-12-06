@@ -28,16 +28,13 @@ app.use("/interestedinevents", eventRouter)
 
 // experienceRouter
 app.use("/experiences", experienceRouter)
-app.use("/albums/:id", experienceRouter)
 app.use("/all/:id", experienceRouter)
-app.use("/albumexperience/:id", experienceRouter)
-app.use("/comment/:id", experienceRouter)
 app.use("/removexperience/:id", experienceRouter)
-app.use("/removealbum/:id", experienceRouter)
 app.use("/new", experienceRouter)
-app.use("/album", experienceRouter)
-app.use("/likepost", experienceRouter)
-app.use("/allexperiencelike/:id", experienceRouter)
+app.use("/likes/:id", experienceRouter)
+app.use("/isliked/:id", experienceRouter)
+app.use("/likepost/:id", experienceRouter)
+app.use("/unlikepost/:id", experienceRouter)
 
 // userRouter
 app.use("/users", userRouter)
