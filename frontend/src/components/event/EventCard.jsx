@@ -113,7 +113,7 @@ const EventCard = (props) => {
                             {event.category}
                         </span>
                     </h2>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 whitespace-nowrap inline max-h-[1.25rem]">
                         {calculateTimeAgo(event.publishtimestamp)}
                     </p>
                     <p

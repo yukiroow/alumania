@@ -37,36 +37,40 @@ const SideBar = () => {
                 {/* Top Logo */}
                 <img src={Logo} alt="Logo" className="w-10 h-10" />
                 {/* Middle Icons */}
-                <div className="flex flex-col items-center space-y-9 flex-grow mt-60">
+                <div className="flex flex-col items-center space-y-9 flex-grow justify-center">
                     <NavLink to="/app/home">
-                        {({ isActive }) =>
-                            isActive ? (
+                        {({ isActive }) => (
+                            <div className="flex items-center gap-1">
+                                {isActive && (
+                                    <span className="w-1 h-1 rounded-full bg-primary transition-all"></span>
+                                )}
                                 <FontAwesomeIcon
                                     icon={faHome}
-                                    className="text-2xl cursor-pointer text-[#032543] transition-all translate-x-2"
+                                    className={`text-2xl cursor-pointer ${
+                                        isActive
+                                            ? "text-[#032543] transition-all translate-x-2"
+                                            : "text-[#A29C9C] transition-all hover:text-[#032543]"
+                                    }`}
                                 />
-                            ) : (
-                                <FontAwesomeIcon
-                                    icon={faHome}
-                                    className="text-2xl cursor-pointer text-[#A29C9C] transition-all hover:text-[#032543]"
-                                />
-                            )
-                        }
+                            </div>
+                        )}
                     </NavLink>
                     <NavLink to="/app/search">
-                        {({ isActive }) =>
-                            isActive ? (
+                        {({ isActive }) => (
+                            <div className="flex items-center gap-1">
+                                {isActive && (
+                                    <span className="w-1 h-1 rounded-full bg-primary transition-all"></span>
+                                )}
                                 <FontAwesomeIcon
                                     icon={faSearch}
-                                    className="text-2xl cursor-pointer text-primary transition-all translate-x-2"
+                                    className={`text-2xl cursor-pointer ${
+                                        isActive
+                                            ? "text-primary transition-all translate-x-2"
+                                            : "text-[#A29C9C] transition-all hover:text-primary"
+                                    }`}
                                 />
-                            ) : (
-                                <FontAwesomeIcon
-                                    icon={faSearch}
-                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-primary"
-                                />
-                            )
-                        }
+                            </div>
+                        )}
                     </NavLink>
                     <FontAwesomeIcon
                         icon={faPlusCircle}
@@ -79,19 +83,21 @@ const SideBar = () => {
                         onClick={handleAddPost}
                     />
                     <NavLink to="/app/profile">
-                        {({ isActive }) =>
-                            isActive ? (
+                        {({ isActive }) => (
+                            <div className="flex items-center gap-1">
+                                {isActive && (
+                                    <span className="w-1 h-1 rounded-full bg-primary transition-all"></span>
+                                )}
                                 <FontAwesomeIcon
                                     icon={faUser}
-                                    className="text-2xl cursor-pointer text-primary transition-all translate-x-2"
+                                    className={`text-2xl cursor-pointer ${
+                                        isActive
+                                            ? "text-primary transition-all translate-x-2"
+                                            : "text-[#A29C9C] transition-all hover:text-primary"
+                                    }`}
                                 />
-                            ) : (
-                                <FontAwesomeIcon
-                                    icon={faUser}
-                                    className="text-2xl cursor-pointer text-[#A29C9C] hover:text-primary"
-                                />
-                            )
-                        }
+                            </div>
+                        )}
                     </NavLink>
                     {/* Bottom Logout Icon */}
                     <FontAwesomeIcon

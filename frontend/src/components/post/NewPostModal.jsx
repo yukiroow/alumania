@@ -11,7 +11,7 @@ import axios from "axios";
 const NewPostModal = ({ handleAddPost }) => {
     const username = localStorage.getItem("user");
     const id = localStorage.getItem("userid");
-    const dpRaw = localStorage.getItem("userdp");
+    const dpRaw = JSON.parse(localStorage.getItem("userdp"));
     const [chars, setChars] = useState(0);
     const [postDetails, setPostDetails] = useState({
         content: "",
@@ -20,7 +20,7 @@ const NewPostModal = ({ handleAddPost }) => {
     });
 
     const dpImage =
-        dpRaw === null
+        dpRaw !== null
             ? dpRaw.data.length > 0
                 ? `data:${dpRaw.data.mimetype};base64,${btoa(
                       new Uint8Array(dpRaw.data).reduce(

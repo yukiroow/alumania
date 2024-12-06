@@ -78,7 +78,7 @@ const EventsPage = () => {
 
     return (
         <>
-            <section className="join join-vertical px-[25%] my-10 rounded-box">
+            <section className="join join-vertical px-[25%] mb-10 rounded-box">
                 {events.map((event) => {
                     const isInterested = interested.some(
                         (interest) =>
