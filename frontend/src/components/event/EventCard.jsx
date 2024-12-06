@@ -93,7 +93,7 @@ const EventCard = (props) => {
 
     return (
         <>
-            <div className="flex items-center h-fit card lg:card-side bg-base-100 border join-item">
+            <div className="flex items-center h-fit card lg:card-side bg-white border join-item">
                 <figure className="min-w-[33%] max-w-[33%]">
                     {/* TODO: Image Processing */}
                     <img
@@ -115,7 +115,7 @@ const EventCard = (props) => {
                 <div className="card-body">
                     <h2 className="card-title text-3xl font-bold text-primary flex items-center gap-2">
                         <span className="uppercase">{event.title}</span>
-                        <span className="inline-flex items-center px-3 py-1 border border-primary rounded-full text-xs text-primary">
+                        <span className="inline-flex items-center px-3 py-1 border-l font-normal border-primary rounded-l-none rounded-r-full text-xs text-primary">
                             {event.category}
                         </span>
                     </h2>
@@ -176,7 +176,8 @@ const EventCard = (props) => {
                         <button
                             className={`flex overflow-hidden h-[2rem]
                     w-[7rem] hover:w-[8.3rem] 
-                    font-[0.875rem]
+                    text-[.95rem]
+                    text-secondary-content
                     items-center gap-1
                     cursor-pointer 
                     ${!interested ? "bg-secondary" : "bg-error"}

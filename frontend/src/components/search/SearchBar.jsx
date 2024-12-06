@@ -81,9 +81,6 @@ const SearchBar = ({ setSearchQuery, setFilter }) => {
                         <li onClick={() => handleFilterClick("Events")}>
                             <a>Events</a>
                         </li>
-                        <li onClick={() => handleFilterClick("Albums")}>
-                            <a>Albums</a>
-                        </li>
                     </ul>
                 </div>
                 {/* Sort SVG with Dropdown */}
