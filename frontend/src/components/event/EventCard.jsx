@@ -37,9 +37,6 @@ const EventCard = (props) => {
                 if (res.status == 201) {
                     setInterested(true);
                 }
-            })
-            .catch((error) => {
-                console.log(error);
             });
     };
 
@@ -52,9 +49,6 @@ const EventCard = (props) => {
                 if (res.status == 201) {
                     setInterested(false);
                 }
-            })
-            .catch((error) => {
-                console.log(error);
             });
     };
 

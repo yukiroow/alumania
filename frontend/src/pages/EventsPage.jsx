@@ -14,12 +14,20 @@ const EventsPage = () => {
 
     const fetchEvents = async (page) => {
         try {
-            const res = await axios.get(`http://localhost:2012/events?page=${page}&limit=5`);
+            const res = await axios.get(
+                `http://localhost:2012/events?page=${page}&limit=5`
+            );
 
             const interestedRes = await axios.get(
                 `http://localhost:2012/events/interestedinevents/${userId}`
             );
-            setEvents((prevEvents) => [...prevEvents, ...res.data]);
+            setEvents((prevEvents) => {
+                const newEvents = res.data.filter(
+                    (event) =>
+                        !prevEvents.some((e) => e.eventid === event.eventid)
+                );
+                return [...prevEvents, ...newEvents];
+            });
             setInterested(interestedRes.data);
 
             setHasMore(res.data.length === 5);

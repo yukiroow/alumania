@@ -12,7 +12,6 @@ const NewPostModal = ({ handleAddPost }) => {
     const username = localStorage.getItem("user");
     const id = localStorage.getItem("userid");
     const dpRaw = localStorage.getItem("userdp");
-    const [albums, setAlbums] = useState([]);
     const [chars, setChars] = useState(0);
     const [postDetails, setPostDetails] = useState({
         content: "",
@@ -32,16 +31,6 @@ const NewPostModal = ({ handleAddPost }) => {
                 : null
             : null;
 
-    const fetchAlbums = async () => {
-        const res = await axios.get(
-            `http://localhost:2012/experiences/albums/${id.substring(
-                1,
-                id.length - 1
-            )}`
-        );
-        setAlbums(res.data);
-    };
-
     const updateModal = (event) => {
         const content = event.target.value;
         setPostDetails((prev) => ({ ...prev, ["content"]: content }));
@@ -60,13 +49,6 @@ const NewPostModal = ({ handleAddPost }) => {
         setPostDetails((prev) => ({
             ...prev,
             images: [...prev.images, ...newImages],
-        }));
-    };
-
-    const handleAlbumSelect = (album) => {
-        setPostDetails((prev) => ({
-            ...prev,
-            albumid: album.albumid,
         }));
     };
 
@@ -97,12 +79,10 @@ const NewPostModal = ({ handleAddPost }) => {
                 alert("Post successfully uploaded!");
                 setPostDetails({ content: "", images: [], albumid: "" });
                 setChars(0);
-                setAlbums([]);
                 handleAddPost();
                 document.getElementById("addpost_modal").close();
             }
         } catch (error) {
-            console.error("Error uploading post:", error);
             alert("Failed to upload post. Please try again.");
         }
     };
@@ -180,30 +160,6 @@ const NewPostModal = ({ handleAddPost }) => {
                                         <FontAwesomeIcon icon={faPhotoFilm} />
                                         Add Photos
                                     </button>
-                                    <select
-                                        className="select select-xs select-secondary focus:outline-none active:outline-none"
-                                        onClick={fetchAlbums}
-                                    >
-                                        <option disabled selected>
-                                            Select from your albums
-                                        </option>
-                                        {albums.length === 0 ? (
-                                            <option disabled>
-                                                You have no albums
-                                            </option>
-                                        ) : (
-                                            albums.map((album, index) => (
-                                                <option
-                                                    key={index}
-                                                    onClick={() =>
-                                                        handleAlbumSelect(album)
-                                                    }
-                                                >
-                                                    {album.title}
-                                                </option>
-                                            ))
-                                        )}
-                                    </select>
                                 </div>
                                 <div className="flex flex-row justify-end rounded-full">
                                     <button

@@ -33,7 +33,7 @@ const SideBar = () => {
         <>
             <LogoutModal auth={logout} />
             <NewPostModal handleAddPost={handleAddPost} />
-            <nav className="flex flex-col h-screen w-20 items-center py-9 fixed top-0 left-0">
+            <nav className="flex flex-col h-screen w-20 items-center py-9 fixed top-0 left-0 z-50">
                 {/* Top Logo */}
                 <img src={Logo} alt="Logo" className="w-10 h-10" />
                 {/* Middle Icons */}
