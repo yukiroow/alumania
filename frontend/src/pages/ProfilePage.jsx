@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { SocialIcon } from "react-social-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
 import ProfileExperienceCard from "../components/profile/ProfileExperienceCard";
 import SetVisibilityModal from "../components/profile/SetVisibilityModal";
+import ProfilePictureUpload from "../components/profile/ProfilePictureUpload";
 
 const ProfilePage = () => {
     const userid = localStorage
@@ -14,12 +14,19 @@ const ProfilePage = () => {
     const username = localStorage
         .getItem("user")
         .substring(1, localStorage.getItem("user").length - 1);
-    const dpRaw = JSON.parse(localStorage.getItem("userdp"));
+    const [profile, setProfile] = useState({
+        fullName: "",
+        course: "",
+        company: "",
+        dpRaw: null,
+        location: "",
+        private: 0,
+    });
     const dpImage =
-        dpRaw !== null
-            ? dpRaw.data.length > 0
-                ? `data:${dpRaw.data.mimetype};base64,${btoa(
-                      new Uint8Array(dpRaw.data).reduce(
+        profile.dpRaw !== null
+            ? profile.dpRaw.data.length > 0
+                ? `data:${profile.dpRaw.data.mimetype};base64,${btoa(
+                      new Uint8Array(profile.dpRaw.data).reduce(
                           (data, byte) => data + String.fromCharCode(byte),
                           ""
                       )
@@ -28,26 +35,29 @@ const ProfilePage = () => {
             : null;
     const avatar = dpImage ? (
         <div className="avatar justify-center">
-            <div className="ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
+            <div
+                className="ring-primary ring-offset-base-100 w-20 rounded-full ring ring-offset-2 transition-all hover:opacity-50 cursor-pointer"
+                onClick={() =>
+                    document.getElementById("uploadpfp_modal").showModal()
+                }
+            >
                 <img src={dpImage} />
             </div>
         </div>
     ) : (
         <div className="avatar placeholder">
-            <div className="bg-primary text-neutral-content w-16 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100">
+            <div
+                className="bg-primary text-neutral-content w-20 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100 transition-all hover:opacity-50 cursor-pointer"
+                onClick={() =>
+                    document.getElementById("uploadpfp_modal").showModal()
+                }
+            >
                 <p className="text-xl cursor-default select-none">
                     {username.substring(1, 2).toUpperCase()}
                 </p>
             </div>
         </div>
     );
-    const [profile, setFullName] = useState({
-        fullName: "Tanginang Buhay",
-        course: "",
-        company: "",
-        location: "",
-        private: 0,
-    });
     const [error, setError] = useState(false);
     const [experiences, setExperiences] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -57,19 +67,56 @@ const ProfilePage = () => {
             await axios
                 .get(`http://localhost:2012/users/${userid}`)
                 .then((res) => {
-                    setFullName({
-                        ...profile,
-                        fullName: res.data.middlename
-                            ? `${res.data.firstname} ${res.data.middlename} ${res.data.lastname}`
-                            : `${res.data.firstname} ${res.data.lastname}`,
-                        course: res.data.course,
-                        company: res.data.company,
-                        location: res.data.location,
-                        private: res.data.private,
+                    setProfile((prev) => {
+                        return {
+                            ...prev,
+                            fullName: res.data.middlename
+                                ? `${res.data.firstname} ${res.data.middlename} ${res.data.lastname}`
+                                : `${res.data.firstname} ${res.data.lastname}`,
+                            course: res.data.course,
+                            company: res.data.company,
+                            dpRaw: res.data.displaypic,
+                            location: res.data.location,
+                            private: res.data.private,
+                        };
                     });
                 });
         } catch (error) {
+            console.log(error);
             setError(true);
+        }
+    };
+
+    const onImageUpload = async (file) => {
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            await axios
+                .post(
+                    `http://localhost:2012/users/uploadpfp/${userid}`,
+                    formData,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    }
+                )
+                .then((res) => {
+                    const newPfp = res.data.pfp;
+                    // Update localStorage and state with the new profile picture
+                    window.localStorage.setItem(
+                        "userdp",
+                        JSON.stringify(newPfp)
+                    );
+                    setProfile((prev) => ({
+                        ...prev,
+                        dpRaw: newPfp, // Update dpRaw in state
+                    }));
+                    alert("Profile picture updated successfully!");
+                });
+        } catch (err) {
+            console.log(err);
         }
     };
 
@@ -128,12 +175,28 @@ const ProfilePage = () => {
 
     return (
         <>
-            <SetVisibilityModal userid={userid} />
+            <ProfilePictureUpload onImageUpload={onImageUpload} />
+            <SetVisibilityModal userid={userid} isVisible={profile.private} />
             <section className="join join-vertical px-[30%] my-5 rounded-box w-full ">
                 <div className="flex join-item flex-row w-full border p-3 bg-white">
                     <div className="flex flex-col w-[80%] pl-6 pt-6">
                         <span className="text-2xl font-bold">
                             {profile.fullName}
+                            <FontAwesomeIcon
+                                icon={profile.private ? faEyeSlash : faEye}
+                                className="text-gray-500 cursor-pointer ml-2 transition-all hover:opacity-50"
+                                size="xs"
+                                title={
+                                    profile.private
+                                        ? "Profile is private"
+                                        : "Profile is public"
+                                }
+                                onClick={() =>
+                                    document
+                                        .getElementById(`visibility_modal`)
+                                        .showModal()
+                                }
+                            />
                         </span>
                         <span className="text-base mb-1">{username}</span>
                         <span className="text-sm text-gray-400 self-flex-end">
@@ -142,26 +205,8 @@ const ProfilePage = () => {
                             {profile.location ? ` | ${profile.location}` : ``}
                         </span>
                     </div>
-                    <div className="flex flex-col space-y-5 bg-white">
-                        <div className="avatar justify-center">
-                            <div className="ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
-                                {avatar}
-                            </div>
-                        </div>
-                        <div className="flex flex-row space-x-2 w-full justify-end">
-                            <SocialIcon
-                                url="email"
-                                style={{ height: 30, width: 30 }}
-                            />
-                            <SocialIcon
-                                url="linkedin"
-                                style={{ height: 30, width: 30 }}
-                            />
-                            <SocialIcon
-                                url="facebook"
-                                style={{ height: 30, width: 30 }}
-                            />
-                        </div>
+                    <div className="flex items-center justify-center bg-white">
+                        {avatar}
                     </div>
                 </div>
                 <div className="join-item flex border p-1 align-middle bg-white">
