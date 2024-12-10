@@ -1,32 +1,36 @@
 import axios from "axios";
-const DeletePostModal = ({ xpid }) => {
-    const fetchDeletePost = async () => {
+const SetVisibilityModal = ({ userid, isVisible }) => {
+    const type = isVisible ? 0 : 1;
+    const fetchVisibility = async () => {
         try {
-            await axios.delete(
-                `http://localhost:2012/experiences/removexperience/${xpid}`
+            await axios.put(
+                `http://localhost:2012/users/setvisible/${userid}`,
+                { type: type }
             );
             window.location.reload();
         } catch (error) {
-            console.error("Error deleting post:", error);
+            console.error("Error setting visibility:", error);
         }
     };
     return (
         <>
-            <dialog id={`deletepost_modal${xpid}`} className="modal">
+            <dialog id={`visibility_modal`} className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg text-primary">
-                        Delete Experience
+                        Set Profile Privacy
                     </h3>
                     <p className="py-4">
-                        Are you sure you want to delete this experience?
+                        {isVisible
+                            ? "Are you sure you want to hide your Profile?"
+                            : "Are you sure you want to make your Profile public?"}
                     </p>
                     <div className="modal-action">
                         <form method="dialog" className="flex space-x-2">
                             <button
                                 className="btn btn-warning text-white"
-                                onClick={fetchDeletePost}
+                                onClick={fetchVisibility}
                             >
-                                Delete
+                                Confirm
                             </button>
                             <button className="btn">Close</button>
                         </form>
@@ -37,4 +41,4 @@ const DeletePostModal = ({ xpid }) => {
     );
 };
 
-export default DeletePostModal;
+export default SetVisibilityModal;

@@ -84,7 +84,7 @@ router.get("/images/:id", (req, res) => {
 
 // Create a new Experience
 router.post("/new", upload.array("images"), (req, res) => {
-    const { content, albumid, userid } = req.body;
+    const { content, userid } = req.body;
     try {
         // 1. Generate new XPID
         db.query("SELECT CAST(SUBSTRING(xpid, 3) AS UNSIGNED) AS count FROM experience ORDER BY count DESC", (err, results) => {
@@ -119,19 +119,6 @@ router.post("/new", upload.array("images"), (req, res) => {
                             }
                         )
                     );
-
-                    // 4. Insert into `albumexperience` if `albumid` is provided
-                    if (albumid) {
-                        db.query(
-                            "INSERT INTO albumexperience (albumid, xpid) VALUES (?, ?)",
-                            [albumid, nextID],
-                            (err) => {
-                                if (err) {
-                                    console.log(err);
-                                }
-                            }
-                        );
-                    }
                 }
             );
         });
