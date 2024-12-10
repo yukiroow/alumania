@@ -620,7 +620,9 @@ const SignupPage = () => {
                             value="Signup"
                         />
                     </div>
+                    <p className="mt-10 text-decoration: underline cursor-pointer hover:text-secondary">Terms and Conditions</p>
                 </form>
+                
                 <aside className="flex basis-1/3 flex-col mx-auto items-center px-20">
                     <h1 className="text-3xl font-bold text-center mt-96 text-primary-content">
                         ALREADY HAVE AN ACCOUNT?
