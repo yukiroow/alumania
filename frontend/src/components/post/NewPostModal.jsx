@@ -81,6 +81,7 @@ const NewPostModal = ({ handleAddPost }) => {
                 setChars(0);
                 handleAddPost();
                 document.getElementById("addpost_modal").close();
+                window.location.reload();
             }
         } catch (error) {
             alert("Failed to upload post. Please try again.");
