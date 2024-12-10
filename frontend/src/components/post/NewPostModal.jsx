@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
 import ExperienceImageUpload from "./ExperienceImageUpload";
@@ -8,15 +8,28 @@ import axios from "axios";
     /* @author Jude Angelo Ilumin*/
 }
 
-const NewPostModal = ({ handleAddPost}) => {
+const NewPostModal = ({ handleAddPost }) => {
     const username = localStorage.getItem("user");
     const id = localStorage.getItem("userid");
+    const dpRaw = JSON.parse(localStorage.getItem("userdp"));
     const [chars, setChars] = useState(0);
     const [postDetails, setPostDetails] = useState({
         content: "",
         images: [],
         albumid: "",
     });
+
+    const dpImage =
+        dpRaw !== null
+            ? dpRaw.data.length > 0
+                ? `data:${dpRaw.data.mimetype};base64,${btoa(
+                      new Uint8Array(dpRaw.data).reduce(
+                          (data, byte) => data + String.fromCharCode(byte),
+                          ""
+                      )
+                  )}`
+                : null
+            : null;
 
     const updateModal = (event) => {
         const content = event.target.value;
@@ -75,7 +88,13 @@ const NewPostModal = ({ handleAddPost}) => {
         }
     };
 
-    const avatar = (
+    const avatar = dpImage ? (
+        <div className="avatar">
+            <div className="h-12 w-12 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100">
+                <img src={dpImage} />
+            </div>
+        </div>
+    ) : (
         <div className="avatar placeholder">
             <div className="bg-primary text-neutral-content w-12 h-12 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100">
                 <p className="text-xl cursor-default select-none">

@@ -29,6 +29,7 @@ const SideBar = () => {
         setAddPost((prev) => !prev);
         document.getElementById("addpost_modal").showModal();
     };
+
     return (
         <>
             <LogoutModal auth={logout} />

@@ -5,7 +5,7 @@ const DeletePostModal = ({ xpid }) => {
             await axios.delete(
                 `http://localhost:2012/experiences/removexperience/${xpid}`
             );
-            window.location.reload();
+            window.location.reload(); // Reload the page after the request completes
         } catch (error) {
             console.error("Error deleting post:", error);
         }

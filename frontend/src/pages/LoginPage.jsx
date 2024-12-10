@@ -54,10 +54,13 @@ const LoginPage = () => {
             return;
         }
 
+        // TODO: In-depth username validation
+
         if (credentials["password"].length < 4) {
             setHasError(true);
             return;
         }
+        // TODO: In-depth password validation
 
         axios
             .post("http://localhost:2012/auth/login", credentials)
