@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 router.post("/login", (req, res) => {
     const { username, password } = req.body;
     db.query(
-        "SELECT userid, displaypic FROM alumni LEFT JOIN user USING (userid) WHERE username= ? AND password= ?",
+        "SELECT userid, displaypic, firstname, middlename, lastname FROM alumni LEFT JOIN user USING (userid) WHERE username= ? AND password= ?",
         [username, password],
         (err, results) => {
             if (err) return res.status(500).json({ error: err.message });
