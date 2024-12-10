@@ -26,20 +26,19 @@ router.get("/albums/:id", (req, res) => {
 router.get("/all/:id", (req, res) => {
     const { id } = req.params;
     db.query(
-        `SELECT e.xpid, e.body, GROUP_CONCAT(TO_BASE64(i.xpimage)) AS images FROM experience e LEFT JOIN experienceimage i ON e.xpid = i.xpid WHERE e.userid = 'U008' GROUP BY e.xpid, e.body;`,
+        `SELECT xpid, body, username, displaypic, publishtimestamp 
+        FROM experience
+        INNER JOIN user USING(userid)
+        INNER JOIN alumni USING(userid)
+        WHERE userid = ?
+        ORDER BY publishtimestamp DESC`,
         [id],
         (err, results) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({ error: err.message });
             }
-
-            const formattedResults = results.map((row) => ({
-                ...row,
-                images: row.images ? row.images.split(",") : [],
-            }));
-
-            res.status(200).json(formattedResults);
+            res.status(200).json(results);
         }
     );
 });
@@ -88,7 +87,7 @@ router.post("/new", upload.array("images"), (req, res) => {
     const { content, albumid, userid } = req.body;
     try {
         // 1. Generate new XPID
-        db.query("SELECT COUNT(*) AS count FROM experience", (err, results) => {
+        db.query("SELECT CAST(SUBSTRING(xpid, 3) AS UNSIGNED) AS count FROM experience ORDER BY count DESC", (err, results) => {
             if (err) {
                 console.log(err);
             }
@@ -216,16 +215,49 @@ router.post("/unlikepost/:id", (req, res) => {
 // Delete an Experience
 router.delete("/removexperience/:id", (req, res) => {
     const { id } = req.params;
-    db.query("DELETE FROM experience WHERE xpid = ?", [id], (err, result) => {
-        if (err) {
-            console.error("Error executing query: " + err.stack);
-            return res.status(400).send("error");
+    db.query(
+        "DELETE FROM experiencelike WHERE xpid = ?",
+        [id],
+        (err, result) => {
+            if (err) {
+                console.error(
+                    "Error executing query: " + err.stack
+                );
+                return res.status(400).send("error");
+            }
+            db.query(
+                "DELETE FROM experienceimage WHERE xpid = ?",
+                [id],
+                (err, result) => {
+                    if (err) {
+                        console.error(
+                            "Error executing query: " + err.stack
+                        );
+                        return res.status(400).send("error");
+                    }
+                    db.query(
+                        "DELETE FROM experience WHERE xpid = ?",
+                        [id],
+                        (err, result) => {
+                            if (err) {
+                                console.error(
+                                    "Error executing query: " + err.stack
+                                );
+                                return res.status(400).send("error");
+                            }
+                            if (result.affectedRows === 0) {
+                                console.error(
+                                    "Error executing query: " + err.stack
+                                );
+                                return res.status(404).send("not found");
+                            }
+                            res.status(200).send("success");
+                        }
+                    );
+                }
+            );
         }
-        if (result.affectedRows === 0) {
-            return res.status(404).send("not found");
-        }
-        res.status(200).send("success");
-    });
+    );
 });
 
 module.exports = router;
