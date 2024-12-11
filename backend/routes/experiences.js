@@ -49,10 +49,11 @@ router.get("/", (req, res) => {
     const offset = (page - 1) * limit;
 
     db.query(
-        `SELECT xpid, body, username, displaypic, publishtimestamp 
+        `SELECT xpid, body, username, displaypic, publishtimestamp, userid 
         FROM experience
         INNER JOIN user USING(userid)
         INNER JOIN alumni USING(userid)
+        WHERE alumni.private != '1'
         ORDER BY publishtimestamp DESC
         LIMIT ? OFFSET ?`,
         [parseInt(limit), parseInt(offset)],
