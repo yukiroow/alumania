@@ -92,29 +92,23 @@ const ProfilePage = () => {
         formData.append("image", file);
 
         try {
-            await axios
-                .post(
-                    `http://localhost:2012/users/uploadpfp/${userid}`,
-                    formData,
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data",
-                        },
-                    }
-                )
-                .then((res) => {
-                    const newPfp = res.data.pfp;
-                    // Update localStorage and state with the new profile picture
-                    window.localStorage.setItem(
-                        "userdp",
-                        JSON.stringify(newPfp)
-                    );
-                    setProfile((prev) => ({
-                        ...prev,
-                        dpRaw: newPfp, // Update dpRaw in state
-                    }));
-                    alert("Profile picture updated successfully!");
-                });
+            const res = await axios.post(
+                `http://localhost:2012/users/uploadpfp/${userid}`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+            const newPfp = res.data.pfp;
+            window.localStorage.setItem("userdp", JSON.stringify(newPfp));
+            setProfile((prev) => ({
+                ...prev,
+                dpRaw: newPfp,
+            }));
+            alert("Profile picture updated successfully!");
+            window.location.reload();
         } catch (err) {
             console.log(err);
         }
