@@ -8,8 +8,7 @@ import axios from "axios";
     /* @author Freskkie Encarnacion*/
 }
 
-const ExperienceSearchCard = ({ experience }) => {
-    // TODO: PROPS PROPS DRAG TO SCROLL
+const ExperienceCard = ({ experience, onProfileClick }) => {
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
     const userid = localStorage
@@ -17,11 +16,14 @@ const ExperienceSearchCard = ({ experience }) => {
         .substring(1, localStorage.getItem("userid").length - 1);
     const carouselRef = useRef(null); // Reference for the carousel
 
+    const handleProfileClick = () => {
+        onProfileClick(experience.userid);
+    };
+
     const handleMouseDown = (e) => {
         const carousel = carouselRef.current;
         carousel.isDown = true;
         carousel.startX = e.pageX - carousel.offsetLeft;
-        carousel.scrollLeft = carousel.scrollLeft;
     };
 
     const handleMouseLeave = () => {
@@ -153,7 +155,12 @@ const ExperienceSearchCard = ({ experience }) => {
                     {avatar}
                     <div className="flex flex-col w-full">
                         <div className="flex items-center space-x-2 mt-1">
-                            <p className="font-medium">{experience.username}</p>
+                            <p
+                                className="font-medium hover:cursor-pointer"
+                                onClick={handleProfileClick}
+                            >
+                                {experience.username}
+                            </p>
                             <p className="font-light text-gray-500 text-xs">
                                 {calculateTimeAgo(experience.publishtimestamp)}
                             </p>
@@ -164,7 +171,7 @@ const ExperienceSearchCard = ({ experience }) => {
                 {/* CAROUSEL */}
                 {experience.images.length > 0 ? (
                     <div
-                        className="carousel flex space-x-2 rounded-box h-64 max-w-full ml-20 scroll-smooth"
+                        className="carousel flex space-x-2 rounded-box h-64 max-w-full ml-20 scroll-smooth hover:cursor-grab active:cursor-grabbing"
                         ref={carouselRef}
                         onMouseDown={handleMouseDown}
                         onMouseLeave={handleMouseLeave}
@@ -180,7 +187,9 @@ const ExperienceSearchCard = ({ experience }) => {
                                     src={`data:${
                                         image.xpimage.data.mimetype
                                     };base64,${btoa(
-                                        new Uint8Array(image.xpimage.data).reduce(
+                                        new Uint8Array(
+                                            image.xpimage.data
+                                        ).reduce(
                                             (data, byte) =>
                                                 data +
                                                 String.fromCharCode(byte),
@@ -217,4 +226,4 @@ const ExperienceSearchCard = ({ experience }) => {
     );
 };
 
-export default ExperienceSearchCard;
+export default ExperienceCard;
