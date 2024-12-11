@@ -45,15 +45,17 @@ const JobsPage = () => {
         const now = new Date();
         const publishedDate = new Date(timestamp);
         const diffInSeconds = Math.floor((now - publishedDate) / 1000);
-    
+
         const secondsInMinute = 60;
         const secondsInHour = 3600;
         const secondsInDay = 86400;
         const secondsInWeek = 604800;
-    
+
         if (diffInSeconds < secondsInHour) {
             const minutes = Math.floor(diffInSeconds / secondsInMinute);
-            return `Posted ${minutes <= 1 ? "1 minute" : `${minutes} minutes`} ago`;
+            return `Posted ${
+                minutes <= 1 ? "1 minute" : `${minutes} minutes`
+            } ago`;
         } else if (diffInSeconds < secondsInDay) {
             const hours = Math.floor(diffInSeconds / secondsInHour);
             return `Posted ${hours <= 1 ? "1 hour" : `${hours} hours`} ago`;
@@ -69,8 +71,8 @@ const JobsPage = () => {
     if (loading) {
         return (
             <>
-                <div className="flex justify-center items-center h-96">
-                    <span className="loading loading-dots loading-lg"></span>
+                <div className="w-full h-[calc(100vh-6rem)] flex align-middle justify-center">
+                    <span className="loading loading-spinner loading-lg"></span>
                 </div>
             </>
         );

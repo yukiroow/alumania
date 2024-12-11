@@ -62,8 +62,8 @@ const EventsPage = () => {
 
     if (loading && page === 1) {
         return (
-            <div className="flex justify-center items-center h-96">
-                <span className="loading loading-dots loading-lg"></span>
+            <div className="w-full h-[calc(100vh-6rem)] flex align-middle justify-center">
+                <span className="loading loading-spinner loading-lg"></span>
             </div>
         );
     }
