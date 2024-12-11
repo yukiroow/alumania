@@ -1,14 +1,27 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
-import ExperienceSearchCard from "../components/search/ExperienceSearchCard";
+import ExperienceCard from "../components/experience/ExperienceCard";
+import ProfilePaneModal from "../components/profile/ProfilePaneModal";
 
 const ExperiencesPage = () => {
+    const [selectedProfile, setSelectedProfile] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     const [experiences, setExperiences] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
+
+    const handleProfileClick = (userid) => {
+        setSelectedProfile(userid);
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setSelectedProfile(null);
+    };
 
     const fetchExperiences = async (page) => {
         try {
@@ -91,10 +104,20 @@ const ExperiencesPage = () => {
 
     return (
         <>
-            <main className="">
+            <main>
+                {showModal && (
+                    <ProfilePaneModal
+                        userid={selectedProfile}
+                        onClose={closeModal}
+                    />
+                )}
                 <section className="join join-vertical px-[30%] mb-5 rounded-box w-full">
                     {experiences.map((xp) => (
-                        <ExperienceSearchCard key={xp.xpid} experience={xp} />
+                        <ExperienceCard
+                            key={xp.xpid}
+                            experience={xp}
+                            onProfileClick={handleProfileClick}
+                        />
                     ))}
                 </section>
             </main>
