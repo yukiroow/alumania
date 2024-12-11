@@ -6,7 +6,7 @@ const db = require("../database").db;
 router.get("/events/:query", (req, res) => {
     const { query } = req.params;
     db.query(
-        "SELECT * FROM event WHERE CONCAT(eventid, title, category, eventloc) LIKE ?",
+        "SELECT * FROM event WHERE CONCAT(eventid, title, category, eventloc) LIKE ? ORDER BY publishtimestamp DESC",
         [`%${query}%`],
         (err, results) => {
             if (err) {
@@ -22,33 +22,13 @@ router.get("/events/:query", (req, res) => {
 router.get("/experiences/:query", (req, res) => {
     const { query } = req.params;
     db.query(
-        `SELECT e.xpid, e.body, 
-               GROUP_CONCAT(TO_BASE64(i.xpimage)) AS images
+        `SELECT xpid, body, username, displaypic, publishtimestamp, userid 
         FROM experience e
-        LEFT JOIN experienceimage i ON e.xpid = i.xpid
+        INNER JOIN user USING(userid)
+        INNER JOIN alumni USING(userid)
         WHERE CONCAT(e.xpid, e.body) LIKE ?
-        GROUP BY e.xpid, e.body;`,
-        [`%${query}%`],
-        (err, results) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({ error: err.message });
-            }
-
-            const formattedResults = results.map((row) => ({
-                ...row,
-                images: row.images ? row.images.split(",") : [],
-            }));
-
-            res.status(200).json(formattedResults);
-        }
-    );
-});
-
-router.get("/opportunities/:query", (req, res) => {
-    const { query } = req.params;
-    db.query(
-        "SELECT * FROM jobpost WHERE CONCAT(jobpid, title, type, location, description, companyname, contactname, contactemail) LIKE ?",
+        AND alumni.private != '1'
+        ORDER BY publishtimestamp DESC;`,
         [`%${query}%`],
         (err, results) => {
             if (err) {
@@ -60,10 +40,10 @@ router.get("/opportunities/:query", (req, res) => {
     );
 });
 
-router.get("/albums/:query", (req, res) => {
+router.get("/opportunities/:query", (req, res) => {
     const { query } = req.params;
     db.query(
-        "SELECT * FROM album WHERE CONCAT(albumid, title) LIKE ?",
+        "SELECT * FROM jobpost WHERE CONCAT(jobpid, title, type, location, description, companyname, contactname, contactemail) LIKE ? ORDER BY publishtimestamp DESC",
         [`%${query}%`],
         (err, results) => {
             if (err) {
@@ -78,7 +58,7 @@ router.get("/albums/:query", (req, res) => {
 router.get("/users/:query", (req, res) => {
     const { query } = req.params;
     db.query(
-        "SELECT username, firstname, middlename, lastname, course, company, displaypic, location FROM user RIGHT JOIN alumni using(userid) WHERE CONCAT(username, firstname, middlename, lastname, course, company) LIKE ?",
+        "SELECT userid, username, firstname, middlename, lastname, course, company, displaypic, location FROM user RIGHT JOIN alumni using(userid) WHERE CONCAT(username, firstname, COALESCE(middlename, ''), lastname, course, COALESCE(company, '')) LIKE ? AND usertype = 'Alumni' ORDER BY username ASC",
         [`%${query}%`],
         (err, results) => {
             if (err) {
