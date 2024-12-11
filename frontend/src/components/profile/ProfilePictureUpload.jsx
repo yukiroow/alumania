@@ -19,6 +19,7 @@ const ProfilePictureUpload = ({ onImageUpload }) => {
         document.getElementById("uploadpfp_modal").close();
         setFile(null);
         setPreviewUrl("");
+        window.location.reload();
     };
 
     return (
