@@ -1,33 +1,75 @@
-import React from "react";
-
-{/* @author Freskkie Encarnacion*/}
-
-const UserSearchCard = ({user}) => {
-  return (
-    <>
-      <div className="justify-self-center mt-10 w-2/4 bg-white rounded-xl shadow-md p-4 space-y-7">
-        <div className="flex mt-4 ml-4 items-start space-x-5">
-          <div className="avatar">
-            <div className="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                alt="Profile"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-center space-x-2">
-              <p className="font-medium">Username</p>
-            </div>
-            <div className="flex items-center space-x-2 mt-1">
-              <p className="text-sm text-primary">Full Name</p>
-            </div>
-          </div>
-        </div>
-          <hr className="border-t border-gray-400" />
-      </div>
-    </>
-  )
+import ProfilePaneModal from "../profile/ProfilePaneModal";
+import { useState } from "react";
+{
+    /* @author Freskkie Encarnacion*/
 }
+
+const UserSearchCard = ({ user }) => {
+    const [showModal, setShowModal] = useState(false);
+    const fullName = user.middlename
+        ? `${user.firstname} ${user.middlename} ${user.lastname}`
+        : `${user.firstname} ${user.lastname}`;
+
+    const dpImage = user.displaypic
+        ? user.displaypic.data.length > 0
+            ? `data:${user.displaypic.data.mimetype};base64,${btoa(
+                  new Uint8Array(user.displaypic.data).reduce(
+                      (data, byte) => data + String.fromCharCode(byte),
+                      ""
+                  )
+              )}`
+            : null
+        : null;
+
+    const avatar = dpImage ? (
+        <div className="avatar">
+            <div className="h-12 w-12 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100">
+                <img src={dpImage} />
+            </div>
+        </div>
+    ) : (
+        <div className="avatar placeholder">
+            <div className="bg-primary text-neutral-content w-12 h-12 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100">
+                <p className="text-lg cursor-default select-none">
+                    {user.username.substring(0, 2).toUpperCase()}
+                </p>
+            </div>
+        </div>
+    );
+
+    const handleProfileClick = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    return (
+        <>
+            {showModal && (
+                <ProfilePaneModal userid={user.userid} onClose={closeModal} />
+            )}
+            <div
+                className="join-item justify-self-center p-4 w-full bg-white rounded-xl space-y-7 border transition-all hover:opacity-80 hover:cursor-pointer"
+                onClick={handleProfileClick}
+            >
+                <div className="flex ml-5 items-start space-x-5">
+                    {avatar}
+                    <div className="flex flex-col">
+                        <div className="flex items-center space-x-2">
+                            <p className="font-medium font-semibold">
+                                {user.username}
+                            </p>
+                        </div>
+                        <div className="flex items-center space-x-2 mt-1">
+                            <p className="text-sm text-primary">{fullName}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
 
 export default UserSearchCard;

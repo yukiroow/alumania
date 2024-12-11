@@ -4,14 +4,51 @@ import ErrorHero from "../components/ErrorHero";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlassMinus } from "@fortawesome/free-solid-svg-icons";
+import UserSearchCard from "../components/search/UserSearchCard";
+import JobSearchCard from "../components/search/JobSearchCard";
+import EventSearchCard from "../components/search/EventSearchCard";
+import ExperienceSearchCard from "../components/search/ExperienceSearchCard";
 
 const SearchPage = () => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [filter, setFilter] = useState("users");
+    const [sortOrder, setSortOrder] = useState("DESC");
     const [error, setError] = useState(false);
     const [firstRender, setFirstRender] = useState(true);
+
+    const fetchExperiences = async () => {
+        try {
+            const res = await axios.get(
+                `http://localhost:2012/search/experiences/${searchQuery}`
+            );
+
+            // Use Promise.all to fetch images for each experience
+            const experiencesWithImages = await Promise.all(
+                res.data.map(async (experience) => {
+                    const xpid = experience.xpid;
+
+                    // Fetch images for each experience
+                    const imagesResponse = await axios.get(
+                        `http://localhost:2012/experiences/images/${xpid}`
+                    );
+
+                    // Add the images to the experience object
+                    return {
+                        ...experience,
+                        images: imagesResponse.data,
+                    };
+                })
+            );
+
+            setResults(experiencesWithImages);
+        } catch (error) {
+            setError(true);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
         if (firstRender) {
@@ -22,6 +59,11 @@ const SearchPage = () => {
         const fetchSearch = async () => {
             setLoading(true);
             try {
+                if(filter === "experiences") {
+                    fetchExperiences();
+                    setError(false);
+                    return;
+                }
                 const res = await axios.get(
                     `http://localhost:2012/search/${filter}/${searchQuery}`
                 );
@@ -36,11 +78,43 @@ const SearchPage = () => {
         };
 
         fetchSearch();
-    }, [searchQuery, filter]);
+    }, [searchQuery, filter, sortOrder]);
+
+    const sortResults = (data) => {
+        if (filter === "users") {
+            return data.sort((a, b) => {
+                const usernameA = a.username.toLowerCase();
+                const usernameB = b.username.toLowerCase();
+                if (sortOrder === "ASC") {
+                    return usernameA.localeCompare(usernameB);
+                } else {
+                    return usernameB.localeCompare(usernameA);
+                }
+            });
+        } else if (
+            filter === "experiences" ||
+            filter === "events" ||
+            filter === "opportunities"
+        ) {
+            return data.sort((a, b) => {
+                const timestampA = new Date(a.publishtimestamp).getTime();
+                const timestampB = new Date(b.publishtimestamp).getTime();
+                return sortOrder === "ASC"
+                    ? timestampA - timestampB
+                    : timestampB - timestampA;
+            });
+        }
+        return data; // Default return if no sorting criteria matched
+    };
 
     return (
         <>
-            <SearchBar setSearchQuery={setSearchQuery} setFilter={setFilter} />
+            <SearchBar
+                setSearchQuery={setSearchQuery}
+                setFilter={setFilter}
+                sortOrder={sortOrder}
+                setSortOrder={setSortOrder}
+            />
 
             {!searchQuery ? (
                 <div className="ml-[25%] mt-[10%] p-2">
@@ -60,21 +134,21 @@ const SearchPage = () => {
             ) : results.length === 0 ? (
                 <NoResultsHero />
             ) : (
-                <section className="join join-vertical px-[25%] my-10 rounded-box">
+                <section className="join join-vertical px-[20%] my-10 rounded-box w-full">
                     {filter === "users"
-                        ? results.map((user, index) => (
-                              <h1 key={index}>{index}: user</h1>
+                        ? sortResults(results).map((user, index) => (
+                              <UserSearchCard key={index} user={user} />
                           ))
                         : filter === "experiences"
-                        ? results.map((experience, index) => (
-                              <h1 key={index}>{index}: experience</h1>
+                        ? sortResults(results).map((experience, index) => (
+                              <ExperienceSearchCard key={index} experience={experience} />
                           ))
                         : filter === "events"
-                        ? results.map((event, index) => (
-                              <h1 key={index}>{index}: event</h1>
+                        ? sortResults(results).map((event, index) => (
+                              <EventSearchCard key={index} event={event} />
                           ))
-                        : results.map((opportunity, index) => (
-                              <h1 key={index}>{index}: opportunity</h1>
+                        : sortResults(results).map((opportunity, index) => (
+                              <JobSearchCard key={index} job={opportunity} />
                           ))}
                 </section>
             )}
