@@ -522,7 +522,7 @@ const SignupPage = () => {
                             <input
                                 type="text"
                                 name="course"
-                                placeholder="Enter your graduated course"
+                                placeholder="Enter your graduated course (Ex. BSIT, BSN, BMMA)"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["course"]}
                                 onChange={(e) => {
