@@ -539,7 +539,7 @@ const SignupPage = () => {
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">
-                                    Upload Diploma* (png, png, jpg, jpeg)
+                                    Upload Diploma* (png, jpg, jpeg)
                                 </span>
                             </div>
                             <input
@@ -547,7 +547,7 @@ const SignupPage = () => {
                                 name="diploma"
                                 className="file-input file-input-primary w-full"
                                 onChange={handleFileChange}
-                                accept="application/pdf,image/jpeg,image/png,image/jpg"
+                                accept="image/jpeg,image/png,image/jpg"
                             />
                             {inputError.diploma && (
                                 <span className="label-text text-error italic">

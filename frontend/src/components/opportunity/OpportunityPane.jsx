@@ -5,29 +5,27 @@ import {
     faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useState, useEffect } from "react";
 
 {
     /* @author Freskkie Encarnacion*/
 }
 
-const OpportunityPane = ({ job, calculateTimeAgo }) => {
+const OpportunityPane = ({
+    job,
+    interested,
+    setInterested,
+    calculateTimeAgo,
+}) => {
     const userId = localStorage.getItem("userid");
     const jobpId = job.jobpid;
-    const [interested, setInterested] = useState(job.isInterested);
-    useEffect(() => {
-        setInterested(job.isInterested);
-    }, [job.isInterested]);
 
     const handleInterested = () => {
         axios
             .post(`http://localhost:2012/jobposts/interested/${jobpId}`, {
                 userId: `${userId}`,
             })
-            .then((res) => {
-                if (res.status == 201) {
-                    setInterested(true);
-                }
+            .then(() => {
+                setInterested([...interested, job]); // Add to the interested state
             })
             .catch((error) => {
                 console.log(error);
@@ -36,18 +34,20 @@ const OpportunityPane = ({ job, calculateTimeAgo }) => {
 
     const handleDisregard = () => {
         axios
-            .post(`http://localhost:2012/events/disregard/${jobpId}`, {
+            .post(`http://localhost:2012/jobposts/disregard/${jobpId}`, {
                 userId: `${userId}`,
             })
-            .then((res) => {
-                if (res.status == 201) {
-                    setInterested(false);
-                }
+            .then(() => {
+                setInterested(
+                    interested.filter((jobItem) => jobItem.jobpid !== jobpId)
+                );
             })
             .catch((error) => {
                 console.log(error);
             });
     };
+
+    const isInterested = interested.some((item) => item.jobpid === jobpId);
 
     return (
         <>
@@ -82,18 +82,18 @@ const OpportunityPane = ({ job, calculateTimeAgo }) => {
                             </div>
                             <button
                                 className={`btn ${
-                                    !interested
+                                    !isInterested
                                         ? "btn-outline btn-secondary"
                                         : "btn-success"
                                 } btn-xs rounded-full transform transition-all hover:scale-105`}
                                 onClick={
-                                    interested
+                                    isInterested
                                         ? handleDisregard
                                         : handleInterested
                                 }
                             >
                                 <FontAwesomeIcon icon={faStar} />
-                                {!interested
+                                {!isInterested
                                     ? "Mark as Interested"
                                     : "Interested"}
                             </button>

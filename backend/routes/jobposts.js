@@ -25,7 +25,7 @@ router.get("/interestedjobs/:id", (req, res) => {
             if (results.length > 0) {
                 res.status(200).json(results);
             } else {
-                res.status(404).send("nothing");
+                res.status(200).send("nothing");
             }
         }
     );

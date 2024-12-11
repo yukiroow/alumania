@@ -22,7 +22,7 @@ const JobsPage = () => {
                     `http://localhost:2012/jobposts/interestedjobs/${userId}`
                 );
                 setJobs(res.data);
-                setInterested(resInterested.data);
+                setInterested(resInterested.data === "nothing" ? [] : resInterested.data);
             } catch (error) {
                 console.log(error);
                 setError(true);
@@ -119,7 +119,8 @@ const JobsPage = () => {
                 ) : (
                     <OpportunityPane
                         job={selectedJob}
-                        isInterested={selectedJob.isInterested}
+                        interested={interested}
+                        setInterested={setInterested}
                         calculateTimeAgo={calculateTimeAgo}
                     />
                 )}
