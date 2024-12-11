@@ -108,7 +108,7 @@ const ProfilePaneModal = ({ userid, onClose }) => {
             <div className="bg-primary text-neutral-content w-20 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100 ">
                 <p className="text-xl cursor-default select-none">
                     {profile.username
-                        ? profile.username.charAt(1).toUpperCase()
+                        ? profile.username.charAt(0).toUpperCase()
                         : ""}
                 </p>
             </div>

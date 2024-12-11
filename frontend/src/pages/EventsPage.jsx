@@ -15,7 +15,7 @@ const EventsPage = () => {
     const fetchEvents = async (page) => {
         try {
             const res = await axios.get(
-                `http://localhost:2012/events?page=${page}&limit=5`
+                `http://localhost:2012/events?page=${page}&limit=10`
             );
 
             const interestedRes = await axios.get(
@@ -30,7 +30,7 @@ const EventsPage = () => {
             });
             setInterested(interestedRes.data);
 
-            setHasMore(res.data.length === 5);
+            setHasMore(res.data.length === 10);
         } catch (_) {
             setError(true);
         } finally {

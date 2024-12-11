@@ -26,7 +26,7 @@ const ExperiencesPage = () => {
     const fetchExperiences = async (page) => {
         try {
             const res = await axios.get(
-                `http://localhost:2012/experiences?page=${page}&limit=5`
+                `http://localhost:2012/experiences?page=${page}&limit=10`
             );
 
             // Use Promise.all to fetch images for each experience
@@ -56,7 +56,7 @@ const ExperiencesPage = () => {
             });
 
             // Check if there are more experiences to load
-            setHasMore(res.data.length === 5);
+            setHasMore(res.data.length === 10);
         } catch (error) {
             setError(true);
         } finally {

@@ -26,7 +26,7 @@ router.get("/albums/:id", (req, res) => {
 router.get("/all/:id", (req, res) => {
     const { id } = req.params;
     db.query(
-        `SELECT xpid, body, username, displaypic, publishtimestamp 
+        `SELECT xpid, body, username, displaypic, publishtimestamp, userid
         FROM experience
         INNER JOIN user USING(userid)
         INNER JOIN alumni USING(userid)

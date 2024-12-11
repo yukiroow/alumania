@@ -98,7 +98,9 @@ const ExperienceCard = ({ experience, onProfileClick }) => {
 
     const calculateTimeAgo = (timestamp) => {
         const now = new Date();
+        console.log(now);
         const publishedDate = new Date(timestamp);
+        console.log(publishedDate);
         const diffInSeconds = Math.floor((now - publishedDate) / 1000);
 
         const secondsInMinute = 60;
