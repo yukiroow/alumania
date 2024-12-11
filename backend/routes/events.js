@@ -30,6 +30,30 @@ router.get("/interestedinevents/:id", (req, res) => {
     );
 });
 
+// Check if interested in Event
+router.get("/alreadyinterested/:id", (req, res) => {
+    const { id } = req.params;
+    db.query(
+        "SELECT eventid FROM interestedinevent WHERE userid = ? AND eventid = ?",
+        [req.query.userId, id],
+        (err, results) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ error: err.message });
+            }
+            if (results.length > 0) {
+                res.status(200).send({
+                    interested: true,
+                });
+            } else {
+                res.status(200).send({
+                    interested: false,
+                });
+            }
+        }
+    );
+});
+
 // Set interested
 router.post("/interested/:id", (req, res) => {
     const { id } = req.params;
