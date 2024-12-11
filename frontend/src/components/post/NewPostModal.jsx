@@ -11,6 +11,7 @@ import axios from "axios";
 const NewPostModal = ({ handleAddPost}) => {
     const username = localStorage.getItem("user");
     const id = localStorage.getItem("userid");
+    const dpRaw = JSON.parse(localStorage.getItem("userdp"));
     const [chars, setChars] = useState(0);
     const [postDetails, setPostDetails] = useState({
         content: "",
@@ -75,9 +76,36 @@ const NewPostModal = ({ handleAddPost}) => {
         }
     };
 
-    const avatar = (
+    const dpImage =
+        dpRaw !== null
+            ? dpRaw.data.length > 0
+                ? `data:${dpRaw.data.mimetype};base64,${btoa(
+                      new Uint8Array(dpRaw.data).reduce(
+                          (data, byte) => data + String.fromCharCode(byte),
+                          ""
+                      )
+                  )}`
+                : null
+            : null;
+    const avatar = dpImage ? (
+        <div className="avatar justify-center">
+            <div
+                className="ring-secondary ring-offset-base-100 w-12 h-12 rounded-full ring ring-offset-2"
+                onClick={() =>
+                    document.getElementById("uploadpfp_modal").showModal()
+                }
+            >
+                <img src={dpImage} />
+            </div>
+        </div>
+    ) : (
         <div className="avatar placeholder">
-            <div className="bg-primary text-neutral-content w-12 h-12 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100">
+            <div
+                className="bg-primary text-neutral-content w-12 h-12 rounded-full ring ring-offset-2 ring-secondary ring-offset-base-100"
+                onClick={() =>
+                    document.getElementById("uploadpfp_modal").showModal()
+                }
+            >
                 <p className="text-xl cursor-default select-none">
                     {username.substring(1, 2).toUpperCase()}
                 </p>
