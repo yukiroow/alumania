@@ -10,7 +10,7 @@ import {
     /* @author Freskkie Encarnacion*/
 }
 
-const SearchBar = ({ setSearchQuery, setFilter }) => {
+const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
     const [selectedFilter, setSelectedFilter] = useState("Users");
     const [descending, setDescending] = useState(true);
 
@@ -23,13 +23,14 @@ const SearchBar = ({ setSearchQuery, setFilter }) => {
         setSelectedFilter(filter);
     };
 
-    const handleSortClick = (sort) => {
+    const handleSortClick = () => {
         const menu = document.activeElement;
         if (menu) {
             menu.blur();
         }
+        const newSortOrder = descending ? "ASC" : "DESC";
         setDescending((prev) => !prev);
-        // TODO: Sort
+        setSortOrder(newSortOrder);
     };
 
     return (
@@ -103,7 +104,7 @@ const SearchBar = ({ setSearchQuery, setFilter }) => {
                         className="dropdown-content mt-2 menu bg-white text-primary rounded-box z-[1] w-40 p-2 shadow"
                     >
                         <li className="text-center font-semibold mb-2 text-gray-400">
-                            Sort by publish date
+                            Sort by {selectedFilter === 'Users' ? 'username' : 'publish date'}
                         </li>
                         <li onClick={() => handleSortClick("asc")}>
                             <a>Ascending</a>
