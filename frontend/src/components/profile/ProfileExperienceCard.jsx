@@ -10,13 +10,12 @@ import DeletePostModal from "./DeletePostModal";
 }
 
 const ProfileExperienceCard = ({ experience }) => {
-    // TODO: PROPS PROPS DRAG TO SCROLL
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
     const userid = localStorage
         .getItem("userid")
         .substring(1, localStorage.getItem("userid").length - 1);
-    const carouselRef = useRef(null); // Reference for the carousel
+    const carouselRef = useRef(null);
 
     const handleMouseDown = (e) => {
         const carousel = carouselRef.current;
@@ -151,14 +150,22 @@ const ProfileExperienceCard = ({ experience }) => {
         <>
             <DeletePostModal xpid={experience.xpid} />
             <div className="relative first-line:justify-self-center join-item w-full bg-white border p-4 space-y-2">
-                <div
-                    className="absolute flex top-3 right-5 w-7 h-7 select-none cursor-pointer transition-all hover:bg-gray-200 rounded-full justify-center align-middle"
-                    onClick={() =>
-                        document.getElementById(`deletepost_modal${experience.xpid}`).showModal()
-                    }
-                >
-                    <span>&#x2715;</span>
-                </div>
+                {experience.userid === userid ? (
+                    <div
+                        className="absolute flex top-3 right-5 w-7 h-7 select-none cursor-pointer transition-all hover:bg-gray-200 rounded-full justify-center align-middle"
+                        onClick={() =>
+                            document
+                                .getElementById(
+                                    `deletepost_modal${experience.xpid}`
+                                )
+                                .showModal()
+                        }
+                    >
+                        <span>&#x2715;</span>
+                    </div>
+                ) : (
+                    ""
+                )}
                 <div className="flex mt-4 ml-4 mr-4 items-start space-x-5">
                     {avatar}
                     <div className="flex flex-col w-full">
@@ -174,7 +181,7 @@ const ProfileExperienceCard = ({ experience }) => {
                 {/* CAROUSEL */}
                 {experience.images.length > 0 ? (
                     <div
-                        className="carousel flex space-x-2 rounded-box h-64 max-w-full ml-20 scroll-smooth"
+                        className="carousel flex space-x-2 rounded-box h-64 max-w-full ml-20 scroll-smooth hover:cursor-grab active:cursor-grabbing"
                         ref={carouselRef}
                         onMouseDown={handleMouseDown}
                         onMouseLeave={handleMouseLeave}
