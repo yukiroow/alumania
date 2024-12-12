@@ -1,12 +1,9 @@
+// Author: @hiimjude Jude Angelo Ilumin
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
 import ExperienceImageUpload from "./ExperienceImageUpload";
 import axios from "axios";
-
-{
-    /* @author Jude Angelo Ilumin*/
-}
 
 const NewPostModal = ({ handleAddPost }) => {
     const username = localStorage.getItem("user");

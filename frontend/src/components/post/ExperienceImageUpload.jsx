@@ -1,3 +1,4 @@
+// Author: @hiimjude Jude Angelo Ilumin
 import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,15 +8,11 @@ import {
     faArrowCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-{
-    /* @author Jude Angelo Ilumin*/
-}
-
 const ExperienceImageUpload = ({ onImageUpload }) => {
     const [files, setFiles] = useState([]);
     const [previewUrls, setPreviewUrls] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const carouselRef = useRef(null); // Reference to carousel container
+    const carouselRef = useRef(null);
 
     const handleDrop = (event) => {
         event.preventDefault();
