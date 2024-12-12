@@ -72,7 +72,6 @@ const SignupPage = () => {
         const file = event.target.files[0];
 
         const allowedTypes = [
-            "application/pdf",
             "image/jpeg",
             "image/png",
             "image/jpg",
@@ -83,7 +82,7 @@ const SignupPage = () => {
         if (!allowedTypes.includes(file.type)) {
             setInputError((values) => ({
                 ...values,
-                diploma: "Only PDF, JPG, JPEG, and PNG files are allowed.",
+                diploma: "Only JPG, JPEG, and PNG files are allowed.",
             }));
             setUserData((values) => ({ ...values, diploma: null }));
             event.target.files;
