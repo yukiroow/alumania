@@ -47,6 +47,14 @@ const SponsorModal = ({ eventid, title }) => {
             }));
         }
 
+        if (Number(formData.amount) > 2_147_483_647) {
+            errors++;
+            setInputError((values) => ({
+                ...values,
+                amount: "Maximum amount reached! (PHP 2,147,483,647)",
+            }));
+        }
+
         if (errors > 0) return;
 
         const sponsor = async () => {

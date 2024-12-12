@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
 import ExperienceImageUpload from "./ExperienceImageUpload";
@@ -8,7 +8,7 @@ import axios from "axios";
     /* @author Jude Angelo Ilumin*/
 }
 
-const NewPostModal = ({ handleAddPost}) => {
+const NewPostModal = ({ handleAddPost }) => {
     const username = localStorage.getItem("user");
     const id = localStorage.getItem("userid");
     const dpRaw = JSON.parse(localStorage.getItem("userdp"));
@@ -18,6 +18,7 @@ const NewPostModal = ({ handleAddPost}) => {
         images: [],
         albumid: "",
     });
+    const [errorMessage, setErrorMessage] = useState("");
 
     const updateModal = (event) => {
         const content = event.target.value;
@@ -42,6 +43,13 @@ const NewPostModal = ({ handleAddPost}) => {
 
     const submitHandler = async (event) => {
         event.preventDefault();
+        setErrorMessage("");
+
+        if (postDetails.content === "" && postDetails.images.length < 1) {
+            setErrorMessage("Please enter some text or add photos");
+            return;
+        }
+
         const formData = new FormData();
 
         formData.append("userid", id.substring(1, id.length - 1));
@@ -162,7 +170,7 @@ const NewPostModal = ({ handleAddPost}) => {
                                 >
                                     {chars}/280
                                 </p>
-                                <div className="flex flex-row gap-1">
+                                <div className="flex flex-row items-center gap-3">
                                     <button
                                         className="btn btn-xs btn-outline btn-secondary"
                                         onClick={handleImageClick}
@@ -170,8 +178,14 @@ const NewPostModal = ({ handleAddPost}) => {
                                         <FontAwesomeIcon icon={faPhotoFilm} />
                                         Add Photos
                                     </button>
+                                    <span className="text-gray-400 text-xs">
+                                        {postDetails.images.length} uploaded
+                                    </span>
                                 </div>
-                                <div className="flex flex-row justify-end rounded-full">
+                                <div className="flex flex-row justify-end rounded-full items-center">
+                                    <span className="w-full text-left text-xs text-error italic">
+                                        {errorMessage}
+                                    </span>
                                     <button
                                         className="btn btn-secondary btn-sm w-[5rem] rounded-full transition-all hover:scale-105"
                                         type="submit"
