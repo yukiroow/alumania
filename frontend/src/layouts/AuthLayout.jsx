@@ -1,4 +1,4 @@
-// Author @yukiroow Harry Dominguez
+// Author: @yukiroow Harry Dominguez
 import { Outlet } from "react-router-dom";
 const AuthLayout = () => {
     return (

@@ -1,4 +1,4 @@
-// Author @yukiroow Harry Dominguez
+// Author: @yukiroow Harry Dominguez
 import { createContext, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";

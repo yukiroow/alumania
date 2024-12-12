@@ -1,4 +1,4 @@
-// Author @yukiroow Harry Dominguez
+// Author: @yukiroow Harry Dominguez
 import { useState } from "react";
 
 export const useLocalStorage = (keyName, defaultValue) => {
