@@ -4,7 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faMapLocation } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import JobModal from "./JobModal";
-
+/**
+ * JobSearchCard component displays a job card with details such as job title, type, company name,
+ * location, and description. It also calculates how long ago the job was posted and allows the user
+ * to open a modal for more detailed job information.
+ */
 const JobSearchCard = ({ job }) => {
     const [showModal, setShowModal] = useState(false);
 

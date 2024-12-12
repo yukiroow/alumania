@@ -7,7 +7,11 @@ import {
     faSortAmountDesc,
     faSortAmountAsc,
 } from "@fortawesome/free-solid-svg-icons";
-
+/**
+ * SearchBar component provides a UI for searching, filtering, and sorting content.
+ * It includes a search input field, a dropdown to select a filter (Users, Experiences, Jobs, Events),
+ * and a dropdown to toggle the sorting order (ascending/descending).
+ */
 const SearchBar = ({ setSearchQuery, setFilter, setSortOrder, setResults }) => {
     const [selectedFilter, setSelectedFilter] = useState("Users");
     const [descending, setDescending] = useState(true);

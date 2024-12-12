@@ -1,11 +1,16 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
+
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import DeletePostModal from "./DeletePostModal";
-
+/**
+ * Profile Experience Card that displays an experience post in the user's profile.
+ * It includes functionality to like/unlike the post, show a delete modal if the user is the post's author,
+ * and display images in a carousel. The card also calculates the time passed since the post was published.
+ */
 const ProfileExperienceCard = ({ experience }) => {
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
@@ -123,7 +128,7 @@ const ProfileExperienceCard = ({ experience }) => {
                       (data, byte) => data + String.fromCharCode(byte),
                       ""
                   )
-              )}`
+              )}` 
             : null
         : null;
 

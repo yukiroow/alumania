@@ -8,7 +8,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+/**
+ * that displays event details, allows users to show interest in an event, and toggle the display of descriptions.
+ */
+ 
 const EventSearchCard = (props) => {
     const event = props.event;
     const userId = localStorage.getItem("userid").replace(/['"]+/g, "");

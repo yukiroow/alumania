@@ -7,7 +7,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useState, useEffect } from "react";
-
+/**
+ * JobModal component, which displays detailed information about a job when a user clicks on it. 
+ */
 const JobModal = ({ job, calculateTimeAgo, onClose }) => {
     const userId = localStorage.getItem("userid").replace(/['"]+/g, "");
     const jobpId = job.jobpid;

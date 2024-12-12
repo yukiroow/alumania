@@ -1,8 +1,13 @@
 // Author: @yukiroow Harry Dominguez
+
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-
+/**
+ * Profile Picture Upload component that allows the user to upload a new profile photo.
+ * Displays a preview of the selected image and includes options to cancel or confirm the upload.
+ * Uses File API to handle image selection and previews before uploading.
+ */
 const ProfilePictureUpload = ({ onImageUpload }) => {
     const [file, setFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState("");
