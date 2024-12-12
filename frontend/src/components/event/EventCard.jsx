@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useState } from "react";
+import SponsorModal from "./SponsorModal";
 
 {
     /* @author Freskkie Encarnacion*/
@@ -87,6 +88,7 @@ const EventCard = (props) => {
 
     return (
         <>
+            <SponsorModal eventid={eventId} title={event.title} />
             <div className="flex items-center h-fit card lg:card-side bg-white border join-item">
                 <figure className="min-w-[33%] max-w-[33%]">
                     {/* TODO: Image Processing */}
@@ -164,7 +166,10 @@ const EventCard = (props) => {
                         </div>
                     </div>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-sm btn-outline btn-secondary w-[6rem] rounded-full">
+                        <button
+                            className="btn btn-sm btn-outline btn-secondary w-[6rem] rounded-full"
+                            onClick={() => toggleBanner(`sponsor-${eventId}`)}
+                        >
                             Sponsor
                         </button>
                         <button
