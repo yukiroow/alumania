@@ -1,4 +1,5 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
+//         @yukiroow Harry Dominguez
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBuilding,
@@ -22,7 +23,7 @@ const OpportunityPane = ({
                 userId: `${userId}`,
             })
             .then(() => {
-                setInterested([...interested, job]); // Add to the interested state
+                setInterested([...interested, job]);
             })
             .catch((error) => {
                 console.log(error);

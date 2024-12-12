@@ -1,4 +1,5 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
+//         @yukiroow Harry Dominguez
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
@@ -11,7 +12,7 @@ const ExperienceCard = ({ experience, onProfileClick }) => {
     const userid = localStorage
         .getItem("userid")
         .substring(1, localStorage.getItem("userid").length - 1);
-    const carouselRef = useRef(null); // Reference for the carousel
+    const carouselRef = useRef(null);
 
     const handleProfileClick = () => {
         onProfileClick(experience.userid);
@@ -165,7 +166,6 @@ const ExperienceCard = ({ experience, onProfileClick }) => {
                         <p className="mt-3 text-sm">{experience.body}</p>
                     </div>
                 </div>
-                {/* CAROUSEL */}
                 {experience.images.length > 0 ? (
                     <div
                         className="carousel flex space-x-2 rounded-box h-64 max-w-full ml-20 scroll-smooth hover:cursor-grab active:cursor-grabbing"
@@ -203,7 +203,6 @@ const ExperienceCard = ({ experience, onProfileClick }) => {
                 ) : (
                     ""
                 )}
-                {/* ICONS */}
                 <div className="flex justify-start items-center space-x-4 mt-4 mx-20">
                     <div className="flex items-center space-x-2 mt-1">
                         <FontAwesomeIcon

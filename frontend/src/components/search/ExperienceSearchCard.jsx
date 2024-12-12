@@ -1,4 +1,5 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
+//         @yukiroow Harry Dominguez
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";

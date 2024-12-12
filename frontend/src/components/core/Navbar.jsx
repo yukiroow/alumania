@@ -1,4 +1,5 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
+//         @yukiroow Harry Dominguez
 import { NavLink } from "react-router-dom";
 
 const NavBar = () => {

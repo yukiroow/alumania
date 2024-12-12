@@ -1,4 +1,5 @@
 // Author: @hiimjude Jude Angelo Ilumin
+//         @yukiroow Harry Dominguez
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";

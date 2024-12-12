@@ -1,4 +1,5 @@
-// Author @PEEACHYBEE Freskkie Encarnacion
+// Author: @PEEACHYBEE Freskkie Encarnacion
+//         @yukiroow Harry Dominguez
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHome,
