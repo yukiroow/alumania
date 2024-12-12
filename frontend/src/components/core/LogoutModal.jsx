@@ -1,4 +1,7 @@
 // Author: @yukiroow Harry Dominguez
+/**
+ * Logout Modal for when the logout button in the sidebar is clicked
+ */
 const LogoutModal = (props) => {
     return (
         <>

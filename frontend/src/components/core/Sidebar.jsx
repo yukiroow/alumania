@@ -15,6 +15,9 @@ import { useState } from "react";
 import NewPostModal from "../post/NewPostModal";
 import LogoutModal from "./LogoutModal";
 
+/**
+ * The main navigation bar (side) of the application
+ */
 const SideBar = () => {
     const { logout } = useAuth();
     const [addPost, setAddPost] = useState(false);

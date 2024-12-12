@@ -2,6 +2,9 @@
 //         @yukiroow Harry Dominguez
 import { NavLink } from "react-router-dom";
 
+/**
+ * Navigation bar for the Home Page
+ */
 const NavBar = () => {
     return (
         <>
