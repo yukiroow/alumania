@@ -1,5 +1,8 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
 //         @yukiroow Harry Dominguez
+/**
+ * Event Card for the list of all events
+ */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faMapLocation,
