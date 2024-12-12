@@ -1,4 +1,7 @@
 // Author: @yukiroow Harry Dominguez
+/**
+ * Sponsor Modal for the donations of the users
+ */
 import axios from "axios";
 import { useState } from "react";
 

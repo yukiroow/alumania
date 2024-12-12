@@ -1,5 +1,8 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
 //         @yukiroow Harry Dominguez
+/**
+ * Oppurtunity Card for the list of all the jobs
+ */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 

@@ -1,5 +1,8 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
 //         @yukiroow Harry Dominguez
+/**
+ * Oppurtunity Pane for the details of the jobs corresponding to the clicked card of the user
+ */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBuilding,

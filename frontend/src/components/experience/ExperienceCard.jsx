@@ -1,5 +1,8 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
 //         @yukiroow Harry Dominguez
+/**
+ * Experience Card for the posts of the user
+ */
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
