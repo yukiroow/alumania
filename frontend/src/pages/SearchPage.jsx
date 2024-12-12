@@ -56,6 +56,7 @@ const SearchPage = () => {
 
         const fetchSearch = async () => {
             setLoading(true);
+            if(searchQuery === "") return;
             try {
                 if (filter === "experiences") {
                     fetchExperiences();
@@ -76,7 +77,7 @@ const SearchPage = () => {
         };
 
         fetchSearch();
-    }, [searchQuery, sortOrder]);
+    }, [searchQuery, filter, sortOrder]);
 
     const sortResults = (data) => {
         if (filter === "users") {
@@ -112,6 +113,7 @@ const SearchPage = () => {
                 setFilter={setFilter}
                 sortOrder={sortOrder}
                 setSortOrder={setSortOrder}
+                setResults={setResults}
             />
 
             {!searchQuery ? (

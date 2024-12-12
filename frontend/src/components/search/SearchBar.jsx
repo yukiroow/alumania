@@ -8,7 +8,7 @@ import {
     faSortAmountAsc,
 } from "@fortawesome/free-solid-svg-icons";
 
-const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
+const SearchBar = ({ setSearchQuery, setFilter, setSortOrder, setResults }) => {
     const [selectedFilter, setSelectedFilter] = useState("Users");
     const [descending, setDescending] = useState(true);
 
@@ -19,6 +19,7 @@ const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
         }
         setFilter(filter.toLowerCase());
         setSelectedFilter(filter);
+        setResults([]);
     };
 
     const handleSortClick = () => {
