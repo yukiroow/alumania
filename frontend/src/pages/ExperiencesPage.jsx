@@ -5,6 +5,10 @@ import ErrorHero from "../components/ErrorHero";
 import ExperienceCard from "../components/experience/ExperienceCard";
 import ProfilePaneModal from "../components/profile/ProfilePaneModal";
 
+/**
+ * The events page containing all the public experiences from the database.
+ * Events are rendered 10 items at a time for performance reasons.
+ */
 const ExperiencesPage = () => {
     const [selectedProfile, setSelectedProfile] = useState(null);
     const [showModal, setShowModal] = useState(false);

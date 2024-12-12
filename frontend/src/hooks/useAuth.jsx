@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 const AuthContext = createContext();
 
+/**
+ * This Hook creates a browser context for the user credentials
+ * and provides a way to clear the context for a new user (logout)
+ */
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useLocalStorage("user", null);
     const [id, setId] = useLocalStorage("userid", null);

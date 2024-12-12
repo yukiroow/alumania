@@ -10,6 +10,10 @@ import JobSearchCard from "../components/search/JobSearchCard";
 import EventSearchCard from "../components/search/EventSearchCard";
 import ExperienceSearchCard from "../components/search/ExperienceSearchCard";
 
+/**
+ * The search page of the application.
+ * This page does not use the Outlet approach, conditional rendering is applied.
+ */
 const SearchPage = () => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);

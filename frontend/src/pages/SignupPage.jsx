@@ -5,6 +5,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+/**
+ * The signup page of the application.
+ * The data sent is multipart/form
+ */
 const SignupPage = () => {
     const nav = useNavigate();
     const [userData, setUserData] = useState({

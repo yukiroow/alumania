@@ -12,10 +12,10 @@ router.get("/:id", (req, res) => {
     const { id } = req.params;
     db.query(
         `SELECT userid, username, email, firstname, 
-      middlename, lastname, course, empstatus, 
-      location, company, displaypic, private 
-      FROM user INNER JOIN alumni USING(userid) 
-      WHERE userid = ?`,
+        middlename, lastname, course, empstatus, 
+        location, company, displaypic, private 
+        FROM user INNER JOIN alumni USING(userid) 
+        WHERE userid = ?`,
         [id],
         (err, results) => {
             if (err) return res.status(500).json({ error: err.message });
