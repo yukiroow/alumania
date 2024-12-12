@@ -4,6 +4,7 @@ import BannerText from "../assets/banner-text.svg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import TermsModal from "../components/TermsModal";
 
 /**
  * The signup page of the application.
@@ -39,7 +40,10 @@ const SignupPage = () => {
         password: "",
         confirmPassword: "",
         diploma: "",
+        agreeToTerms: "",
     });
+
+    const [agree, setAgree] = useState(false);
 
     const [error, setError] = useState("");
 
@@ -233,6 +237,14 @@ const SignupPage = () => {
             setInputError((values) => ({
                 ...values,
                 confirmPassword: "Passwords do not match!",
+            }));
+        }
+
+        if (!agree) {
+            errors++;
+            setInputError((values) => ({
+                ...values,
+                agreeToTerms: "Required",
             }));
         }
 
@@ -618,6 +630,35 @@ const SignupPage = () => {
                                 </span>
                             )}
                         </label>
+                    </div>
+                    <TermsModal />
+                    <div className="flex flex-row gap-5 justify-center w-10/12 mt-5">
+                        <input
+                            type="checkbox"
+                            className="checkbox checkbox-secondary hover:opacity-80"
+                            onClick={() => {
+                                setAgree((prev) => !prev);
+                            }}
+                        />
+                        <span className="label-text mr-10">
+                            I have read and agree to the{" "}
+                            <span
+                                className="underline cursor-pointer hover:text-secondary"
+                                onClick={() =>
+                                    document
+                                        .getElementById("terms_modal")
+                                        .showModal()
+                                }
+                            >
+                                Terms and Conditions and Privacy Policy
+                            </span>{" "}
+                            *
+                        </span>
+                        {inputError.agreeToTerms && (
+                            <span className="label-text text-error italic">
+                                {inputError.agreeToTerms}
+                            </span>
+                        )}
                     </div>
                     <div className="flex flex-row gap-5 justify-center items-center w-10/12 mt-10">
                         <input
