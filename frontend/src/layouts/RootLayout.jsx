@@ -5,6 +5,10 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+/**
+ * The main Layout of the application upon logging in.
+ * Contains the Sidebar and an Outlet for the different pages of the application.
+ */
 const RootLayout = () => {
     const location = useLocation();
     const nav = useNavigate();
