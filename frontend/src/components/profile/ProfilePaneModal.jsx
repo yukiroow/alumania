@@ -3,7 +3,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ErrorHero from "../ErrorHero";
 import ProfileExperienceCard from "./ProfileExperienceCard";
-
+/**
+ * Profile Pane Modal that displays user profile information and experiences
+ * when clicked. Fetches profile data and experiences from the backend and handles 
+ * display for public/private profiles. Displays loading spinner while data is 
+ * being fetched and error state if there's an issue with the request.
+ */
 const ProfilePaneModal = ({ userid, onClose }) => {
     const [profile, setProfile] = useState({
         username: "",

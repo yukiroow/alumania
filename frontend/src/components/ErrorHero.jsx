@@ -1,7 +1,10 @@
 // Author: @yukiroow Harry Dominguez
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+/**
+ * ErrorHero component that displays an error message and an option to refresh the page.
+ * It shows a warning icon, a message about the error, and a button to reload the page.
+ */
 const ErrorHero = () => {
     return (
         <>

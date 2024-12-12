@@ -9,23 +9,29 @@ import {
     faArrowCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * A component for uploading, previewing, and managing images in a modal.
+ */
 const ExperienceImageUpload = ({ onImageUpload }) => {
     const [files, setFiles] = useState([]);
     const [previewUrls, setPreviewUrls] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const carouselRef = useRef(null);
 
+    
     const handleDrop = (event) => {
         event.preventDefault();
         const droppedFiles = Array.from(event.dataTransfer.files);
         addFiles(droppedFiles);
     };
 
+    
     const handleFileInput = (event) => {
         const selectedFiles = Array.from(event.target.files);
         addFiles(selectedFiles);
     };
 
+    
     const addFiles = (newFiles) => {
         const totalFiles = newFiles.length;
         if (totalFiles > 10) {
@@ -37,10 +43,12 @@ const ExperienceImageUpload = ({ onImageUpload }) => {
         setPreviewUrls(newFiles.map((file) => URL.createObjectURL(file)));
     };
 
+   
     const handleDragOver = (event) => {
         event.preventDefault();
     };
 
+   
     const handleConfirm = () => {
         onImageUpload(files);
         document.getElementById("uploadimage_modal").close();
@@ -49,12 +57,14 @@ const ExperienceImageUpload = ({ onImageUpload }) => {
         setCurrentIndex(0);
     };
 
+    
     const handleNext = () => {
         if (currentIndex < previewUrls.length - 1) {
             setCurrentIndex(currentIndex + 1);
             scrollToIndex(currentIndex + 1);
         }
     };
+
 
     const handleBack = () => {
         if (currentIndex > 0) {

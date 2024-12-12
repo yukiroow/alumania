@@ -1,5 +1,11 @@
 // Author: @yukiroow Harry Dominguez
+
 import axios from "axios";
+/**
+ * Delete Post Modal for confirming the deletion of a post.
+ * This modal is triggered when a user attempts to delete an experience post.
+ * It sends a DELETE request to the server to remove the post and reloads the page upon success.
+ */
 const DeletePostModal = ({ xpid }) => {
     const fetchDeletePost = async () => {
         try {

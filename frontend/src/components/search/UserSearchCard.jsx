@@ -1,7 +1,10 @@
 // Author: @PEEACHYBEE Freskkie Encarnacion
 import ProfilePaneModal from "../profile/ProfilePaneModal";
 import { useState } from "react";
-
+/**
+ * UserSearchCard component that displays a user card with their profile picture (or initials),
+ * name, and a clickable area that opens a modal with more detailed information about the user.
+ */
 const UserSearchCard = ({ user }) => {
     const [showModal, setShowModal] = useState(false);
     const fullName = user.middlename

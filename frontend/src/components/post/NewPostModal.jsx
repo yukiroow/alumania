@@ -6,6 +6,9 @@ import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
 import ExperienceImageUpload from "./ExperienceImageUpload";
 import axios from "axios";
 
+/**
+ * A modal component for creating and submitting new posts with text and image uploads.
+ */
 const NewPostModal = ({ handleAddPost }) => {
     const username = localStorage.getItem("user");
     const id = localStorage.getItem("userid");
@@ -18,6 +21,9 @@ const NewPostModal = ({ handleAddPost }) => {
     });
     const [errorMessage, setErrorMessage] = useState("");
 
+    /**
+     * Updates the post content and adjusts the textarea height dynamically.
+     */
     const updateModal = (event) => {
         const content = event.target.value;
         setPostDetails((prev) => ({ ...prev, ["content"]: content }));
@@ -27,11 +33,17 @@ const NewPostModal = ({ handleAddPost }) => {
         textarea.style.height = `${textarea.scrollHeight}px`;
     };
 
+    /**
+     * Opens the image upload modal.
+     */
     const handleImageClick = (event) => {
         event.preventDefault();
         document.getElementById("uploadimage_modal").showModal();
     };
 
+    /**
+     * Handles new image uploads and updates the post details.
+     */
     const handleImageUpload = (newImages) => {
         setPostDetails((prev) => ({
             ...prev,
@@ -39,6 +51,9 @@ const NewPostModal = ({ handleAddPost }) => {
         }));
     };
 
+    /**
+     * Submits the post content and images to the server.
+     */
     const submitHandler = async (event) => {
         event.preventDefault();
         setErrorMessage("");
@@ -82,6 +97,9 @@ const NewPostModal = ({ handleAddPost }) => {
         }
     };
 
+    /**
+     * Generates the user's profile picture or a placeholder avatar.
+     */
     const dpImage =
         dpRaw !== null
             ? dpRaw.data.length > 0
@@ -101,7 +119,7 @@ const NewPostModal = ({ handleAddPost }) => {
                     document.getElementById("uploadpfp_modal").showModal()
                 }
             >
-                <img src={dpImage} />
+                <img src={dpImage}/>
             </div>
         </div>
     ) : (
