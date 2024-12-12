@@ -1,13 +1,10 @@
+// Author: @PEEACHYBEE Freskkie Encarnacion
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import DeletePostModal from "./DeletePostModal";
-
-{
-    /* @author Freskkie Encarnacion*/
-}
 
 const ProfileExperienceCard = ({ experience }) => {
     const [liked, setLiked] = useState(false);
@@ -39,7 +36,7 @@ const ProfileExperienceCard = ({ experience }) => {
         if (!carousel.isDown) return;
         e.preventDefault();
         const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - carousel.startX) * 2; // Adjust the scroll speed
+        const walk = (x - carousel.startX) * 2;
         carousel.scrollLeft = carousel.scrollLeft - walk;
     };
 
@@ -178,7 +175,6 @@ const ProfileExperienceCard = ({ experience }) => {
                         <p className="mt-3 text-sm">{experience.body}</p>
                     </div>
                 </div>
-                {/* CAROUSEL */}
                 {experience.images.length > 0 ? (
                     <div
                         className="carousel flex space-x-2 rounded-box h-64 max-w-full ml-20 scroll-smooth hover:cursor-grab active:cursor-grabbing"
@@ -216,7 +212,6 @@ const ProfileExperienceCard = ({ experience }) => {
                 ) : (
                     ""
                 )}
-                {/* ICONS */}
                 <div className="flex justify-start items-center space-x-4 mt-4 mx-20">
                     <div className="flex items-center space-x-2 mt-1">
                         <FontAwesomeIcon

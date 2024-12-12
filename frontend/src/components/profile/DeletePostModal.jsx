@@ -1,3 +1,4 @@
+// Author: @yukiroow Harry Dominguez
 import axios from "axios";
 const DeletePostModal = ({ xpid }) => {
     const fetchDeletePost = async () => {

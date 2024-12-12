@@ -1,3 +1,4 @@
+// Author: @yukiroow Harry Dominguez
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ErrorHero from "../ErrorHero";
@@ -50,17 +51,14 @@ const ProfilePaneModal = ({ userid, onClose }) => {
                 `http://localhost:2012/experiences/all/${userid}`
             );
 
-            // Use Promise.all to fetch images for each experience
             const experiencesWithImages = await Promise.all(
                 res.data.map(async (experience) => {
                     const xpid = experience.xpid;
 
-                    // Fetch images for each experience
                     const imagesResponse = await axios.get(
                         `http://localhost:2012/experiences/images/${xpid}`
                     );
 
-                    // Add the images to the experience object
                     return {
                         ...experience,
                         images: imagesResponse.data,
@@ -68,7 +66,6 @@ const ProfilePaneModal = ({ userid, onClose }) => {
                 })
             );
 
-            // Filter out duplicate experiences based on xpid
             setExperiences((prevExperiences) => {
                 const newExperiences = experiencesWithImages.filter(
                     (exp) => !prevExperiences.some((e) => e.xpid === exp.xpid)

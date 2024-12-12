@@ -1,3 +1,4 @@
+// Author: @yukiroow Harry Dominguez
 import axios from "axios";
 const SetVisibilityModal = ({ userid, isVisible }) => {
     const type = isVisible ? 0 : 1;
