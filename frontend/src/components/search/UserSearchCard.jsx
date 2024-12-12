@@ -1,8 +1,6 @@
+// Author: @PEEACHYBEE Freskkie Encarnacion
 import ProfilePaneModal from "../profile/ProfilePaneModal";
 import { useState } from "react";
-{
-    /* @author Freskkie Encarnacion*/
-}
 
 const UserSearchCard = ({ user }) => {
     const [showModal, setShowModal] = useState(false);

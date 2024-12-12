@@ -1,11 +1,8 @@
+// Author: @PEEACHYBEE Freskkie Encarnacion
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faMapLocation } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import JobModal from "./JobModal";
-
-{
-    /* @author Freskkie Encarnacion*/
-}
 
 const JobSearchCard = ({ job }) => {
     const [showModal, setShowModal] = useState(false);

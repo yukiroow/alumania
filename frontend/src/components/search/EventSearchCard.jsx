@@ -1,3 +1,4 @@
+// Author: @PEEACHYBEE Freskkie Encarnacion
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faMapLocation,
@@ -6,10 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-{
-    /* @author Freskkie Encarnacion*/
-}
 
 const EventSearchCard = (props) => {
     const event = props.event;
@@ -109,7 +106,6 @@ const EventSearchCard = (props) => {
         <>
             <div className="flex items-center h-fit card lg:card-side bg-white border join-item">
                 <figure className="min-w-[33%] max-w-[33%]">
-                    {/* TODO: Image Processing */}
                     <img
                         src={image}
                         alt="Event"

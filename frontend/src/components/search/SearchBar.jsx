@@ -1,3 +1,4 @@
+// Author: @PEEACHYBEE Freskkie Encarnacion
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,9 +7,6 @@ import {
     faSortAmountAsc,
 } from "@fortawesome/free-solid-svg-icons";
 
-{
-    /* @author Freskkie Encarnacion*/
-}
 const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
     const [selectedFilter, setSelectedFilter] = useState("Users");
     const [descending, setDescending] = useState(true);
@@ -35,7 +33,6 @@ const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
     return (
         <>
             <div className="relative flex justify-center items-center h-8 mt-7 text-base gap-0.5">
-                {/* Search Box */}
                 <div
                     className="flex items-center bg-[#FFFFFF] rounded-l-lg drop-shadow-md w-3/6 pl-2 
                 focus-within:outline-none focus-within:ring-1 focus-within:ring-blue-500"
@@ -52,7 +49,6 @@ const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
-                {/* Filter Dropdown */}
                 <div className="dropdown dropdown-bottom">
                     <div
                         tabIndex={0}
@@ -83,7 +79,6 @@ const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
                         </li>
                     </ul>
                 </div>
-                {/* Sort SVG with Dropdown */}
                 <div className="dropdown dropdown-bottom">
                     <div tabIndex={0} role="button" className="text-primary">
                         {descending ? (
