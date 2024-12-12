@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/core/Navbar";
 import { useLocation } from "react-router-dom";
