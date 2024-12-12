@@ -3,13 +3,8 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database").db;
 const multer = require("multer");
-
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
-
-router.get("/", (req, res) => {
-    res.send("Auth API endpoint.");
-});
 
 // Login
 router.post("/login", (req, res) => {
@@ -42,8 +37,6 @@ router.post("/signup", upload.single("diploma"), (req, res) => {
         course,
         password,
     } = req.body;
-
-    console.log(employment)
 
     const diploma = req.file ? req.file.buffer : null;
 
