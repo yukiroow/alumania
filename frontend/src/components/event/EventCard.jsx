@@ -1,3 +1,4 @@
+// Author: @PEEACHYBEE Freskkie Encarnacion
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faMapLocation,
@@ -7,10 +8,6 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import SponsorModal from "./SponsorModal";
-
-{
-    /* @author Freskkie Encarnacion*/
-}
 
 const EventCard = (props) => {
     const event = props.event;
@@ -91,7 +88,6 @@ const EventCard = (props) => {
             <SponsorModal eventid={eventId} title={event.title} />
             <div className="flex items-center h-fit card lg:card-side bg-white border join-item">
                 <figure className="min-w-[33%] max-w-[33%]">
-                    {/* TODO: Image Processing */}
                     <img
                         src={image}
                         alt="Event"
