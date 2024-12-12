@@ -9,7 +9,6 @@ import {
 {
     /* @author Freskkie Encarnacion*/
 }
-
 const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
     const [selectedFilter, setSelectedFilter] = useState("Users");
     const [descending, setDescending] = useState(true);

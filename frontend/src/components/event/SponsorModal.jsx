@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const SponsorModal = ({ eventid, title }) => {
     const userId = localStorage.getItem("userid").replace(/['"]+/g, "");
@@ -12,7 +12,6 @@ const SponsorModal = ({ eventid, title }) => {
         amount: "",
         type: "",
     });
-    const [success, setSuccess] = useState(false);
 
     const handleDropdownClick = () => {
         const menu = document.activeElement;
