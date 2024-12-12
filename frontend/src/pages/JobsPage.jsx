@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
@@ -22,7 +23,9 @@ const JobsPage = () => {
                     `http://localhost:2012/jobposts/interestedjobs/${userId}`
                 );
                 setJobs(res.data);
-                setInterested(resInterested.data === "nothing" ? [] : resInterested.data);
+                setInterested(
+                    resInterested.data === "nothing" ? [] : resInterested.data
+                );
             } catch (error) {
                 console.log(error);
                 setError(true);

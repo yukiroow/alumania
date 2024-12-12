@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import axios from "axios";
 import SearchBar from "../components/search/SearchBar";
 import ErrorHero from "../components/ErrorHero";
@@ -24,17 +25,14 @@ const SearchPage = () => {
                 `http://localhost:2012/search/experiences/${searchQuery}`
             );
 
-            // Use Promise.all to fetch images for each experience
             const experiencesWithImages = await Promise.all(
                 res.data.map(async (experience) => {
                     const xpid = experience.xpid;
 
-                    // Fetch images for each experience
                     const imagesResponse = await axios.get(
                         `http://localhost:2012/experiences/images/${xpid}`
                     );
 
-                    // Add the images to the experience object
                     return {
                         ...experience,
                         images: imagesResponse.data,
@@ -59,7 +57,7 @@ const SearchPage = () => {
         const fetchSearch = async () => {
             setLoading(true);
             try {
-                if(filter === "experiences") {
+                if (filter === "experiences") {
                     fetchExperiences();
                     setError(false);
                     return;
@@ -104,7 +102,7 @@ const SearchPage = () => {
                     : timestampB - timestampA;
             });
         }
-        return data; // Default return if no sorting criteria matched
+        return data;
     };
 
     return (
@@ -141,7 +139,10 @@ const SearchPage = () => {
                           ))
                         : filter === "experiences"
                         ? sortResults(results).map((experience, index) => (
-                              <ExperienceSearchCard key={index} experience={experience} />
+                              <ExperienceSearchCard
+                                  key={index}
+                                  experience={experience}
+                              />
                           ))
                         : filter === "events"
                         ? sortResults(results).map((event, index) => (

@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import Logo from "../assets/logo.svg";
 import BannerText from "../assets/banner-text.svg";
 import { useState, useEffect } from "react";
@@ -71,11 +72,7 @@ const SignupPage = () => {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
 
-        const allowedTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/jpg",
-        ];
+        const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
 
         if (!file) return;
 
@@ -207,11 +204,17 @@ const SignupPage = () => {
                 password: "Please enter your desired password!",
             }));
         }
-        if (userData.password && /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/.test(userData.password)) {
+        if (
+            userData.password &&
+            /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/.test(
+                userData.password
+            )
+        ) {
             errors++;
             setInputError((values) => ({
                 ...values,
-                password: "Password must be at least 8 characters, have a digit, a special, upper-case, and lower-case character.",
+                password:
+                    "Password must be at least 8 characters, have a digit, a special, upper-case, and lower-case character.",
             }));
         }
         if (!userData.confirmPassword) {
@@ -353,7 +356,7 @@ const SignupPage = () => {
                                     if (e.target.value.length > 25) return;
                                     handleFormInput(e);
                                 }}
-                                autoComplete="off"
+                                autoComplete="new-password"
                             />
                             {inputError.username && (
                                 <span className="label-text text-error italic">
@@ -575,7 +578,7 @@ const SignupPage = () => {
                                     if (e.target.value.length > 512) return;
                                     handleFormInput(e);
                                 }}
-                                autoComplete="new-off"
+                                autoComplete="new-password"
                             />
                             {inputError.password && (
                                 <span className="label-text text-error italic">
@@ -603,7 +606,7 @@ const SignupPage = () => {
                                     if (e.target.value.length > 64) return;
                                     handleFormInput(e);
                                 }}
-                                autoComplete="new-off"
+                                autoComplete="new-password"
                             />
                             {inputError.confirmPassword && (
                                 <span className="label-text text-error italic">

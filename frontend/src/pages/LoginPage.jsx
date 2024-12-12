@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import Logo from "../assets/logo.svg";
 import BannerText from "../assets/banner-text.svg";
 import { useState, useEffect } from "react";
@@ -95,6 +96,7 @@ const LoginPage = () => {
                         className="input input- input-bordered w-full max-w-xs block mb-2"
                         value={credentials["username"]}
                         onChange={handleFormInput}
+                        autoComplete="new-password"
                     />
                     <input
                         type="password"
@@ -103,6 +105,7 @@ const LoginPage = () => {
                         className="input input-bordered w-full max-w-xs block mt- mb-5"
                         value={credentials["password"]}
                         onChange={handleFormInput}
+                        autoComplete="new-password"
                     />
                     <input
                         type="submit"

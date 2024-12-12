@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -120,17 +121,14 @@ const ProfilePage = () => {
                 `http://localhost:2012/experiences/all/${userid}`
             );
 
-            // Use Promise.all to fetch images for each experience
             const experiencesWithImages = await Promise.all(
                 res.data.map(async (experience) => {
                     const xpid = experience.xpid;
 
-                    // Fetch images for each experience
                     const imagesResponse = await axios.get(
                         `http://localhost:2012/experiences/images/${xpid}`
                     );
 
-                    // Add the images to the experience object
                     return {
                         ...experience,
                         images: imagesResponse.data,
@@ -138,7 +136,6 @@ const ProfilePage = () => {
                 })
             );
 
-            // Filter out duplicate experiences based on xpid
             setExperiences((prevExperiences) => {
                 const newExperiences = experiencesWithImages.filter(
                     (exp) => !prevExperiences.some((e) => e.xpid === exp.xpid)

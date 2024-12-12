@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
@@ -29,7 +30,6 @@ const ExperiencesPage = () => {
                 `http://localhost:2012/experiences?page=${page}&limit=10`
             );
 
-            // Use Promise.all to fetch images for each experience
             const experiencesWithImages = await Promise.all(
                 res.data.map(async (experience) => {
                     const xpid = experience.xpid;
@@ -39,7 +39,6 @@ const ExperiencesPage = () => {
                         `http://localhost:2012/experiences/images/${xpid}`
                     );
 
-                    // Add the images to the experience object
                     return {
                         ...experience,
                         images: imagesResponse.data,
@@ -47,7 +46,6 @@ const ExperiencesPage = () => {
                 })
             );
 
-            // Filter out duplicate experiences based on xpid
             setExperiences((prevExperiences) => {
                 const newExperiences = experiencesWithImages.filter(
                     (exp) => !prevExperiences.some((e) => e.xpid === exp.xpid)
@@ -55,7 +53,6 @@ const ExperiencesPage = () => {
                 return [...prevExperiences, ...newExperiences];
             });
 
-            // Check if there are more experiences to load
             setHasMore(res.data.length === 10);
         } catch (error) {
             setError(true);
@@ -80,7 +77,6 @@ const ExperiencesPage = () => {
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
 
-        // Cleanup the event listener on unmount
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };

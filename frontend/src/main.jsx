@@ -7,7 +7,6 @@ import SignupPage from "./pages/SignupPage";
 import ErrorPage from "./pages/ErrorPage";
 import SearchPage from "./pages/SearchPage";
 import ExperiencesPage from "./pages/ExperiencesPage";
-import AlbumsPage from "./pages/AlbumsPage";
 import EventsPage from "./pages/EventsPage";
 import JobsPage from "./pages/JobsPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -39,7 +38,6 @@ createRoot(document.getElementById("root")).render(
                                 path="experiences"
                                 element={<ExperiencesPage />}
                             />
-                            <Route path="albums" element={<AlbumsPage />} />
                             <Route path="events" element={<EventsPage />} />
                             <Route
                                 path="opportunities"

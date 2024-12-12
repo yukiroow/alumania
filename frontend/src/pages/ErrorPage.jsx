@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import gif from "../assets/cat404.gif";
 import { useNavigate } from "react-router-dom";
 

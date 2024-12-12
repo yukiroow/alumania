@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
@@ -54,7 +55,6 @@ const EventsPage = () => {
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
 
-        // Cleanup the event listener on unmount
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
