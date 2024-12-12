@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -45,10 +46,7 @@ createRoot(document.getElementById("root")).render(
                             />
                         </Route>
                         <Route path="search" element={<SearchPage />} />
-                        <Route
-                            path="profile"
-                            element={<ProfilePage />}
-                        />
+                        <Route path="profile" element={<ProfilePage />} />
                     </Route>
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
