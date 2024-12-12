@@ -92,4 +92,22 @@ router.post("/disregard/:id", (req, res) => {
     );
 });
 
+router.post("/sponsor/:id", (req, res) => {
+    const { id } = req.params;
+    const { userid, amount, type } = req.body;
+    db.query(
+        "INSERT INTO eventsponsor (type, amount, userid, eventid) VALUES (?, ?, ?, ?)",
+        [type, amount, userid, id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ error: err.message });
+            }
+            res.status(201).send({
+                message: "Success",
+            });
+        }
+    );
+});
+
 module.exports = router;
