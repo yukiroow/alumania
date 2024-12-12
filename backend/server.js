@@ -1,4 +1,6 @@
-//Lapig & Maga
+// Author: @yukiroow Harry Dominguez
+//         @blueskatchy Cazandra Jae Lapig
+//         @cayeelii Cariel Joyce Maga
 const express = require("express");
 const app = express();
 const cors = require("cors");

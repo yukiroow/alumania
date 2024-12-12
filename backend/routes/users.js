@@ -1,18 +1,13 @@
-//Lapig & Maga
+// Author: @yukiroow Harry Dominguez
+//         @blueskatchy Cazandra Jae Lapig
+//         @cayeelii Cariel Joyce Maga
 const express = require("express");
 const router = express.Router();
 const db = require("../database").db;
 const multer = require("multer");
 const upload = multer();
 
-// Get all User
-router.get("/", (req, res) => {
-    db.query("SELECT * FROM user", (err, results) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(results);
-    });
-});
-
+// Get User details
 router.get("/:id", (req, res) => {
     const { id } = req.params;
     db.query(
@@ -29,6 +24,7 @@ router.get("/:id", (req, res) => {
     );
 });
 
+// Set profile visible/invisible
 router.put("/setvisible/:id", (req, res) => {
     const { id } = req.params;
     const { type } = req.body;
@@ -46,6 +42,7 @@ router.put("/setvisible/:id", (req, res) => {
     );
 });
 
+// Upload profile picture
 router.post("/uploadpfp/:id", upload.single("image"), (req, res) => {
     const { id } = req.params;
     const pic = req.file.buffer;

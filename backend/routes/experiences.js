@@ -1,26 +1,12 @@
-//Lapig & Maga
+// Author: @yukiroow Harry Dominguez
+//         @blueskatchy Cazandra Jae Lapig
+//         @cayeelii Cariel Joyce Maga
 const express = require("express");
 const router = express.Router();
 const db = require("../database").db;
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
-
-// Get all albums of a user
-router.get("/albums/:id", (req, res) => {
-    const { id } = req.params;
-    db.query("SELECT * FROM album WHERE ownerid = ?", [id], (err, results) => {
-        if (err) {
-            console.log(err);
-            return res.status(500).json({ error: err.message });
-        }
-        if (results.length > 0) {
-            res.status(200).json(results);
-        } else {
-            res.status(404).send("nothing");
-        }
-    });
-});
 
 // Get all experiences of a user
 router.get("/all/:id", (req, res) => {
@@ -43,7 +29,7 @@ router.get("/all/:id", (req, res) => {
     );
 });
 
-// Get all Experience
+// Get all Experiences
 router.get("/", (req, res) => {
     const { page = 1, limit = 5 } = req.query;
     const offset = (page - 1) * limit;
@@ -87,16 +73,14 @@ router.get("/images/:id", (req, res) => {
 router.post("/new", upload.array("images"), (req, res) => {
     const { content, userid } = req.body;
     try {
-        // 1. Generate new XPID
         db.query("SELECT CAST(SUBSTRING(xpid, 3) AS UNSIGNED) AS count FROM experience ORDER BY count DESC", (err, results) => {
             if (err) {
                 console.log(err);
             }
             let result = results[0].count;
 
-            const nextID = `XP${String(result + 1).padStart(3, "0")}`; // e.g., XP001, XP002
+            const nextID = `XP${String(result + 1).padStart(3, "0")}`;
 
-            // 2. Insert into `experience` table
             db.query(
                 "INSERT INTO experience (xpid, body, userid) VALUES (?, ?, ?)",
                 [nextID, content, userid],
@@ -105,13 +89,12 @@ router.post("/new", upload.array("images"), (req, res) => {
                         console.log(err);
                     }
 
-                    // 3. Insert each image into `experienceimage` table
                     req.files.map((file) =>
                         db.query(
                             "INSERT INTO experienceimage (xpid, xpimage) VALUES (?, ?)",
                             [
                                 nextID,
-                                file.buffer, // `buffer` contains the image data in binary form
+                                file.buffer,
                             ],
                             (err) => {
                                 if (err) {
@@ -134,7 +117,7 @@ router.post("/new", upload.array("images"), (req, res) => {
     }
 });
 
-// Get all Experience Like
+// Get all Experience Likes
 router.get("/likes/:id", (req, res) => {
     const { id } = req.params;
     db.query(
@@ -151,6 +134,7 @@ router.get("/likes/:id", (req, res) => {
     );
 });
 
+// Check if experience is liked by user
 router.get("/isliked/:id", (req, res) => {
     const { id } = req.params;
     const { userid } = req.query;
@@ -168,6 +152,7 @@ router.get("/isliked/:id", (req, res) => {
     );
 });
 
+// Like a post
 router.post("/likepost/:id", (req, res) => {
     const { id } = req.params;
     const { userid } = req.body;
@@ -184,6 +169,7 @@ router.post("/likepost/:id", (req, res) => {
     );
 });
 
+// Unlike a post
 router.post("/unlikepost/:id", (req, res) => {
     const { id } = req.params;
     const { userid } = req.body;

@@ -1,4 +1,6 @@
-//Lapig & Maga
+// Author: @yukiroow Harry Dominguez
+//         @blueskatchy Cazandra Jae Lapig
+//         @cayeelii Cariel Joyce Maga
 const mysql = require('mysql2');
 require("dotenv").config();
 

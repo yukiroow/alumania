@@ -1,9 +1,11 @@
-//Lapig & Maga
+// Author: @yukiroow Harry Dominguez
+//         @blueskatchy Cazandra Jae Lapig
+//         @cayeelii Cariel Joyce Maga
 const express = require("express");
 const router = express.Router();
 const db = require("../database").db;
 
-// Get all Event
+// Get all Events
 router.get("/", (req, res) => {
     const { page = 1, limit = 5 } = req.query;
     const offset = (page - 1) * limit;
@@ -73,7 +75,7 @@ router.post("/interested/:id", (req, res) => {
     );
 });
 
-// Set interested
+// Set uninterested
 router.post("/disregard/:id", (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;
@@ -92,6 +94,7 @@ router.post("/disregard/:id", (req, res) => {
     );
 });
 
+// Create sponsorship
 router.post("/sponsor/:id", (req, res) => {
     const { id } = req.params;
     const { userid, amount, type } = req.body;

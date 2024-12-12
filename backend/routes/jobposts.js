@@ -1,4 +1,6 @@
-//Lapig & Maga
+// Author: @yukiroow Harry Dominguez
+//         @blueskatchy Cazandra Jae Lapig
+//         @cayeelii Cariel Joyce Maga
 const express = require("express");
 const router = express.Router();
 const db = require("../database").db;
@@ -74,7 +76,7 @@ router.post("/interested/:id", (req, res) => {
     );
 });
 
-// Set interested
+// Set uninterested
 router.post("/disregard/:id", (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;

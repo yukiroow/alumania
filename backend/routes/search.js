@@ -1,8 +1,9 @@
-// Dominguez
+// Author: @yukiroow Harry Dominguez
 const express = require("express");
 const router = express.Router();
 const db = require("../database").db;
 
+// Search events
 router.get("/events/:query", (req, res) => {
     const { query } = req.params;
     db.query(
@@ -19,6 +20,7 @@ router.get("/events/:query", (req, res) => {
     );
 });
 
+// Search experiences
 router.get("/experiences/:query", (req, res) => {
     const { query } = req.params;
     db.query(
@@ -40,6 +42,7 @@ router.get("/experiences/:query", (req, res) => {
     );
 });
 
+// Search opportunities
 router.get("/opportunities/:query", (req, res) => {
     const { query } = req.params;
     db.query(
@@ -55,6 +58,7 @@ router.get("/opportunities/:query", (req, res) => {
     );
 });
 
+// Search users
 router.get("/users/:query", (req, res) => {
     const { query } = req.params;
     db.query(
