@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import axios from "axios";
 
+/**
+ * The login page of the application.
+ * The data sent to the backend is JSON.
+ */
 const LoginPage = () => {
     const nav = useNavigate();
     const { login, user } = useAuth();

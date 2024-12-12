@@ -2,6 +2,9 @@
 import gif from "../assets/cat404.gif";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Fallback page for Errors in rendering and fetching.
+ */
 const ErrorPage = () => {
     const nav = useNavigate();
     return (

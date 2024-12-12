@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
 import EventCard from "../components/event/EventCard";
 
+/**
+ * The events page containing all the events from the database.
+ * Events are rendered 10 items at a time for performance reasons.
+ */
 const EventsPage = () => {
     const [events, setEvents] = useState([]);
     const [interested, setInterested] = useState([]);

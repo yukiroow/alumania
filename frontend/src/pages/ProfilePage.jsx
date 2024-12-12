@@ -8,6 +8,11 @@ import ProfileExperienceCard from "../components/profile/ProfileExperienceCard";
 import SetVisibilityModal from "../components/profile/SetVisibilityModal";
 import ProfilePictureUpload from "../components/profile/ProfilePictureUpload";
 
+/**
+ * The Profile Page of the application.
+ * This page uses the username and userid from the AuthContext,
+ * all other information are fetched.
+ */
 const ProfilePage = () => {
     const userid = localStorage
         .getItem("userid")

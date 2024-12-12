@@ -1,5 +1,4 @@
 // Author: @yukiroow Harry Dominguez
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
@@ -17,40 +16,39 @@ import HomeLayout from "./layouts/HomeLayout";
 import { ProtectedRoute } from "./components/core/ProtectedRoute";
 import { AuthProvider } from "./hooks/useAuth";
 
+/**
+ * The main file renders all the components in the index.html file in the root directory
+ * The routing and route protection is applied here.
+ */
 createRoot(document.getElementById("root")).render(
-    <StrictMode>
-        <BrowserRouter>
-            <AuthProvider>
-                <Routes>
-                    <Route path="/" element={<AuthLayout />}>
-                        <Route index element={<LoginPage />} />
-                        <Route path="signup" element={<SignupPage />} />
+    <BrowserRouter>
+        <AuthProvider>
+            <Routes>
+                <Route path="/" element={<AuthLayout />}>
+                    <Route index element={<LoginPage />} />
+                    <Route path="signup" element={<SignupPage />} />
+                </Route>
+                <Route
+                    path="/app"
+                    element={
+                        <ProtectedRoute>
+                            <RootLayout />
+                        </ProtectedRoute>
+                    }
+                >
+                    <Route path="home" element={<HomeLayout />}>
+                        <Route
+                            path="experiences"
+                            element={<ExperiencesPage />}
+                        />
+                        <Route path="events" element={<EventsPage />} />
+                        <Route path="opportunities" element={<JobsPage />} />
                     </Route>
-                    <Route
-                        path="/app"
-                        element={
-                            <ProtectedRoute>
-                                <RootLayout />
-                            </ProtectedRoute>
-                        }
-                    >
-                        <Route path="home" element={<HomeLayout />}>
-                            <Route
-                                path="experiences"
-                                element={<ExperiencesPage />}
-                            />
-                            <Route path="events" element={<EventsPage />} />
-                            <Route
-                                path="opportunities"
-                                element={<JobsPage />}
-                            />
-                        </Route>
-                        <Route path="search" element={<SearchPage />} />
-                        <Route path="profile" element={<ProfilePage />} />
-                    </Route>
-                    <Route path="*" element={<ErrorPage />} />
-                </Routes>
-            </AuthProvider>
-        </BrowserRouter>
-    </StrictMode>
+                    <Route path="search" element={<SearchPage />} />
+                    <Route path="profile" element={<ProfilePage />} />
+                </Route>
+                <Route path="*" element={<ErrorPage />} />
+            </Routes>
+        </AuthProvider>
+    </BrowserRouter>
 );

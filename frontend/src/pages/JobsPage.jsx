@@ -7,6 +7,12 @@ import OpportunityPane from "../components/opportunity/OpportunityPane";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPersonThroughWindow } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * The events page containing all the jobs from the database.
+ * This page is divided into two sections: The Cards Section and the Display Pane.
+ * The Cards Section contains all the Opportunity Cards and the Display Pane
+ * displays the information of the opportunity card that has been selected.
+ */
 const JobsPage = () => {
     const [jobs, setJobs] = useState([]);
     const [selectedJob, setSelectedJob] = useState(null);
