@@ -1,9 +1,6 @@
+// Author: @PEEACHYBEE Freskkie Encarnacion
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-
-{
-    /* @author Freskkie Encarnacion*/
-}
 
 const OpportunityCard = ({
     job,

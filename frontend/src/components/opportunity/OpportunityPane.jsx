@@ -1,3 +1,4 @@
+// Author: @PEEACHYBEE Freskkie Encarnacion
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBuilding,
@@ -5,10 +6,6 @@ import {
     faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-
-{
-    /* @author Freskkie Encarnacion*/
-}
 
 const OpportunityPane = ({
     job,
