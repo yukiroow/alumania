@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import { createContext, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
@@ -9,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     const [dp, setDp] = useLocalStorage("userdp", null);
     const navigate = useNavigate();
 
-    const login = async ({user, id, dp}) => {
+    const login = async ({ user, id, dp }) => {
         setUser(user);
         setId(id);
         setDp(dp);
@@ -31,7 +32,9 @@ export const AuthProvider = ({ children }) => {
         }),
         [user, id, dp]
     );
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+    );
 };
 
 export const useAuth = () => {

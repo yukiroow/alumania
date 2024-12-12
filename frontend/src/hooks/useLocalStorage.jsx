@@ -1,3 +1,4 @@
+// Author @yukiroow Harry Dominguez
 import { useState } from "react";
 
 export const useLocalStorage = (keyName, defaultValue) => {
@@ -7,7 +8,10 @@ export const useLocalStorage = (keyName, defaultValue) => {
             if (value) {
                 return JSON.parse(value);
             } else {
-                window.localStorage.setItem(keyName, JSON.stringify(defaultValue));
+                window.localStorage.setItem(
+                    keyName,
+                    JSON.stringify(defaultValue)
+                );
                 return defaultValue;
             }
         } catch (err) {
