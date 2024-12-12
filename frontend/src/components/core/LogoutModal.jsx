@@ -1,3 +1,4 @@
+// Author: @yukiroow Harry Dominguez
 const LogoutModal = (props) => {
     return (
         <>

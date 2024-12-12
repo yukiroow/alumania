@@ -1,3 +1,4 @@
+// Author @PEEACHYBEE Freskkie Encarnacion
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHome,
@@ -12,10 +13,6 @@ import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import NewPostModal from "../post/NewPostModal";
 import LogoutModal from "./LogoutModal";
-
-{
-    /* @author Freskkie Encarnacion*/
-}
 
 const SideBar = () => {
     const { logout } = useAuth();
@@ -34,9 +31,7 @@ const SideBar = () => {
             <LogoutModal auth={logout} />
             <NewPostModal handleAddPost={handleAddPost} />
             <nav className="flex flex-col h-screen w-20 items-center py-9 fixed top-0 left-0 z-50">
-                {/* Top Logo */}
                 <img src={Logo} alt="Logo" className="w-10 h-10" />
-                {/* Middle Icons */}
                 <div className="flex flex-col items-center space-y-9 flex-grow justify-center">
                     <NavLink to="/app/home">
                         {({ isActive }) => (
@@ -99,7 +94,6 @@ const SideBar = () => {
                             </div>
                         )}
                     </NavLink>
-                    {/* Bottom Logout Icon */}
                     <FontAwesomeIcon
                         icon={faSignOutAlt}
                         onClick={handleLogout}
