@@ -78,7 +78,7 @@ const SearchPage = () => {
         };
 
         fetchSearch();
-    }, [searchQuery, filter, sortOrder]);
+    }, [searchQuery, sortOrder]);
 
     const sortResults = (data) => {
         if (filter === "users") {
