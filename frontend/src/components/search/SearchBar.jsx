@@ -68,18 +68,18 @@ const SearchBar = ({ setSearchQuery, setFilter, setSortOrder }) => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="dropdown-content mt-2 menu bg-white text-primary rounded-box z-[1] w-32 p-2 shadow"
+                        className="dropdown-content mt-2 menu bg-white text-primary rounded-box z-[1] w-32 shadow"
                     >
-                        <li onClick={() => handleFilterClick("Users")}>
+                        <li onClick={() => handleFilterClick("Users")} className="w-full">
                             <a>Users</a>
                         </li>
-                        <li onClick={() => handleFilterClick("Experiences")}>
+                        <li onClick={() => handleFilterClick("Experiences")} className="w-full">
                             <a>Experiences</a>
                         </li>
-                        <li onClick={() => handleFilterClick("Opportunities")}>
-                            <a>Opportunities</a>
+                        <li onClick={() => handleFilterClick("Opportunities")} className="w-full">
+                            <a>Jobs</a>
                         </li>
-                        <li onClick={() => handleFilterClick("Events")}>
+                        <li onClick={() => handleFilterClick("Events")} className="w-full">
                             <a>Events</a>
                         </li>
                     </ul>
