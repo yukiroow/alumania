@@ -33,7 +33,6 @@ Alumania is a Social Media platform for Saint Louis University Baguio's alumnis 
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
 ### Prerequisites
 
 You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) installed.
