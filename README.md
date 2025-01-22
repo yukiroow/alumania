@@ -56,6 +56,24 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
    npm install
    ```
 
+### How to run the application
+
+1. Validate the .env file for your MySQL's user credentials and port
+
+2. Run the backend module
+  ```sh
+  cd backend
+  npm run dev
+  ```
+
+3. Run the frontend module
+  ```sh
+  cd frontend
+  npm run dev
+  ```
+
+4. Open the website: https://localhost:5173/
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Express.js]: https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white
