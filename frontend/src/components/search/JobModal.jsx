@@ -129,7 +129,7 @@ const JobModal = ({ job, calculateTimeAgo, onClose }) => {
                                 <h2 className="text-primary font-bold mt-2 text-xl">
                                     Job Details
                                 </h2>
-                                <p className="text-primary h-auto flex-grow-0">
+                                <p className="text-primary h-auto flex-grow-0 whitespace-pre-line">
                                     {job.description}
                                 </p>
                                 <section>

@@ -161,7 +161,7 @@ const ExperienceSearchCard = ({ experience }) => {
                                 {calculateTimeAgo(experience.publishtimestamp)}
                             </p>
                         </div>
-                        <p className="mt-3 text-sm">{experience.body}</p>
+                        <p className="mt-3 text-sm whitespace-pre-line">{experience.body}</p>
                     </div>
                 </div>
                 {experience.images.length > 0 ? (

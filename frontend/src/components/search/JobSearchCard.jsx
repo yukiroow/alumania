@@ -84,7 +84,7 @@ const JobSearchCard = ({ job }) => {
                     <FontAwesomeIcon icon={faMapLocation} className="h-5 w-5" />
                     <p>{job.location}</p>
                 </div>
-                <p className="mt-4 ml-7 text-primary">{job.description}</p>
+                <p className="mt-4 ml-7 text-primary whitespace-pre-line line-clamp-3">{job.description}</p>
             </div>
         </>
     );
