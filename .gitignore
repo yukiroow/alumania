@@ -8,7 +8,6 @@ frontend/pnpm-debug.log*
 frontend/lerna-debug.log*
 
 frontend/node_modules
-backend/.env
 backend/node_modules
 frontend/dist
 backend/dist
