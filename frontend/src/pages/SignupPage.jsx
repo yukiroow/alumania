@@ -510,27 +510,31 @@ const SignupPage = () => {
                                 </span>
                             )}
                         </label>
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text">Company Name</span>
-                            </div>
-                            <input
-                                type="text"
-                                name="company"
-                                placeholder="Enter your company name"
-                                className="input input-bordered w-full max-w-xs"
-                                value={userData["company"]}
-                                onChange={(e) => {
-                                    if (e.target.value.length > 30) return;
-                                    handleFormInput(e);
-                                }}
-                            />
-                            {inputError.company && (
-                                <span className="label-text text-error italic">
-                                    {inputError.company}
-                                </span>
-                            )}
-                        </label>
+                        {userData["employment"] !== "Unemployed" && (
+                            <label className="form-control w-full max-w-xs">
+                                <div className="label">
+                                    <span className="label-text">
+                                        Company Name
+                                    </span>
+                                </div>
+                                <input
+                                    type="text"
+                                    name="company"
+                                    placeholder="Enter your company name"
+                                    className="input input-bordered w-full max-w-xs"
+                                    value={userData["company"]}
+                                    onChange={(e) => {
+                                        if (e.target.value.length > 30) return;
+                                        handleFormInput(e);
+                                    }}
+                                />
+                                {inputError.company && (
+                                    <span className="label-text text-error italic">
+                                        {inputError.company}
+                                    </span>
+                                )}
+                            </label>
+                        )}
                     </div>
                     <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
