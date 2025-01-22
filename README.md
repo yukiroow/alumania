@@ -60,19 +60,22 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
 
 1. Validate the .env file for your MySQL's user credentials and port
 
-2. Run the backend module
+2. Change your `max_allowed_packet` parameter to `10M` in your MySQL Configuration (C:\xampp\mysql\bin\my.ini)
+   (Don't forget to restart your XAMPP / WAMPP)
+
+3. Run the backend module
   ```sh
   cd backend
   npm run dev
   ```
 
-3. Run the frontend module
+4. Run the frontend module
   ```sh
   cd frontend
   npm run dev
   ```
 
-4. Open the website: https://localhost:5173/
+5. Open the website: https://localhost:5173/
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
