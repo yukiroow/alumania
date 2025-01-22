@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/yukiroow/alumania">
     <img src="frontend/src/assets/logo.svg" alt="Logo" width="106" height="98">
   </a>
 
@@ -21,15 +21,9 @@
 
 Alumania is a Social Media platform for Saint Louis University Baguio's alumnis and graduating students. It allows its users to be up to date with events and other university updates. This repository contains the source code for the Alumni Application.
 
-
-
-
 ### Built With
 
 [![Express][Express.js]][Express-url] [![React][React.js]][React-url] [![Tailwind][Tailwind.icon]][Tailwind-url] [![MySQL][MYSQL.logo]][MYSQL-url]
-
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -58,24 +52,26 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
 
 ### How to run the application
 
-1. Validate the .env file for your MySQL's user credentials and port
+1. All resources are included in this repository. Please create a Database named `alumaniadb` before importing the `.sql` file in the `db_dumps` directory.
 
-2. Change your `max_allowed_packet` parameter to `10M` in your MySQL Configuration (C:\xampp\mysql\bin\my.ini)
+2. Validate the `.env` file in `/backend` for your MySQL's user credentials and port
+
+3. Change your `max_allowed_packet` parameter to `10M` in your MySQL Configuration (C:\xampp\mysql\bin\my.ini)
    (Don't forget to restart your XAMPP / WAMPP)
 
-3. Run the backend module
+4. Run the backend module
   ```sh
   cd backend
   npm run dev
   ```
 
-4. Run the frontend module
+5. Run the frontend module
   ```sh
   cd frontend
   npm run dev
   ```
 
-5. Open the website: https://localhost:5173/
+6. Open the website: https://localhost:5173/
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
