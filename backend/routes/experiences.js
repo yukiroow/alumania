@@ -73,39 +73,39 @@ router.get("/images/:id", (req, res) => {
 router.post("/new", upload.array("images"), (req, res) => {
     const { content, userid } = req.body;
     try {
-        db.query("SELECT CAST(SUBSTRING(xpid, 3) AS UNSIGNED) AS count FROM experience ORDER BY count DESC", (err, results) => {
-            if (err) {
-                console.log(err);
-            }
-            let result = results[0].count;
-
-            const nextID = `XP${String(result + 1).padStart(3, "0")}`;
-
-            db.query(
-                "INSERT INTO experience (xpid, body, userid) VALUES (?, ?, ?)",
-                [nextID, content, userid],
-                (err) => {
-                    if (err) {
-                        console.log(err);
-                    }
-
-                    req.files.map((file) =>
-                        db.query(
-                            "INSERT INTO experienceimage (xpid, xpimage) VALUES (?, ?)",
-                            [
-                                nextID,
-                                file.buffer,
-                            ],
-                            (err) => {
-                                if (err) {
-                                    console.log(err);
-                                }
-                            }
-                        )
-                    );
+        db.query(
+            "SELECT CAST(SUBSTRING(xpid, 3) AS UNSIGNED) AS count FROM experience ORDER BY count DESC",
+            (err, results) => {
+                if (err) {
+                    console.log(err);
                 }
-            );
-        });
+                let result = results[0].count;
+
+                const nextID = `XP${String(result + 1).padStart(3, "0")}`;
+
+                db.query(
+                    "INSERT INTO experience (xpid, body, userid) VALUES (?, ?, ?)",
+                    [nextID, content, userid],
+                    (err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        req.files.map((file) =>
+                            db.query(
+                                "INSERT INTO experienceimage (xpid, xpimage) VALUES (?, ?)",
+                                [nextID, file.buffer],
+                                (err) => {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                }
+                            )
+                        );
+                    }
+                );
+            }
+        );
 
         res.status(200).json({ message: "Experience created successfully!" });
     } catch (error) {
@@ -194,9 +194,7 @@ router.delete("/removexperience/:id", (req, res) => {
         [id],
         (err, result) => {
             if (err) {
-                console.error(
-                    "Error executing query: " + err.stack
-                );
+                console.error("Error executing query: " + err.stack);
                 return res.status(400).send("error");
             }
             db.query(
@@ -204,9 +202,7 @@ router.delete("/removexperience/:id", (req, res) => {
                 [id],
                 (err, result) => {
                     if (err) {
-                        console.error(
-                            "Error executing query: " + err.stack
-                        );
+                        console.error("Error executing query: " + err.stack);
                         return res.status(400).send("error");
                     }
                     db.query(
