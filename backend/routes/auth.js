@@ -24,7 +24,7 @@ router.post("/login", (req, res) => {
 });
 
 // Signup
-router.post("/signup", upload.single("diploma"), (req, res) => {
+router.post("/signup", upload.single("displaypic"), (req, res) => {
     const {
         firstName,
         middleName,
@@ -34,11 +34,13 @@ router.post("/signup", upload.single("diploma"), (req, res) => {
         location,
         email,
         company,
+        batch,
+        school,
         course,
         password,
     } = req.body;
 
-    const diploma = req.file ? req.file.buffer : null;
+    const displaypic = req.file ? req.file.buffer : null;
 
     db.query(
         "SELECT username FROM user WHERE username = ?",
@@ -56,20 +58,22 @@ router.post("/signup", upload.single("diploma"), (req, res) => {
             }
 
             db.query(
-                `INSERT INTO applicant (firstname, middlename, lastname, username, empstatus, location, email, company, course, password, diploma)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                `INSERT INTO applicant (firstname, middlename, lastname, username, empstatus, location, email, company, batch, school, course, password, displaypic)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     firstName,
                     middleName || null,
                     lastName,
                     username,
-                    employment,
-                    location,
+                    employment || null,
+                    location || null,
                     email,
                     company || null,
+                    batch,
+                    school,
                     course,
                     password,
-                    diploma,
+                    displaypic || null,
                 ],
                 (err, result) => {
                     if (err) {
