@@ -276,7 +276,7 @@ const SignupPage = () => {
             <main className="flex flex-row h-screen bg-primary">
                 <form
                     onSubmit={handleSubmit}
-                    className="flex flex-col flex-1 mx-auto px-6 items-center rounded-tr-box rounded-br-box bg-base-100"
+                    className="flex flex-col flex-1 mx-auto pt-10 px-6 items-center rounded-tr-box rounded-br-box bg-base-100"
                     autoComplete="new-off"
                 >
                     <Banner />
@@ -322,8 +322,6 @@ const SignupPage = () => {
                                 }}
                             />
                         </label>
-                    </div>
-                    <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">Last Name*</span>
@@ -347,6 +345,8 @@ const SignupPage = () => {
                                 </span>
                             )}
                         </label>
+                    </div>
+                    <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">Username*</span>
@@ -370,6 +370,31 @@ const SignupPage = () => {
                             {inputError.username && (
                                 <span className="label-text text-error italic">
                                     {inputError.username}
+                                </span>
+                            )}
+                        </label>
+                        <label className="form-control w-[41.25rem]">
+                            <div className="label">
+                                <span className="label-text">Email*</span>
+                            </div>
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="Enter your email address"
+                                className="input input-bordered w-full"
+                                value={userData["email"]}
+                                onChange={(e) => {
+                                    e.target.value = e.target.value.replace(
+                                        /\s/g,
+                                        ""
+                                    );
+                                    if (e.target.value.length > 50) return;
+                                    handleFormInput(e);
+                                }}
+                            />
+                            {inputError.email && (
+                                <span className="label-text text-error italic">
+                                    {inputError.email}
                                 </span>
                             )}
                         </label>
@@ -476,65 +501,33 @@ const SignupPage = () => {
                                 </span>
                             )}
                         </div>
-                    </div>
-                    <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text">Email*</span>
+                                <span className="label-text">Company Name</span>
                             </div>
                             <input
                                 type="text"
-                                name="email"
-                                placeholder="Enter your email address"
+                                name="company"
+                                placeholder="Enter your company name"
                                 className="input input-bordered w-full max-w-xs"
-                                value={userData["email"]}
+                                value={userData["company"]}
                                 onChange={(e) => {
-                                    e.target.value = e.target.value.replace(
-                                        /\s/g,
-                                        ""
-                                    );
-                                    if (e.target.value.length > 50) return;
+                                    if (e.target.value.length > 30) return;
                                     handleFormInput(e);
                                 }}
                             />
-                            {inputError.email && (
+                            {inputError.company && (
                                 <span className="label-text text-error italic">
-                                    {inputError.email}
+                                    {inputError.company}
                                 </span>
                             )}
                         </label>
-                        {userData["employment"] !== "Unemployed" && (
-                            <label className="form-control w-full max-w-xs">
-                                <div className="label">
-                                    <span className="label-text">
-                                        Company Name
-                                    </span>
-                                </div>
-                                <input
-                                    type="text"
-                                    name="company"
-                                    placeholder="Enter your company name"
-                                    className="input input-bordered w-full max-w-xs"
-                                    value={userData["company"]}
-                                    onChange={(e) => {
-                                        if (e.target.value.length > 30) return;
-                                        handleFormInput(e);
-                                    }}
-                                />
-                                {inputError.company && (
-                                    <span className="label-text text-error italic">
-                                        {inputError.company}
-                                    </span>
-                                )}
-                            </label>
-                        )}
                     </div>
+                    <div className="flex flex-row gap-5 justify-center w-10/12"></div>
                     <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text">
-                                    Batch*
-                                </span>
+                                <span className="label-text">Batch*</span>
                             </div>
                             <input
                                 type="text"
@@ -578,8 +571,6 @@ const SignupPage = () => {
                                 </span>
                             )}
                         </label>
-                    </div>
-                    <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">Course*</span>
@@ -587,7 +578,7 @@ const SignupPage = () => {
                             <input
                                 type="text"
                                 name="course"
-                                placeholder="Enter your graduated course (Ex. BSIT, BSN, BMMA)"
+                                placeholder="Enter your course (Ex. BSIT, BSN, etc.)"
                                 className="input input-bordered w-full max-w-xs"
                                 value={userData["course"]}
                                 onChange={(e) => {
@@ -601,6 +592,8 @@ const SignupPage = () => {
                                 </span>
                             )}
                         </label>
+                    </div>
+                    <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">
@@ -620,9 +613,6 @@ const SignupPage = () => {
                                 </span>
                             )}
                         </label>
-                    </div>
-
-                    <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">Password*</span>
