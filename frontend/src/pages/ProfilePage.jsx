@@ -1,12 +1,18 @@
 // Author @yukiroow Harry Dominguez
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+    faEye,
+    faEyeSlash,
+    faUserEdit,
+    faEdit
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorHero from "../components/ErrorHero";
 import ProfileExperienceCard from "../components/profile/ProfileExperienceCard";
 import SetVisibilityModal from "../components/profile/SetVisibilityModal";
 import ProfilePictureUpload from "../components/profile/ProfilePictureUpload";
+import EditProfileModal from "../components/profile/EditProfileModal";
 
 /**
  * The Profile Page of the application.
@@ -22,6 +28,11 @@ const ProfilePage = () => {
         .substring(1, localStorage.getItem("user").length - 1);
     const [profile, setProfile] = useState({
         fullName: "",
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        school: "",
+        batch: "",
         course: "",
         company: "",
         dpRaw: null,
@@ -79,7 +90,13 @@ const ProfilePage = () => {
                             fullName: res.data.middlename
                                 ? `${res.data.firstname} ${res.data.middlename} ${res.data.lastname}`
                                 : `${res.data.firstname} ${res.data.lastname}`,
+                            firstName: res.data.firstname,
+                            middleName: res.data.middlename || "",
+                            lastName: res.data.lastname,
+                            email: res.data.email,
                             course: res.data.course,
+                            school: res.data.school,
+                            batch: res.data.batch,
                             company: res.data.company,
                             dpRaw: res.data.displaypic,
                             location: res.data.location,
@@ -171,6 +188,17 @@ const ProfilePage = () => {
 
     return (
         <>
+            <EditProfileModal
+                userid={userid}
+                firstName={profile.firstName}
+                middleName={profile.middleName}
+                lastName={profile.lastName}
+                email={profile.email}
+                batch={profile.batch}
+                school={profile.school}
+                course={profile.course}
+                company={profile.company}
+            />
             <ProfilePictureUpload onImageUpload={onImageUpload} />
             <SetVisibilityModal userid={userid} isVisible={profile.private} />
             <section className="join join-vertical px-[30%] my-5 rounded-box w-full ">
@@ -195,15 +223,43 @@ const ProfilePage = () => {
                             />
                         </span>
                         <span className="text-base mb-1">{username}</span>
-                        <span className="text-sm text-gray-400 self-flex-end">
-                            {profile.course}
+                        <span className="text-sm text-gray-400 self-flex-end mb-1">
+                            {profile.school} {profile.course} Batch of{" "}
+                            {profile.batch}
                             {profile.company ? ` | ${profile.company}` : ``}
-                            {profile.location ? ` | ${profile.location}` : ``}
                         </span>
                     </div>
                     <div className="flex items-center justify-center bg-white">
                         {avatar}
                     </div>
+                </div>
+                <div className="flex flex-row justify-center bg-white border-x pb-3">
+                    <div className="flex flex-row gap-1 text-primary px-5 hover:opacity-50">
+                        <FontAwesomeIcon icon={faUserEdit} />
+                        <span
+                            className="text-sm self-flex-end cursor-pointer select-none"
+                            onClick={() =>
+                                document
+                                    .getElementById("edit_profile_modal")
+                                    .showModal()
+                            }
+                        >
+                            Edit Profile
+                        </span>
+                    </div>
+                    {/* <div className="flex flex-row gap-1 text-primary hover:opacity-50 px-5">
+                        <FontAwesomeIcon icon={faEdit} />
+                        <span
+                            className="text-sm opacity-80 self-flex-end cursor-pointer select-none "
+                            onClick={() =>
+                                document
+                                    .getElementById("change_pass_modal")
+                                    .showModal()
+                            }
+                        >
+                            Change password
+                        </span>
+                    </div> */}
                 </div>
                 <div className="join-item flex border p-1 align-middle bg-white">
                     <span className="w-full text-center text-gray-400">
