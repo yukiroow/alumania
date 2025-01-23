@@ -22,6 +22,9 @@ const SearchPage = () => {
     const [sortOrder, setSortOrder] = useState("DESC");
     const [error, setError] = useState(false);
     const [firstRender, setFirstRender] = useState(true);
+    const userid = localStorage
+        .getItem("userid")
+        .substring(1, localStorage.getItem("userid").length - 1);
 
     const fetchExperiences = async () => {
         try {
@@ -68,7 +71,7 @@ const SearchPage = () => {
                     return;
                 }
                 const res = await axios.get(
-                    `http://localhost:2012/search/${filter}/${searchQuery}`
+                    `http://localhost:2012/search/${filter}/${searchQuery}?userid=${userid}`
                 );
                 setResults(res.data);
                 setError(false);

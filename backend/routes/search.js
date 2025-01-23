@@ -6,9 +6,13 @@ const db = require("../database").db;
 // Search events
 router.get("/events/:query", (req, res) => {
     const { query } = req.params;
+    const { userid } = req.query;
     db.query(
-        "SELECT * FROM event WHERE CONCAT(eventid, title, category, eventloc) LIKE ? ORDER BY publishtimestamp DESC",
-        [`%${query}%`],
+        `SELECT * FROM event 
+        WHERE CONCAT(eventid, title, category, eventloc) LIKE ? AND 
+        (batchfilter = (SELECT batch FROM alumni WHERE userid = ?) OR batchfilter IS NULL) 
+        ORDER BY publishtimestamp DESC`,
+        [`%${query}%`, userid],
         (err, results) => {
             if (err) {
                 console.log(err);
