@@ -20,7 +20,7 @@ const EventsPage = () => {
     const fetchEvents = async (page) => {
         try {
             const res = await axios.get(
-                `http://localhost:2012/events?page=${page}&limit=10`
+                `http://localhost:2012/events/${userId}?page=${page}&limit=10`
             );
 
             const interestedRes = await axios.get(

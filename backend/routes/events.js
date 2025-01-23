@@ -6,12 +6,13 @@ const router = express.Router();
 const db = require("../database").db;
 
 // Get all Events
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
+    const { id } = req.params;
     const { page = 1, limit = 5 } = req.query;
     const offset = (page - 1) * limit;
     db.query(
-        "SELECT * FROM event ORDER BY publishtimestamp DESC LIMIT ? OFFSET ?",
-        [parseInt(limit), parseInt(offset)],
+        "SELECT * FROM event WHERE batchfilter = (SELECT batch FROM alumni WHERE userid = ?) OR batchfilter IS NULL ORDER BY publishtimestamp DESC LIMIT ? OFFSET ?",
+        [id, parseInt(limit), parseInt(offset)],
         (err, results) => {
             if (err) return res.status(500).json({ error: err.message });
             res.json(results);
