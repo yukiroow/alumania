@@ -163,20 +163,6 @@ const SignupPage = () => {
                 username: "Please enter your desired username!",
             }));
         }
-        if (!userData.employment) {
-            errors++;
-            setInputError((values) => ({
-                ...values,
-                employment: "Please select your employment status!",
-            }));
-        }
-        if (!userData.location) {
-            errors++;
-            setInputError((values) => ({
-                ...values,
-                location: "Please select your location!",
-            }));
-        }
         if (!userData.email) {
             errors++;
             setInputError((values) => ({
@@ -191,11 +177,18 @@ const SignupPage = () => {
                 email: "Please enter a valid email",
             }));
         }
-        if (userData.employment === "Employed" && !userData.company) {
+        if (!userData.batch) {
             errors++;
             setInputError((values) => ({
                 ...values,
-                company: "Please enter your company name!",
+                batch: "Please enter your batch year!",
+            }));
+        }
+        if (!userData.school) {
+            errors++;
+            setInputError((values) => ({
+                ...values,
+                school: "Please enter your school acronym!",
             }));
         }
         if (!userData.course) {
@@ -203,13 +196,6 @@ const SignupPage = () => {
             setInputError((values) => ({
                 ...values,
                 course: "Please enter your graduated course!",
-            }));
-        }
-        if (!userData.displaypic) {
-            errors++;
-            setInputError((values) => ({
-                ...values,
-                displaypic: "Please upload a Profile Picture!",
             }));
         }
         if (!userData.password) {
@@ -391,7 +377,7 @@ const SignupPage = () => {
                     <div className="flex flex-row gap-5 justify-center w-10/12">
                         <div className="dropdown w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text">Employment*</span>
+                                <span className="label-text">Employment</span>
                             </div>
                             <div
                                 tabIndex={0}
@@ -447,7 +433,7 @@ const SignupPage = () => {
                         </div>
                         <div className="dropdown w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text">Location*</span>
+                                <span className="label-text">Location</span>
                             </div>
                             <div
                                 tabIndex={0}
@@ -547,7 +533,7 @@ const SignupPage = () => {
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">
-                                    Batch (Year of Graduation)
+                                    Batch*
                                 </span>
                             </div>
                             <input
@@ -573,7 +559,7 @@ const SignupPage = () => {
                         </label>
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text">School</span>
+                                <span className="label-text">School*</span>
                             </div>
                             <input
                                 type="text"
