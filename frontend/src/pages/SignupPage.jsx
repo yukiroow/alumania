@@ -21,10 +21,12 @@ const SignupPage = () => {
         location: "",
         email: "",
         company: "",
+        batch: "",
+        school: "",
         course: "",
         password: "",
         confirmPassword: "",
-        diploma: null,
+        displaypic: null,
     });
 
     const [inputError, setInputError] = useState({
@@ -36,10 +38,12 @@ const SignupPage = () => {
         location: "",
         email: "",
         company: "",
+        batch: "",
+        school: "",
         course: "",
         password: "",
         confirmPassword: "",
-        diploma: "",
+        displaypic: "",
         agreeToTerms: "",
     });
 
@@ -87,9 +91,9 @@ const SignupPage = () => {
         if (!allowedTypes.includes(file.type)) {
             setInputError((values) => ({
                 ...values,
-                diploma: "Only JPG, JPEG, and PNG files are allowed.",
+                displaypic: "Only JPG, JPEG, and PNG files are allowed.",
             }));
-            setUserData((values) => ({ ...values, diploma: null }));
+            setUserData((values) => ({ ...values, displaypic: null }));
             event.target.files;
             return;
         }
@@ -97,16 +101,16 @@ const SignupPage = () => {
         if (file && file.size > 5_242_880) {
             setInputError((values) => ({
                 ...values,
-                diploma: "Diploma must not exceed 5 MB.",
+                displaypic: "Profile Picture must not exceed 5 MB.",
             }));
-            setUserData((values) => ({ ...values, diploma: null }));
+            setUserData((values) => ({ ...values, displaypic: null }));
         } else {
             setError(false);
             setInputError((values) => ({
                 ...values,
-                diploma: "",
+                displaypic: "",
             }));
-            setUserData((values) => ({ ...values, diploma: file }));
+            setUserData((values) => ({ ...values, displaypic: file }));
         }
     };
 
@@ -122,9 +126,12 @@ const SignupPage = () => {
             location: "",
             email: "",
             company: "",
+            batch: "",
+            school: "",
+            course: "",
             password: "",
             confirmPassword: "",
-            diploma: "",
+            displaypic: "",
         });
 
         setUserData((values) => ({
@@ -198,11 +205,11 @@ const SignupPage = () => {
                 course: "Please enter your graduated course!",
             }));
         }
-        if (!userData.diploma) {
+        if (!userData.displaypic) {
             errors++;
             setInputError((values) => ({
                 ...values,
-                diploma: "Please upload your diploma for validation!",
+                displaypic: "Please upload a Profile Picture!",
             }));
         }
         if (!userData.password) {
@@ -539,6 +546,56 @@ const SignupPage = () => {
                     <div className="flex flex-row gap-5 justify-center w-10/12">
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
+                                <span className="label-text">
+                                    Batch (Year of Graduation)
+                                </span>
+                            </div>
+                            <input
+                                type="text"
+                                name="batch"
+                                placeholder="Enter your batch year (2010, 2011, etc.)"
+                                className="input input-bordered w-full max-w-xs"
+                                value={userData["batch"]}
+                                onChange={(e) => {
+                                    e.target.value = e.target.value.replace(
+                                        /\s/g,
+                                        ""
+                                    );
+                                    if (e.target.value.length > 4) return;
+                                    handleFormInput(e);
+                                }}
+                            />
+                            {inputError.batch && (
+                                <span className="label-text text-error italic">
+                                    {inputError.batch}
+                                </span>
+                            )}
+                        </label>
+                        <label className="form-control w-full max-w-xs">
+                            <div className="label">
+                                <span className="label-text">School</span>
+                            </div>
+                            <input
+                                type="text"
+                                name="school"
+                                placeholder="Enter your school (SABM, SEA, etc.)"
+                                className="input input-bordered w-full max-w-xs"
+                                value={userData["school"]}
+                                onChange={(e) => {
+                                    if (e.target.value.length > 20) return;
+                                    handleFormInput(e);
+                                }}
+                            />
+                            {inputError.school && (
+                                <span className="label-text text-error italic">
+                                    {inputError.school}
+                                </span>
+                            )}
+                        </label>
+                    </div>
+                    <div className="flex flex-row gap-5 justify-center w-10/12">
+                        <label className="form-control w-full max-w-xs">
+                            <div className="label">
                                 <span className="label-text">Course*</span>
                             </div>
                             <input
@@ -561,19 +618,19 @@ const SignupPage = () => {
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">
-                                    Upload Diploma* (png, jpg, jpeg)
+                                    Upload Profile Picture (png, jpg, jpeg)
                                 </span>
                             </div>
                             <input
                                 type="file"
-                                name="diploma"
+                                name="displaypic"
                                 className="file-input file-input-primary w-full"
                                 onChange={handleFileChange}
                                 accept="image/jpeg,image/png,image/jpg"
                             />
-                            {inputError.diploma && (
+                            {inputError.displaypic && (
                                 <span className="label-text text-error italic">
-                                    {inputError.diploma}
+                                    {inputError.displaypic}
                                 </span>
                             )}
                         </label>
