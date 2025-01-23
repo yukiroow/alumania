@@ -13,7 +13,7 @@ router.get("/:id", (req, res) => {
     db.query(
         `SELECT userid, username, email, firstname, 
         middlename, lastname, course, empstatus, 
-        location, company, displaypic, private 
+        location, company, school, batch, displaypic, private 
         FROM user INNER JOIN alumni USING(userid) 
         WHERE userid = ?`,
         [id],
@@ -37,6 +37,46 @@ router.put("/setvisible/:id", (req, res) => {
         [type, id],
         (err, results) => {
             if (err) return res.status(500).json({ error: err.message });
+            res.status(200).send({ message: "OK" });
+        }
+    );
+});
+
+// Edit Profile details
+router.post("/editprofile/:id", upload.none(), (req, res) => {
+    const { id } = req.params;
+    const {
+        firstName,
+        middleName,
+        lastName,
+        email,
+        batch,
+        school,
+        course,
+        company,
+    } = req.body;
+    db.query(
+        `
+                    UPDATE alumni
+                    SET firstname = ?, middlename = ?, lastname = ?, email = ?, batch = ?, school = ?, course = ?, company = ?
+                    WHERE userid = ?
+                `,
+        [
+            firstName,
+            middleName || null,
+            lastName,
+            email,
+            batch,
+            school,
+            course,
+            company,
+            id,
+        ],
+        (err, results) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ error: err.message });
+            }
             res.status(200).send({ message: "OK" });
         }
     );
