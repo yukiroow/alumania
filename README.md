@@ -56,7 +56,7 @@ You must have [node](https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi) ins
 
 2. Validate the `.env` file in `/backend` for your MySQL's user credentials and port
 
-3. Change your `max_allowed_packet` parameter to `10M` in your MySQL Configuration (C:\xampp\mysql\bin\my.ini)
+3. Change your `max_allowed_packet` parameter to `600M` in your MySQL Configuration (C:\xampp\mysql\bin\my.ini)
    (Don't forget to restart your XAMPP / WAMPP)
 
 4. Run the backend module
