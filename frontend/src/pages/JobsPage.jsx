@@ -95,6 +95,17 @@ const JobsPage = () => {
         );
     }
 
+    if (!jobs.length) {
+        return (
+            <>
+                <div className="w-1/2 min-w-96 m-auto mt-[30vh] opacity-50 select-none">
+                    <h1 className="ml-[20%] text-5xl font-thin">There&apos;s nothing here yet.</h1>
+                    <p className="ml-[21%] text-2xl font-extralight">You&apos;ll see job listings here :)</p>
+                </div>
+            </>
+        );
+    }
+
     return (
         <>
             <main className="flex h-[calc(100vh-7rem)]">
