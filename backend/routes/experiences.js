@@ -79,9 +79,13 @@ router.post("/new", upload.array("images"), (req, res) => {
                 if (err) {
                     console.log(err);
                 }
-                let result = results[0].count;
-
-                const nextID = `XP${String(result + 1).padStart(3, "0")}`;
+                let nextID;
+                if(!results.length) {
+                    nextID = 'XP001';
+                } else {
+                    let result = results[0].count;
+                    nextID = `XP${String(result + 1).padStart(3, "0")}`;
+                }
 
                 db.query(
                     "INSERT INTO experience (xpid, body, userid) VALUES (?, ?, ?)",
