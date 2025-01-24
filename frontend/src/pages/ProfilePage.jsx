@@ -70,7 +70,7 @@ const ProfilePage = () => {
                 }
             >
                 <p className="text-xl cursor-default select-none">
-                    {username.substring(1, 2).toUpperCase()}
+                    {profile.firstName.substring(0, 2).toUpperCase()}
                 </p>
             </div>
         </div>
